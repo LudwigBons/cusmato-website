@@ -1,0 +1,498 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px; /* Account for sticky header */
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  html,
+  body {
+    @apply h-full;
+  }
+
+  body {
+    @apply m-0 text-slate-900 bg-white leading-relaxed;
+    font-family: "Outfit", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font-family: "Outfit", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  }
+
+  /* CSS Variables for surface tokens */
+  :root {
+    --bg: #ffffff;
+    --surface: #f8fafc;
+    --surface2: #f1f5f9;
+    --border: rgba(15, 23, 42, 0.06);
+    --border-hover: rgba(15, 23, 42, 0.12);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.12);
+  }
+}
+
+@layer utilities {
+  /* Premium Card Styling */
+  .card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm), 0 0 0 0 rgba(59, 130, 246, 0);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .card:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(59, 130, 246, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .card-elevated {
+    box-shadow: var(--shadow), 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+
+  .card-elevated:hover {
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(59, 130, 246, 0.1);
+    transform: translateY(-3px);
+  }
+
+  /* Background Utilities */
+  .bg-grid {
+    background-image: 
+      linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .bg-noise {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Hn3AAAAAXNSR0IArs4c6QAAAB9JREFUGFdjZGRkYGBgYGBgYGBgYGBgYGBgYGBgYAAK/wB+gA/0/wAAAABJRU5ErkJggg==");
+    background-size: 4px 4px;
+    /* REMOVED mix-blend-mode: soft-light for scroll performance */
+    opacity: 0.02;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 35s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+      animation: none;
+      transform: translate3d(0, 0, 0);
+    }
+    .cusmato-glow,
+    .cusmato-sheen {
+      animation: none !important;
+      opacity: 0.5 !important;
+    }
+  }
+
+  /* Calendly Widget Performance Optimizations */
+  .calendly-widget-wrapper {
+    position: relative;
+    content-visibility: auto;
+    contain-intrinsic-size: 620px;
+    min-height: 620px;
+  }
+
+  .calendly-widget-wrapper .calendly-inline-widget {
+    min-height: 620px;
+  }
+
+  @media (min-width: 768px) {
+    .calendly-widget-wrapper {
+      min-height: 720px;
+      contain-intrinsic-size: 720px;
+    }
+    
+    .calendly-widget-wrapper .calendly-inline-widget {
+      min-height: 720px;
+    }
+  }
+
+  .calendly-skeleton,
+  .calendly-error {
+    background: white;
+    z-index: 10;
+    min-height: 620px;
+  }
+
+  @media (min-width: 768px) {
+    .calendly-skeleton,
+    .calendly-error {
+      min-height: 720px;
+    }
+  }
+
+  /* Clean Premium Animated Background - 2 Glow Layers */
+  .cusmato-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+
+  .cusmato-glow.glow-a {
+    top: -200px;
+    left: -200px;
+    background: radial-gradient(
+      circle,
+      rgba(59, 130, 246, 0.12) 0%,
+      rgba(59, 130, 246, 0.06) 40%,
+      transparent 70%
+    );
+    animation: cusmatoGlowFloat 20s ease-in-out infinite;
+  }
+
+  .cusmato-glow.glow-b {
+    bottom: -200px;
+    right: -200px;
+    background: radial-gradient(
+      circle,
+      rgba(59, 130, 246, 0.10) 0%,
+      rgba(59, 130, 246, 0.04) 40%,
+      transparent 70%
+    );
+    animation: cusmatoGlowFloat 24s ease-in-out infinite reverse;
+    animation-delay: -2s;
+  }
+
+  @keyframes cusmatoGlowFloat {
+    0% {
+      transform: translate3d(0, 0, 0);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translate3d(40px, 40px, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+      opacity: 0.8;
+    }
+  }
+
+  /* Premium Sheen Overlay */
+  .cusmato-sheen {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.08) 45%,
+      rgba(255, 255, 255, 0.12) 50%,
+      rgba(255, 255, 255, 0.08) 55%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: cusmatoSheenSlide 18s ease-in-out infinite;
+    will-change: transform;
+    border-radius: inherit;
+  }
+
+  @keyframes cusmatoSheenSlide {
+    0% {
+      transform: translateX(-100%) translateY(-100%) skewX(-20deg);
+    }
+    50% {
+      transform: translateX(100%) translateY(100%) skewX(-20deg);
+    }
+    100% {
+      transform: translateX(-100%) translateY(-100%) skewX(-20deg);
+    }
+  }
+
+  /* Logo Marquee Animation */
+  @keyframes logo-marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% / 3));
+    }
+  }
+
+  .logo-marquee-scroll {
+    animation: logo-marquee-scroll 32s linear infinite; /* Reduced speed by ~44% (from 18s to 32s) */
+  }
+
+  .logo-marquee-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  .logo-item {
+    opacity: 0.85;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .logo-item:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: translateY(-2px);
+  }
+
+  /* Mobile: smaller logo width to show 3-4 at a time */
+  @media (max-width: 768px) {
+    .logo-marquee-scroll .logo-item {
+      width: 100px !important;
+    }
+    
+    .logo-marquee-scroll {
+      gap: 32px !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-marquee-scroll {
+      animation: none;
+    }
+  }
+
+  /* Content Visibility for below-fold performance */
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 800px;
+  }
+
+  /* Anchor offset for smooth scrolling with sticky header */
+  .anchor-offset {
+    scroll-margin-top: 96px;
+  }
+
+  /* GPU acceleration for animated elements */
+  .gpu-accelerate {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /* Calendly Widget Styles */
+  .calendly-widget-wrapper {
+    @apply w-full overflow-hidden;
+  }
+
+  .calendly-inline-widget {
+    @apply w-full;
+    min-height: 900px;
+    position: relative;
+  }
+
+  @media (max-width: 768px) {
+    .calendly-inline-widget {
+      min-height: 720px;
+    }
+  }
+
+  /* Ensure Calendly iframe fills container properly */
+  .calendly-inline-widget iframe {
+    @apply w-full;
+    height: 100%;
+    min-height: inherit;
+  }
+
+  /* Hero Background Animations */
+  @keyframes glow-drift-1 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(40px, 30px) scale(1.08);
+    }
+    66% {
+      transform: translate(-20px, 50px) scale(0.95);
+    }
+  }
+
+  @keyframes glow-drift-2 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    40% {
+      transform: translate(-35px, -25px) scale(1.12);
+    }
+    80% {
+      transform: translate(25px, -40px) scale(0.92);
+    }
+  }
+
+  @keyframes glow-drift-3 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.02;
+    }
+    50% {
+      transform: translate(30px, -30px) scale(1.15);
+      opacity: 0.035;
+    }
+  }
+
+  @keyframes glow-breath {
+    0%, 100% {
+      opacity: 0.025;
+    }
+    50% {
+      opacity: 0.045;
+    }
+  }
+
+  @keyframes aurora-ribbon {
+    0% {
+      transform: translate(-50%, -50%) rotate(-45deg) translateX(-200px);
+      opacity: 0.12;
+    }
+    50% {
+      transform: translate(-50%, -50%) rotate(-45deg) translateX(200px);
+      opacity: 0.18;
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(-45deg) translateX(-200px);
+      opacity: 0.12;
+    }
+  }
+
+  @keyframes float-particle {
+    0%, 100% {
+      transform: translate(0, 0);
+      opacity: 0.15;
+    }
+    25% {
+      transform: translate(20px, -30px);
+      opacity: 0.25;
+    }
+    50% {
+      transform: translate(-15px, -50px);
+      opacity: 0.35;
+    }
+    75% {
+      transform: translate(-25px, -20px);
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes float-particle-2 {
+    0%, 100% {
+      transform: translate(0, 0);
+      opacity: 0.2;
+    }
+    33% {
+      transform: translate(-30px, 20px);
+      opacity: 0.3;
+    }
+    66% {
+      transform: translate(25px, -40px);
+      opacity: 0.25;
+    }
+  }
+
+  @keyframes float-particle-3 {
+    0%, 100% {
+      transform: translate(0, 0);
+      opacity: 0.18;
+    }
+    40% {
+      transform: translate(35px, 25px);
+      opacity: 0.28;
+    }
+    80% {
+      transform: translate(-20px, 30px);
+      opacity: 0.22;
+    }
+  }
+
+  .hero-glow-1 {
+    animation: glow-drift-1 28s ease-in-out infinite, glow-breath 8s ease-in-out infinite;
+  }
+
+  .hero-glow-2 {
+    animation: glow-drift-2 32s ease-in-out infinite, glow-breath 10s ease-in-out infinite 2s;
+  }
+
+  .hero-glow-3 {
+    animation: glow-drift-3 36s ease-in-out infinite, glow-breath 12s ease-in-out infinite 4s;
+  }
+
+  .hero-aurora-ribbon {
+    animation: aurora-ribbon 20s ease-in-out infinite;
+  }
+
+  .hero-particle-1 {
+    animation: float-particle 18s ease-in-out infinite;
+  }
+
+  .hero-particle-2 {
+    animation: float-particle-2 22s ease-in-out infinite 2s;
+  }
+
+  .hero-particle-3 {
+    animation: float-particle-3 20s ease-in-out infinite 4s;
+  }
+
+  .hero-particle-4 {
+    animation: float-particle 24s ease-in-out infinite 1s;
+  }
+
+  .hero-particle-5 {
+    animation: float-particle-2 19s ease-in-out infinite 3s;
+  }
+
+  .hero-particle-6 {
+    animation: float-particle-3 21s ease-in-out infinite 5s;
+  }
+
+  .hero-particle-7 {
+    animation: float-particle 23s ease-in-out infinite 2.5s;
+  }
+
+  .hero-particle-8 {
+    animation: float-particle-2 17s ease-in-out infinite 4.5s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-glow-1,
+    .hero-glow-2,
+    .hero-glow-3,
+    .hero-aurora-ribbon,
+    .hero-particle-1,
+    .hero-particle-2,
+    .hero-particle-3,
+    .hero-particle-4,
+    .hero-particle-5,
+    .hero-particle-6,
+    .hero-particle-7,
+    .hero-particle-8 {
+      animation: none !important;
+      transform: translate(0, 0) scale(1) !important;
+    }
+  }
+}
