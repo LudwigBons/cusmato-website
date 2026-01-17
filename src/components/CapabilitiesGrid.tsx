@@ -1,11 +1,12 @@
 // CapabilitiesGrid.tsx - 6 capability cards (2 rijen van 3)
 
 import { motion } from "framer-motion";
+import { memo } from "react";
 
 const CAPABILITIES = [
   {
     title: "AI ticket automatisering",
-    description: "Klantvragen automatisch beantwoorden en versturen — 24/7.",
+    description: "Klantvragen automatisch beantwoorden en versturen, 24/7.",
     icon: "ai-automation",
   },
   {
@@ -95,7 +96,7 @@ function Icon({ icon, isHighlighted = false }: { icon: string; isHighlighted?: b
   return null;
 }
 
-export default function CapabilitiesGrid() {
+function CapabilitiesGrid() {
   return (
     <section className="py-12 sm:py-16 lg:py-24 bg-white">
       <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -134,6 +135,7 @@ export default function CapabilitiesGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: idx * 0.05, ease: "easeOut" }}
+              style={{ willChange: "transform, opacity" }}
               className={`relative rounded-2xl border ${
                 isHighlighted ? "border-blue-200" : "border-slate-200"
               } ${
@@ -180,3 +182,5 @@ export default function CapabilitiesGrid() {
     </section>
   );
 }
+
+export default memo(CapabilitiesGrid);

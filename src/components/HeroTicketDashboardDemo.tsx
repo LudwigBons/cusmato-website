@@ -1,6 +1,6 @@
 // HeroTicketDashboardDemo.tsx - Compact dashboard animatie: ticket → AI antwoord → verstuurd
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 type TicketStatus = "new" | "ai-processing" | "ready" | "sent" | "solved";
@@ -47,15 +47,37 @@ const AI_RESPONSE = `Hoi Jan,
 Je bestelling #6238 is onderweg.
 Track & trace: 94XXXX…70216.`;
 
-export default function HeroTicketDashboardDemo() {
+function HeroTicketDashboardDemo() {
   const [tickets, setTickets] = useState<Ticket[]>(INITIAL_TICKETS);
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
   const [typedResponse, setTypedResponse] = useState("");
   const [isPaused, setIsPaused] = useState(false);
   const reducedMotion = useReducedMotion();
 
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRefs = useRef<Set<NodeJS.Timeout>>(new Set());
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const isRunningRef = useRef(false);
+  const mountedRef = useRef(true);
+  const isPausedRef = useRef(false);
+
+  // Cleanup all timeouts
+  const clearAllTimeouts = () => {
+    timeoutRefs.current.forEach((id) => clearTimeout(id));
+    timeoutRefs.current.clear();
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+      clearAllTimeouts();
+      isRunningRef.current = false;
+    };
+  }, []);
 
   useEffect(() => {
     if (reducedMotion) {
@@ -63,68 +85,126 @@ export default function HeroTicketDashboardDemo() {
       setTickets([{ ...NEW_TICKET, status: "sent" }, ...INITIAL_TICKETS]);
       setSelectedTicket({ ...NEW_TICKET, status: "sent" });
       setTypedResponse(AI_RESPONSE);
+      clearAllTimeouts();
+      isRunningRef.current = false;
       return;
     }
 
+    // Update ref to track current pause state
+    isPausedRef.current = isPaused;
+
+    // Pause logic: just clear timers
     if (isPaused) {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      clearAllTimeouts();
       return;
     }
+
+    // Don't start if already running to prevent duplicate animations
+    if (isRunningRef.current) {
+      return;
+    }
+
+    isRunningRef.current = true;
+    clearAllTimeouts();
 
     const runAnimation = () => {
+      if (!mountedRef.current) {
+        isRunningRef.current = false;
+        return;
+      }
+
       // Step A: New ticket appears
       setTickets([NEW_TICKET, ...INITIAL_TICKETS]);
       setSelectedTicket(null);
       setTypedResponse("");
 
       // Step B: Select ticket after delay
-      timeoutRef.current = setTimeout(() => {
+      const timeout1 = setTimeout(() => {
+        if (!mountedRef.current || isPausedRef.current) {
+          isRunningRef.current = false;
+          return;
+        }
         setSelectedTicket({ ...NEW_TICKET, status: "ai-processing" });
         setTickets((prev) =>
           prev.map((t) => (t.id === NEW_TICKET.id ? { ...t, status: "ai-processing" } : t))
         );
 
         // Step C: Type AI response
-        timeoutRef.current = setTimeout(() => {
+        const timeout2 = setTimeout(() => {
+          if (!mountedRef.current || isPausedRef.current) {
+            isRunningRef.current = false;
+            return;
+          }
           let charIndex = 0;
           intervalRef.current = setInterval(() => {
-            if (charIndex < AI_RESPONSE.length) {
-              setTypedResponse(AI_RESPONSE.slice(0, charIndex + 1));
-              charIndex++;
-            } else {
-              if (intervalRef.current) clearInterval(intervalRef.current);
+            if (!mountedRef.current || isPausedRef.current) {
+              if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+                intervalRef.current = null;
+              }
+              isRunningRef.current = false;
+              return;
+            }
+
+            if (charIndex >= AI_RESPONSE.length) {
+              if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+                intervalRef.current = null;
+              }
               // Step D: Ready to send
+              if (!mountedRef.current || isPausedRef.current) {
+                isRunningRef.current = false;
+                return;
+              }
               setSelectedTicket((prev) => (prev ? { ...prev, status: "ready" } : null));
               setTickets((prev) =>
                 prev.map((t) => (t.id === NEW_TICKET.id ? { ...t, status: "ready" } : t))
               );
 
               // Step E: Send and mark as sent
-              timeoutRef.current = setTimeout(() => {
+              const timeout3 = setTimeout(() => {
+                if (!mountedRef.current || isPausedRef.current) {
+                  isRunningRef.current = false;
+                  return;
+                }
                 setSelectedTicket((prev) => (prev ? { ...prev, status: "sent" } : null));
                 setTickets((prev) =>
                   prev.map((t) => (t.id === NEW_TICKET.id ? { ...t, status: "sent" } : t))
                 );
 
-                // Reset after pause
-                timeoutRef.current = setTimeout(() => {
+                // Reset after pause - check pause state before restarting
+                const timeout4 = setTimeout(() => {
+                  isRunningRef.current = false;
+                  if (!mountedRef.current || isPausedRef.current) {
+                    return;
+                  }
+                  // Restart animation
                   runAnimation();
                 }, 2000);
+                timeoutRefs.current.add(timeout4);
               }, 1500);
+              timeoutRefs.current.add(timeout3);
+              return;
+            }
+
+            if (mountedRef.current && !isPausedRef.current) {
+              setTypedResponse(AI_RESPONSE.slice(0, charIndex + 1));
+              charIndex++;
             }
           }, 30);
         }, 800);
+        timeoutRefs.current.add(timeout2);
       }, 1500);
+      timeoutRefs.current.add(timeout1);
     };
 
     runAnimation();
 
     return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      clearAllTimeouts();
+      isRunningRef.current = false;
     };
-  }, [isPaused, reducedMotion]);
+  }, [reducedMotion, isPaused]);
 
   return (
     <div
@@ -308,3 +388,5 @@ export default function HeroTicketDashboardDemo() {
     </div>
   );
 }
+
+export default memo(HeroTicketDashboardDemo);

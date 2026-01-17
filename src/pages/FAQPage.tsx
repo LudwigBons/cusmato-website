@@ -39,7 +39,7 @@ const faqs: FAQItem[] = [
   {
     id: "wat-is-cusmato",
     question: "Wat is Cusmato?",
-    answer: "Cusmato is in-house AI-software voor e-commerce klantenservice. Het automatiseert klantantwoorden via e-mail en chat—24/7—in jouw tone of voice, met controle en goedkeuring als je dat wilt.",
+    answer: "Cusmato is in-house AI-software voor e-commerce klantenservice. Het automatiseert klantantwoorden via e-mail en chat, 24/7, in jouw tone of voice, met controle en goedkeuring als je dat wilt.",
     category: "Algemeen",
   },
   {
@@ -103,7 +103,7 @@ const faqs: FAQItem[] = [
   {
     id: "als-cusmato-niet-zeker",
     question: "Wat als Cusmato het niet zeker weet?",
-    answer: "Dan kan het escaleren naar een medewerker, of een verduidelijkende vraag stellen—afhankelijk van je voorkeur en instellingen. Je houdt altijd controle over hoe Cusmato omgaat met onzekere situaties.",
+    answer: "Dan kan het escaleren naar een medewerker, of een verduidelijkende vraag stellen, afhankelijk van je voorkeur en instellingen. Je houdt altijd controle over hoe Cusmato omgaat met onzekere situaties.",
     category: "Controle & goedkeuring",
   },
 
@@ -117,7 +117,7 @@ const faqs: FAQItem[] = [
   {
     id: "hoe-lang-koppelen",
     question: "Hoe lang duurt koppelen gemiddeld?",
-    answer: "Vaak binnen 1 dag voor standaard integraties zoals Gmail, Outlook of Shopify. Complexere stacks met meerdere systemen kunnen langer duren—we bespreken dit tijdens onboarding en houden je op de hoogte.",
+    answer: "Vaak binnen 1 dag voor standaard integraties zoals Gmail, Outlook of Shopify. Complexere stacks met meerdere systemen kunnen langer duren. We bespreken dit tijdens onboarding en houden je op de hoogte.",
     category: "Integraties",
   },
   {
@@ -183,7 +183,7 @@ const faqs: FAQItem[] = [
   {
     id: "hoe-werkt-opzeggen",
     question: "Hoe werkt opzeggen?",
-    answer: "Je zit nergens aan vast tijdens de proefperiode. Na de proefperiode kun je eenvoudig opzeggen wanneer je wilt—geen langdurige contracten of opzegtermijnen.",
+    answer: "Je zit nergens aan vast tijdens de proefperiode. Na de proefperiode kun je eenvoudig opzeggen wanneer je wilt, zonder langdurige contracten of opzegtermijnen.",
     category: "Pricing / proefperiode",
   },
 
@@ -197,7 +197,7 @@ const faqs: FAQItem[] = [
   {
     id: "speciale-workflows",
     question: "Wat als ik speciale workflows heb?",
-    answer: "Dan richten we samen regels en uitzonderingen in, zodat het past bij jouw processen. Cusmato is flexibel en aanpasbaar—we zorgen dat het werkt met jouw specifieke situatie en workflows.",
+    answer: "Dan richten we samen regels en uitzonderingen in, zodat het past bij jouw processen. Cusmato is flexibel en aanpasbaar. We zorgen dat het werkt met jouw specifieke situatie en workflows.",
     category: "Support / onboarding",
   },
 ];

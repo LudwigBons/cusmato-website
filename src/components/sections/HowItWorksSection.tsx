@@ -1,66 +1,46 @@
-import { Link } from "react-router-dom";
+import WorkflowSteps from "../WorkflowSteps";
 
 export default function HowItWorksSection() {
   const steps = [
     {
-      number: "1",
-      title: "Koppelen",
-      description: "We koppelen Cusmato aan jouw bestaande systemen via API's en webhooks.",
+      id: "connect",
+      title: "Koppel je bronnen",
+      sentence: "Verbind Shopify, bol.com, WooCommerce en e-mail met Cusmato in minuten.",
+      chips: ["Shopify", "bol.com", "WooCommerce", "E-mail"],
+      visual: {
+        type: "connection" as const,
+        sources: ["Shopify", "bol.com", "Gmail"],
+        target: "Cusmato Inbox",
+      },
+      logos: ["/logo-shopify.png", "/logo-gmail.png", "/Bol-logo-short.png"],
     },
     {
-      number: "2",
-      title: "Begrijpen",
-      description: "Cusmato leert jouw tone of voice en begrijpt hoe je met klanten communiceert.",
+      id: "centralize",
+      title: "Centraliseer klantprofielen",
+      sentence: "Cusmato verzamelt automatisch contactgegevens en orderhistorie in één profiel.",
+      chips: ["Contact sync", "Orderhistorie", "Automatisch"],
+      visual: {
+        type: "profile" as const,
+      },
+      logos: ["/logo-shopify.png", "/logo-zendesk.png"],
     },
     {
-      number: "3",
-      title: "Versturen",
-      description: "Automatisch antwoorden versturen of eerst ter goedkeuring voorleggen.",
+      id: "ticket",
+      title: "Automatische context",
+      sentence: "Bij elk nieuw ticket voegt Cusmato direct relevante klantcontext toe.",
+      chips: ["Ticket context", "Klantgeschiedenis", "Auto toevoegen"],
+      visual: {
+        type: "ticket" as const,
+      },
+      logos: ["/logo-zendesk.png", "/logo-gmail.png"],
     },
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left Column - Steps */}
-          <div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              Zo werkt Cusmato
-            </h2>
-            <div className="space-y-6 mb-8">
-              {steps.map((step, index) => (
-                <div key={index} className="flex gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-600 text-white font-bold text-lg">
-                      {step.number}
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-slate-900 mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="text-slate-600 leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right Column - Image */}
-          <div className="hidden md:block relative">
-            <div className="relative bg-white rounded-3xl shadow-md border border-slate-200 overflow-hidden">
-              <img
-                src="/cusmato-email-automation-flow.webp"
-                alt="Email automation flow"
-                className="w-full h-auto object-cover block"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <WorkflowSteps
+      steps={steps}
+      title="Zo werkt de koppeling"
+      subtitle="In drie stappen koppel je je tools en start je met automatiseren."
+    />
   );
 }

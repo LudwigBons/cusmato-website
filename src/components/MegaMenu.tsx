@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
+import { NAVIGATION } from "../lib/constants";
 
 export interface MegaMenuSection {
   title?: string;
@@ -29,83 +30,8 @@ export interface MegaMenuConfig {
   };
 }
 
-// MegaMenu data configuration
-export const megaMenuData: MegaMenuConfig = {
-  featured: {
-    label: "AI Helpdesk",
-    description: "Automatische klantenservice voor e-commerce — 24/7",
-    href: "/ai-helpdesk",
-    featured: true,
-  },
-  sections: [
-    {
-      title: "AUTOMATISERING",
-      items: [
-        {
-          label: "Bestellingen & retouren",
-          href: "/bestellingen-retouren",
-        },
-        {
-          label: "AI facturatie",
-          href: "/ai-facturatie",
-        },
-        {
-          label: "Workflows & regels",
-          href: "/workflows-regels",
-        },
-      ],
-    },
-    {
-      title: "VERANTWOORDING",
-      items: [
-        {
-          label: "Algemene voorwaarden",
-          href: "/algemene-voorwaarden",
-        },
-        {
-          label: "Security & privacy",
-          href: "/security-privacy",
-        },
-      ],
-    },
-    {
-      title: "SELF-SERVICE & KENNIS",
-      items: [
-        {
-          label: "Knowledgebase",
-          href: "/knowledgebase",
-        },
-        {
-          label: "Klantdata",
-          href: "/klantdata",
-        },
-        {
-          label: "Teamchat",
-          href: "/teamchat",
-        },
-      ],
-    },
-    {
-      title: "RESOURCES",
-      items: [
-        {
-          label: "Prijzen",
-          href: "/prijzen",
-          description: "Bekijk onze modulaire prijzen en bundels",
-        },
-      ],
-    },
-  ],
-  imageCard: {
-    image: "/Onboard Cusmato AI.png",
-    imageAlt: "Cusmato AI Onboarding",
-    title: "Onboard Cusmato AI",
-    description: "Onboard Cusmato in 5 minuten en start direct met automatiseren. Koppel je tools, configureer je AI Helpdesk en laat Cusmato klantvragen zelfstandig afhandelen.",
-    ctaText: "Start onboarding →",
-    ctaHref: "https://www.cusmato.app/welkom",
-    ctaExternal: true,
-  },
-};
+// Export menu data from constants
+export const megaMenuData: MegaMenuConfig = NAVIGATION.megaMenu;
 
 interface MegaMenuProps {
   config: MegaMenuConfig;

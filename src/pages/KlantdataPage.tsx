@@ -27,7 +27,7 @@ export default function KlantdataPage() {
     {
       icon: "context",
       title: "Context verrijken in het ticket",
-      description: "Elk ticket krijgt direct klantcontext: via welk kanaal ze komen, bestelgeschiedenis, recente activiteit en status — alles zichtbaar naast de conversatie.",
+      description: "Elk ticket krijgt direct klantcontext zoals via welk kanaal ze komen, bestelgeschiedenis, recente activiteit en status. Alles staat zichtbaar naast de conversatie.",
     },
     {
       icon: "prioriteit",
@@ -181,7 +181,7 @@ export default function KlantdataPage() {
             {/* Description */}
             <Reveal delay={0.15}>
               <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-8 sm:mb-10 leading-relaxed max-w-[28rem] sm:max-w-2xl mx-auto">
-                Cusmato centraliseert klantgegevens uit je kanalen en koppelt ze aan tickets in de AI Helpdesk. Zo krijg je direct context (contact, kanaal, bestellingen, recente activiteit) en kan Cusmato sneller en consistenter antwoorden — automatisch of met goedkeuring.
+                Cusmato centraliseert klantgegevens uit je kanalen en koppelt ze aan tickets in de AI Helpdesk. Zo krijg je direct context zoals contact, kanaal, bestellingen en recente activiteit. Cusmato kan hierdoor sneller en consistenter antwoorden, automatisch of met goedkeuring.
               </p>
             </Reveal>
 
@@ -288,7 +288,7 @@ export default function KlantdataPage() {
                     <svg className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-base text-slate-700">Geen schakelen tussen systemen — alles op één plek</span>
+                    <span className="text-base text-slate-700">Geen schakelen tussen systemen, alles op één plek</span>
                   </li>
                 </ul>
               </div>
@@ -560,7 +560,7 @@ export default function KlantdataPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                   </svg>
                   <p className="text-sm text-slate-700 leading-relaxed">
-                    <span className="font-semibold text-slate-900">Transparant wat er gebeurt:</span> Alle acties met klantdata worden gelogd in een audit trail. Je ziet precies welke gegevens zijn gebruikt, door wie en waarom — volledige traceerbaarheid voor compliance.
+                    <span className="font-semibold text-slate-900">Transparant wat er gebeurt:</span> Alle acties met klantdata worden gelogd in een audit trail. Je ziet precies welke gegevens zijn gebruikt, door wie en waarom. Volledige traceerbaarheid voor compliance.
                   </p>
                 </div>
               </div>
@@ -594,6 +594,33 @@ export default function KlantdataPage() {
             backgroundSize: "32px 32px",
           }}
         />
+
+        {/* Image Section */}
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-16 sm:mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="text-center sm:text-left">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
+                Real-time support insights
+              </h3>
+              <p className="text-base sm:text-lg text-slate-600 mb-6 leading-relaxed">
+                Gebruik klantdata om betere en snellere antwoorden te geven. Cusmato haalt automatisch context op uit je systemen voor complete klantinzichten.
+              </p>
+            </div>
+            <div>
+              <div className="relative w-full max-w-[520px] mx-auto">
+                <div className="aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                  <img
+                    src="/Real-Time Support Insights.webp"
+                    alt="Real-time support insights met klantdata"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="relative z-10 max-w-3xl mx-auto sm:px-6 lg:px-8 text-center">
           <Reveal delay={0.1}>

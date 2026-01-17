@@ -184,7 +184,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
               className="text-lg md:text-xl text-slate-600 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
             >
-              Cusmato automatiseert e-mail- en chatvragen voor e-commerce — 24/7, in jouw tone of voice, met controle wanneer je het wil.
+              Cusmato automatiseert e-mail- en chatvragen voor e-commerce, 24/7, in jouw tone of voice, met controle wanneer je het wil.
             </motion.p>
 
             {/* CTA Buttons */}

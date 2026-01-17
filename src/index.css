@@ -161,6 +161,7 @@
     border-radius: 50%;
     pointer-events: none;
     will-change: transform, opacity;
+    transform: translateZ(0);
   }
 
   .cusmato-glow.glow-a {
@@ -304,8 +305,170 @@
 
   .calendly-inline-widget {
     @apply w-full;
-    min-height: 900px;
+  }
+
+  /* Modern SaaS Dark Background with Animated Glow */
+  @keyframes glow-pulse {
+    0%, 100% {
+      opacity: 0.15;
+      transform: translate(0%, 0%) scale(1);
+    }
+    33% {
+      opacity: 0.25;
+      transform: translate(20%, -10%) scale(1.1);
+    }
+    66% {
+      opacity: 0.2;
+      transform: translate(-15%, 15%) scale(0.95);
+    }
+  }
+
+  @keyframes glow-drift {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.15;
+    }
+    50% {
+      transform: translate(-40%, -40%) scale(1.2);
+      opacity: 0.2;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.15;
+    }
+  }
+
+  .saas-dark-section {
+    background: linear-gradient(180deg, #071a33 0%, #0b2a4a 100%);
     position: relative;
+    overflow: hidden;
+  }
+
+  .saas-dark-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(59, 130, 246, 0.1) 40%, transparent 70%);
+    border-radius: 50%;
+    animation: glow-drift 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+
+  .saas-dark-section::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.25) 0%, rgba(96, 165, 250, 0.05) 40%, transparent 70%);
+    border-radius: 50%;
+    animation: glow-pulse 15s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+
+  .saas-dark-section > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .saas-dark-section::before,
+    .saas-dark-section::after {
+      animation: none !important;
+    }
+  }
+
+  /* Premium Benefits Section */
+  @keyframes glow-breathe {
+    0%, 100% {
+      opacity: 0.15;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.25;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes workflow-glow-breathe {
+    0%, 100% {
+      opacity: 0.4;
+      transform: scale(1) translateY(0);
+    }
+    50% {
+      opacity: 0.65;
+      transform: scale(1.08) translateY(-10px);
+    }
+  }
+
+  .premium-benefits-container {
+    background: linear-gradient(180deg, rgba(11, 42, 74, 0.06), rgba(11, 42, 74, 0.02));
+    border: 1px solid rgba(59, 130, 246, 0.18);
+    box-shadow: 0 20px 60px rgba(2, 6, 23, 0.10);
+    position: relative;
+  }
+
+  .premium-benefits-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.18) 0%, transparent 70%);
+    filter: blur(80px);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    animation: glow-breathe 18s ease-in-out infinite;
+  }
+
+  .premium-benefit-card {
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+  }
+
+  .premium-image-frame {
+    position: relative;
+    z-index: 2;
+  }
+
+  .workflow-premium-frame {
+    position: relative;
+    z-index: 2;
+    will-change: transform, opacity;
+  }
+
+  .clean-benefits-container {
+    will-change: transform, opacity;
+  }
+
+  .clean-benefit-card {
+    will-change: transform;
+  }
+
+  .clean-premium-image-frame {
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .premium-benefits-container::before,
+    [style*="glow-breathe"],
+    [style*="workflow-glow-breathe"] {
+      animation: none !important;
+      opacity: 0.15 !important;
+      transform: scale(1) translateY(0) !important;
+    }
   }
 
   @media (max-width: 768px) {
@@ -363,6 +526,74 @@
     }
     50% {
       opacity: 0.045;
+    }
+  }
+
+  @keyframes image-glow-breathe {
+    0%, 100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.05);
+    }
+  }
+
+  /* Scroll snap utilities */
+  .scroll-snap-x {
+    scroll-snap-type: x mandatory;
+  }
+
+  .snap-x {
+    scroll-snap-type: x mandatory;
+  }
+
+  .snap-start {
+    scroll-snap-align: start;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* WorkflowSteps data pulse animation */
+  @keyframes data-pulse {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  /* Slow spin animation for logo */
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 14s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-spin-slow {
+      animation: none;
     }
   }
 

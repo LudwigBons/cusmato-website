@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, Suspense, lazy } from "react";
 import Reveal from "../components/Reveal";
+
+const PremiumImage = lazy(() => import("../components/PremiumImage"));
 
 interface PricingTier {
   volume: string;
@@ -82,7 +84,7 @@ export default function PrijzenPage() {
   const faqs = [
     {
       question: "Zijn seats verplicht?",
-      answer: "Nee, Cusmato is volledig modulair. Je betaalt alleen voor wat je gebruikt — seats, integraties en AI-modules zijn optioneel.",
+      answer: "Nee, Cusmato is volledig modulair. Je betaalt alleen voor wat je gebruikt. Seats, integraties en AI-modules zijn optioneel.",
     },
     {
       question: "Kan ik opzeggen?",
@@ -105,53 +107,56 @@ export default function PrijzenPage() {
   return (
     <div className="min-h-screen bg-white">
       <main className="pt-20 sm:pt-24 pb-12 sm:pb-16">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          {/* Hero */}
-          <Reveal>
-            <div className="text-center mb-8 sm:mb-16">
-              <h1 className="text-4xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 mb-3 sm:mb-6 leading-[1.05]">
-                <span className="sm:hidden">Prijzen</span>
-                <span className="hidden sm:inline">Prijzen die met je meegroeien</span>
-              </h1>
-              <p className="text-base sm:text-base lg:text-lg text-slate-600 max-w-[28rem] sm:max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed">
-                <span className="block sm:inline">Start gratis.</span> Betaal alleen voor wat je gebruikt.
-              </p>
-              {/* Mobile: only 1 CTA, Desktop: 2 CTAs */}
-              <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center mb-0 sm:mb-4">
-                <Link
-                  to="/probeer-14-dagen-gratis"
-                  className="inline-flex items-center justify-center w-full max-w-[320px] sm:w-auto h-10 px-4 rounded-full bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors"
-                >
-                  Probeer 14 dagen gratis
-                </Link>
-                <Link
-                  to="/contact"
-                  className="hidden sm:inline-flex items-center justify-center rounded-full px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 transition-colors hover:shadow-sm"
-                >
-                  Neem contact op
-                </Link>
+        <div className="max-w-[1100px] mx-auto sm:px-6 lg:px-8">
+          {/* 1. Intro Section with Image */}
+          <section className="mb-16 sm:mb-24 lg:mb-32">
+            <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-8 lg:gap-12 xl:gap-16 items-center">
+              {/* Left: Text Content */}
+              <div className="text-center lg:text-left order-2 lg:order-1">
+                <Reveal>
+                  <p className="text-[10px] font-semibold text-blue-500 uppercase tracking-[0.15em] mb-4">
+                    TRANSPARANTE PRICING
+                  </p>
+                  <h1 className="text-4xl sm:text-[42px] md:text-[48px] lg:text-[52px] font-semibold text-slate-900 mb-4 sm:mb-6 leading-[1.05] tracking-tight">
+                    Prijzen die met je meegroeien
+                  </h1>
+                  <p className="text-base sm:text-lg text-slate-600 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    Start gratis en betaal alleen voor wat je gebruikt. Geen verborgen kosten, geen lange contracten.
+                  </p>
+                </Reveal>
               </div>
-              <p className="hidden sm:block text-xs sm:text-sm text-slate-500">
-                Geen verplichte pakketten • Opzegbaar per maand
-              </p>
+              {/* Right: Supporting Image */}
+              <div className="order-1 lg:order-2">
+                <Suspense fallback={null}>
+                  <PremiumImage
+                    src="/People Behind Cusmato AI Dashboard.webp"
+                    alt="Efficiënt support management voor webshops"
+                    aspectRatio="16/10"
+                    maxWidth="lg"
+                    variant="light"
+                    showGlow={false}
+                  />
+                </Suspense>
+              </div>
             </div>
-          </Reveal>
+          </section>
 
-          {/* Modules Section */}
-          <Reveal>
-            <div className="mb-10 sm:mb-20">
-              <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-slate-900 mb-3 sm:mb-6 text-center">
-                AI-modules
-              </h2>
-              <p className="hidden sm:block text-sm sm:text-base text-slate-600 text-center mb-10 sm:mb-12 max-w-2xl mx-auto">
-                Kies alleen de modules die je nodig hebt. Prijzen zijn per maand en schalen met je volume.
-              </p>
+          {/* 2. AI Modules Section - Simplified */}
+          <section className="mb-20 sm:mb-28 lg:mb-32">
+            <Reveal>
+              <div className="mb-8 sm:mb-12 text-center">
+                <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                  Kies alleen de modules die je nodig hebt. Prijzen zijn per maand en schalen met je volume.
+                </p>
+              </div>
+            </Reveal>
 
-              <div className="grid sm:grid-cols-3 gap-3 sm:gap-6">
+            <div className="grid sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                 {/* AI Conceptantwoorden */}
-                <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-6">
-                  <div className="px-2.5 sm:px-0">
-                    <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-900 mb-1.5 sm:mb-2">AI Conceptantwoorden</h3>
+                <Reveal delay={0.1}>
+                  <div className="bg-white rounded-lg border border-slate-200/60 shadow-sm p-5 sm:p-6 lg:p-7">
+                    <div>
+                      <h3 className="text-lg sm:text-xl font-semibold text-slate-900 mb-2">AI Conceptantwoorden</h3>
                     <p className="text-xs sm:text-sm text-slate-600 mb-3 sm:mb-4 leading-relaxed">
                       Automatisch antwoorden genereren
                     </p>
@@ -188,14 +193,16 @@ export default function PrijzenPage() {
                         <span>1.000 tickets</span>
                       </div>
                     </div>
-                    <ModuleAccordion tiers={conceptTiers} unitLabel="tickets" />
+                      <ModuleAccordion tiers={conceptTiers} unitLabel="tickets" />
+                    </div>
                   </div>
-                </div>
+                </Reveal>
 
                 {/* AI Auto-Resolution */}
-                <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-6">
-                  <div className="px-2.5 sm:px-0">
-                    <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-900 mb-1.5 sm:mb-2">AI Auto-Resolution</h3>
+                <Reveal delay={0.15}>
+                  <div className="bg-white rounded-lg border border-slate-200/60 shadow-sm p-5 sm:p-6 lg:p-7">
+                    <div>
+                      <h3 className="text-lg sm:text-xl font-semibold text-slate-900 mb-2">AI Auto-Resolution</h3>
                     <p className="text-xs sm:text-sm text-slate-600 mb-3 sm:mb-4 leading-relaxed">
                       Volledig automatisch tickets afhandelen
                     </p>
@@ -230,14 +237,16 @@ export default function PrijzenPage() {
                         <span>1.000 tickets</span>
                       </div>
                     </div>
-                    <ModuleAccordion tiers={autoResolutionTiers} unitLabel="tickets" />
+                      <ModuleAccordion tiers={autoResolutionTiers} unitLabel="tickets" />
+                    </div>
                   </div>
-                </div>
+                </Reveal>
 
                 {/* AI Chatbot */}
-                <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-6">
-                  <div className="px-2.5 sm:px-0">
-                    <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-900 mb-1.5 sm:mb-2">AI Chatbot</h3>
+                <Reveal delay={0.2}>
+                  <div className="bg-white rounded-lg border border-slate-200/60 shadow-sm p-5 sm:p-6 lg:p-7">
+                    <div>
+                      <h3 className="text-lg sm:text-xl font-semibold text-slate-900 mb-2">AI Chatbot</h3>
                     <p className="text-xs sm:text-sm text-slate-600 mb-3 sm:mb-4 leading-relaxed">
                       Live chat voor klantvragen
                     </p>
@@ -272,32 +281,33 @@ export default function PrijzenPage() {
                         <span>2.000 chats</span>
                       </div>
                     </div>
-                    <ModuleAccordion tiers={chatbotTiers} unitLabel="chats" />
+                      <ModuleAccordion tiers={chatbotTiers} unitLabel="chats" />
+                    </div>
                   </div>
-                </div>
-              </div>
+                </Reveal>
             </div>
-          </Reveal>
+          </section>
 
-          {/* Start Plans Cards */}
-          <Reveal>
-            {/* Mobile: Single compact card */}
-            <div className="sm:hidden mb-8">
-              <div className="bg-white rounded-xl border border-slate-200 p-4">
+          {/* 3. Basis & Extra's Section */}
+          <section className="mb-20 sm:mb-28 lg:mb-32">
+            <Reveal>
+              {/* Mobile: Single compact card */}
+              <div className="sm:hidden mb-8">
+                <div className="bg-white rounded-lg border border-slate-200/60 shadow-sm p-5">
                 <div className="px-2.5">
                   <h3 className="text-base font-bold text-slate-900 mb-3">Basis & extra's</h3>
                   <div className="space-y-2 text-sm text-slate-600 mb-4">
                     <div className="flex items-center gap-2">
                       <span className="text-slate-400">•</span>
-                      <span>Free — €0 (tot 50 tickets)</span>
+                      <span>Free plan voor €0 per maand, tot 50 tickets</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-slate-400">•</span>
-                      <span>Seats — €29 per medewerker</span>
+                      <span>Seats kosten €29 per medewerker</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-slate-400">•</span>
-                      <span>Integraties — vanaf €19 / maand</span>
+                      <span>Integraties vanaf €19 per maand</span>
                     </div>
                   </div>
                   <details className="group">
@@ -352,9 +362,9 @@ export default function PrijzenPage() {
                       <div>
                         <h4 className="text-sm font-semibold text-slate-900 mb-2">Integraties</h4>
                         <ul className="space-y-1.5 text-xs text-slate-600">
-                          <li>• Extra standaard integratie — €19 / maand</li>
-                          <li>• WhatsApp integratie — €29 / maand</li>
-                          <li>• Bol.com / Amazon integratie — €29 / maand</li>
+                          <li>• Extra standaard integratie voor €19 per maand</li>
+                          <li>• WhatsApp integratie voor €29 per maand</li>
+                          <li>• Bol.com en Amazon integratie voor €29 per maand</li>
                         </ul>
                       </div>
                     </div>
@@ -363,11 +373,12 @@ export default function PrijzenPage() {
               </div>
             </div>
 
-            {/* Desktop: 3 separate cards */}
-            <div className="hidden sm:grid sm:grid-cols-3 gap-4 sm:gap-6 mb-16 sm:mb-20">
-              {/* Free Plan */}
-              <div className="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 lg:p-8 relative">
-                <div className="px-2.5 sm:px-0">
+              {/* Desktop: 3 separate cards */}
+              <div className="hidden sm:grid sm:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+                {/* Free Plan */}
+                <Reveal delay={0.1}>
+                  <div className="bg-white rounded-lg border border-slate-200/60 shadow-sm p-6 lg:p-8">
+                    <div>
                   <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">Cusmato Free</h3>
                   <div className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">€0</div>
                   <p className="text-sm sm:text-base text-slate-600 mb-6 leading-relaxed">
@@ -403,14 +414,16 @@ export default function PrijzenPage() {
                     to="/probeer-14-dagen-gratis"
                     className="block w-full text-center rounded-full px-4 py-2.5 text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors"
                   >
-                    Start gratis
-                  </Link>
-                </div>
-              </div>
+                      Start gratis
+                    </Link>
+                    </div>
+                  </div>
+                </Reveal>
 
-              {/* Seats */}
-              <div className="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 lg:p-8 relative">
-                <div className="px-2.5 sm:px-0">
+                {/* Seats */}
+                <Reveal delay={0.15}>
+                  <div className="bg-white rounded-lg border border-slate-200/60 shadow-sm p-6 lg:p-8">
+                    <div>
                   <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">Medewerkers</h3>
                   <div className="text-2xl sm:text-3xl font-bold text-slate-900 mb-1">€29</div>
                   <p className="text-sm text-slate-500 mb-4">per seat / maand</p>
@@ -435,14 +448,16 @@ export default function PrijzenPage() {
                     to="/probeer-14-dagen-gratis"
                     className="block w-full text-center rounded-full px-4 py-2.5 text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors"
                   >
-                    Start onboarding
-                  </Link>
-                </div>
-              </div>
+                      Start onboarding
+                    </Link>
+                    </div>
+                  </div>
+                </Reveal>
 
-              {/* Integraties */}
-              <div className="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 lg:p-8 relative">
-                <div className="px-2.5 sm:px-0">
+                {/* Integraties */}
+                <Reveal delay={0.2}>
+                  <div className="bg-white rounded-lg border border-slate-200/60 shadow-sm p-6 lg:p-8">
+                    <div>
                   <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">Integraties</h3>
                   <div className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">Vanaf €19</div>
                   <p className="text-sm sm:text-base text-slate-600 mb-6 leading-relaxed">
@@ -453,36 +468,39 @@ export default function PrijzenPage() {
                       <svg className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      Extra standaard integratie — €19 / maand
+                      Extra standaard integratie voor €19 per maand
                     </li>
                     <li className="flex items-start gap-2">
                       <svg className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      WhatsApp integratie — €29 / maand
+                      WhatsApp integratie voor €29 per maand
                     </li>
                     <li className="flex items-start gap-2">
                       <svg className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      Bol.com / Amazon integratie — €29 / maand
+                      Bol.com en Amazon integratie voor €29 per maand
                     </li>
                   </ul>
                   <Link
                     to="/integraties"
                     className="block w-full text-center rounded-full px-4 py-2.5 text-sm font-semibold border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 transition-colors"
                   >
-                    Bekijk integraties
-                  </Link>
-                </div>
+                      Bekijk integraties
+                    </Link>
+                    </div>
+                  </div>
+                </Reveal>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </section>
 
-          {/* Enterprise */}
-          <Reveal>
-            <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 lg:p-8 mb-10 sm:mb-20 max-w-2xl mx-auto">
-              <div className="px-2.5 sm:px-0">
+          {/* 4. Enterprise Section */}
+          <section className="mb-20 sm:mb-28 lg:mb-32">
+            <Reveal>
+              <div className="bg-white rounded-lg border border-slate-200/60 shadow-sm p-6 sm:p-8 lg:p-10 max-w-2xl mx-auto">
+                <div>
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900 mb-2 sm:mb-3">Enterprise</h3>
                 <p className="text-sm text-slate-600 mb-4 sm:mb-6 leading-relaxed">
                   Voor grote volumes of maatwerk.
@@ -517,26 +535,45 @@ export default function PrijzenPage() {
                   to="/contact"
                   className="block w-full text-center rounded-full px-4 py-2.5 text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors"
                 >
-                  Neem contact op
-                </Link>
+                    Neem contact op
+                  </Link>
+                </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </section>
 
-          {/* Footer CTA - Hidden on mobile to reduce CTAs */}
-          <Reveal>
-            <div className="hidden sm:block text-center">
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
-                Klaar om te starten?
-              </h3>
-              <Link
-                to="/probeer-14-dagen-gratis"
-                className="inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-sm"
-              >
-                Probeer 14 dagen gratis
-              </Link>
-            </div>
-          </Reveal>
+          {/* 5. FAQ Section */}
+          <section className="mb-16 sm:mb-20">
+            <Reveal>
+              <div className="max-w-3xl mx-auto">
+                <h2 className="text-2xl sm:text-3xl font-semibold text-slate-900 mb-8 sm:mb-12 text-center">
+                  Veelgestelde vragen
+                </h2>
+                <div className="space-y-4 sm:space-y-6">
+                  {faqs.map((faq, index) => (
+                    <Reveal key={index} delay={0.05 * index}>
+                      <details className="bg-white rounded-lg border border-slate-200/60 shadow-sm p-5 sm:p-6 group">
+                        <summary className="text-base sm:text-lg font-semibold text-slate-900 cursor-pointer list-none flex items-center justify-between gap-4">
+                          <span>{faq.question}</span>
+                          <svg
+                            className="w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200 group-open:rotate-180"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </summary>
+                        <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </details>
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          </section>
         </div>
       </main>
     </div>

@@ -14,7 +14,7 @@ export default function FeaturesPage() {
     },
     {
       title: "Tone of voice",
-      description: "Klinkt als jouw merk — consistent in elke reactie.",
+      description: "Klinkt als jouw merk, consistent in elke reactie.",
     },
     {
       title: "Veilig & compliant",
@@ -35,7 +35,7 @@ export default function FeaturesPage() {
               Wat Cusmato voor je automatiseert
             </h1>
             <p className="text-sm sm:text-lg text-slate-600 max-w-2xl mx-auto leading-snug sm:leading-relaxed">
-              Van simpele vragen tot support-taken — Cusmato pakt het op, leert ervan en blijft verbeteren.
+              Van simpele vragen tot support-taken, Cusmato pakt het op, leert ervan en blijft verbeteren.
             </p>
           </div>
 
@@ -52,6 +52,55 @@ export default function FeaturesPage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Features Images Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mt-12 sm:mt-16 mb-12">
+            <div className="order-2 lg:order-1">
+              <div className="relative w-full max-w-[520px] mx-auto">
+                <div className="aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                  <img
+                    src="/Human-Approved Automation.webp"
+                    alt="Human-approved automation met Cusmato features"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="order-1 lg:order-2 text-center sm:text-left">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
+                Automatisering met menselijke controle
+              </h3>
+              <p className="text-base sm:text-lg text-slate-600 mb-6 leading-relaxed">
+                Cusmato automatiseert waar mogelijk, maar jij houdt altijd de controle. Goedkeur workflows, pas antwoorden aan of escaleer naar je team wanneer nodig.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12">
+            <div className="text-center sm:text-left">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
+                Slimmere support operaties
+              </h3>
+              <p className="text-base sm:text-lg text-slate-600 mb-6 leading-relaxed">
+                Elke feature is gericht op het versnellen en verbeteren van je supportproces. Van order lookup tot tone of voice, alles werkt samen.
+              </p>
+            </div>
+            <div>
+              <div className="relative w-full max-w-[520px] mx-auto">
+                <div className="aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                  <img
+                    src="/Smarter Support Operations.webp"
+                    alt="Smarter support operations met Cusmato"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="text-center">

@@ -1,52 +1,50 @@
 import { Link } from "react-router-dom";
+import WorkflowSteps from "../WorkflowSteps";
 
 export default function WorkflowSection() {
   const steps = [
     {
-      number: "1",
+      id: "connect",
       title: "Koppelen",
-      description: "We koppelen Cusmato aan jouw bestaande systemen via API's en webhooks.",
+      sentence: "We koppelen Cusmato aan jouw bestaande systemen via API's en webhooks.",
+      chips: ["API's", "Webhooks", "Snelle setup"],
+      visual: {
+        type: "connection" as const,
+        sources: ["Shopify", "Zendesk", "Gmail"],
+        target: "Cusmato",
+      },
+      logos: ["/logo-shopify.png", "/logo-zendesk.png", "/logo-gmail.png"],
     },
     {
-      number: "2",
+      id: "automate",
       title: "Automatiseren",
-      description: "Cusmato begint direct met het afhandelen van klantvragen in jouw tone of voice.",
+      sentence: "Cusmato begint direct met het afhandelen van klantvragen in jouw tone of voice.",
+      chips: ["Automatisch", "Tone of voice", "24/7"],
+      visual: {
+        type: "ticket" as const,
+      },
+      logos: ["/logo-zendesk.png", "/logo-gmail.png"],
     },
     {
-      number: "3",
+      id: "optimize",
       title: "Optimaliseren",
-      description: "De AI leert van elke interactie en wordt continu beter in het helpen van jouw klanten.",
+      sentence: "De AI leert van elke interactie en wordt continu beter in het helpen van jouw klanten.",
+      chips: ["Machine learning", "Feedback loop", "Betere kwaliteit"],
+      visual: {
+        type: "profile" as const,
+      },
+      logos: ["/logo-shopify.png"],
     },
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-slate-50">
-      <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            Zo werkt het
-          </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            In drie eenvoudige stappen ben je klaar om te automatiseren.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {steps.map((step, index) => (
-            <div key={index} className="text-center">
-              <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center rounded-full bg-blue-600 text-white font-bold text-lg">
-                {step.number}
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">
-                {step.title}
-              </h3>
-              <p className="text-slate-600 leading-relaxed">
-                {step.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
+    <div className="bg-slate-50">
+      <WorkflowSteps
+        steps={steps}
+        title="Zo werkt het"
+        subtitle="In drie eenvoudige stappen ben je klaar om te automatiseren."
+      />
+      <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-12 md:pb-16">
         <div className="text-center">
           <Link
             to="/integraties"
@@ -56,6 +54,6 @@ export default function WorkflowSection() {
           </Link>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

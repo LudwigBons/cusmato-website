@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
+import { memo } from "react";
 
-export default function ChatbotSection() {
+function ChatbotSection() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -15,6 +16,8 @@ export default function ChatbotSection() {
                 src="/cusmato-ai-chatbot-nederlands.webp"
                 alt="Cusmato AI chatbot antwoordt automatisch op klantvragen"
                 className="w-full h-auto object-cover block"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -60,3 +63,5 @@ export default function ChatbotSection() {
     </section>
   );
 }
+
+export default memo(ChatbotSection);

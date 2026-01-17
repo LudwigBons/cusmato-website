@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Reveal from "../components/Reveal";
 import GlobalCTA from "../components/GlobalCTA";
-import CalendlyInline from "../components/CalendlyInline";
+import CalendlyInlineWidget from "../components/CalendlyInlineWidget";
 
 export default function Probeer14DagenGratisPage() {
 
@@ -60,7 +60,7 @@ export default function Probeer14DagenGratisPage() {
             </Reveal>
 
             {/* Calendly Widget Container - No Reveal to prevent re-renders */}
-            <CalendlyInline />
+            <CalendlyInlineWidget url="https://calendly.com/cusmato-ai/30min" />
           </div>
         </div>
       </main>

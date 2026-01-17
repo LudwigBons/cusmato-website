@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import AnimatedHeroBackground from "./AnimatedHeroBackground";
-import HeroTicketDashboardDemo from "./HeroTicketDashboardDemo";
+import HeroVisualStack from "./HeroVisualStack";
+import Button from "./ui/Button";
+import { ROUTES, CTAS } from "../lib/constants";
 
 export default function HeroProductScene() {
   const shouldReduceMotion = useReducedMotion();
@@ -22,91 +23,40 @@ export default function HeroProductScene() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Eyebrow */}
-            <div className="mb-6">
-              <span className="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase">
-                CUSMATO
-              </span>
-            </div>
-
             {/* Headline - Calm, premium */}
             <h1 className="text-4xl sm:text-[40px] md:text-[44px] lg:text-[52px] font-semibold text-slate-900 leading-[1.05] tracking-[-0.01em] mb-4 sm:mb-6">
-              Automatiseer klantantwoorden
-              <br />
-              met <span className="text-blue-600">Cusmato</span>
+              Automatiseer je klantenservice met{" "}
+              <span className="inline-flex items-center">
+                <img
+                  src="/logo.png"
+                  alt=""
+                  className="w-[0.9em] h-[0.9em] object-contain animate-spin-slow"
+                  style={{ marginRight: "8px" }}
+                  aria-hidden="true"
+                />
+                <span className="text-blue-600">Cusmato</span>
+              </span>
             </h1>
 
             {/* Subtext - Calm, muted */}
             <p className="text-base sm:text-[15px] md:text-[16px] lg:text-[17px] text-slate-500 max-w-[28rem] sm:max-w-[560px] mx-auto lg:mx-0 mb-8 sm:mb-10 leading-relaxed">
-              Cusmato automatiseert e-mail- en chatvragen voor e-commerce — 24/7, in jouw tone of voice, met controle wanneer je het wil.
+              Cusmato automatiseert e-mail- en chatvragen voor e-commerce, 24/7, in jouw tone of voice, met controle wanneer je het wil.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
-              <motion.div
-                whileHover={shouldReduceMotion ? {} : { 
-                  y: -2,
-                  scale: 1.02,
-                  transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
-                }}
-                whileTap={shouldReduceMotion ? {} : { 
-                  y: 0,
-                  scale: 0.98,
-                  transition: { duration: 0.15 }
-                }}
-              >
-                <Link
-                  to="/probeer-14-dagen-gratis"
-                  className="inline-flex items-center justify-center rounded-full h-10 sm:h-auto px-4 sm:px-6 py-2.5 sm:py-3 text-sm font-semibold bg-blue-600 text-white shadow-sm hover:shadow-lg transition-all duration-300"
-                >
-                  Probeer 14 dagen gratis
-                </Link>
-              </motion.div>
-              <motion.div
-                whileHover={shouldReduceMotion ? {} : { 
-                  y: -2,
-                  scale: 1.02,
-                  transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
-                }}
-                whileTap={shouldReduceMotion ? {} : { 
-                  y: 0,
-                  scale: 0.98,
-                  transition: { duration: 0.15 }
-                }}
-              >
-                <a
-                  href="https://www.cusmato.app/welkom"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-full h-10 sm:h-auto px-4 sm:px-6 py-2.5 sm:py-3 text-sm font-semibold border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 hover:shadow-md transition-all duration-300"
-                >
-                  Start onboarding
-                </a>
-              </motion.div>
+              <Button to={CTAS.tryFree.href} variant="primary" size="md">
+                {CTAS.tryFree.text}
+              </Button>
+              <Button href={CTAS.startOnboarding.href} variant="secondary" size="md" external>
+                {CTAS.startOnboarding.text}
+              </Button>
             </div>
           </motion.div>
 
-          {/* RIGHT SIDE - Ticket Dashboard Demo */}
-          <motion.div
-            className="hidden lg:flex items-center justify-center h-full"
-            initial={{ opacity: 0, y: 30, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <HeroTicketDashboardDemo />
-          </motion.div>
-
-          {/* Mobile Ticket Dashboard Demo */}
-          <motion.div
-            className="lg:hidden mt-12 col-span-2 scale-[0.95] sm:scale-100 origin-top"
-            initial={{ opacity: 0, y: 20, scale: 0.93 }}
-            animate={{ opacity: 1, y: 0, scale: 0.95 }}
-            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <HeroTicketDashboardDemo />
-          </motion.div>
+          {/* RIGHT SIDE - Hero Visual Stack (image + ticket + 2 code snippets) */}
+          <HeroVisualStack />
         </div>
-
       </div>
     </section>
   );

@@ -94,6 +94,7 @@ export default function DashboardSection() {
                   src="/dashboard.png"
                   alt="Dashboard met resultaten en impact metrics"
                   className="w-full h-auto object-cover block"
+                  loading="lazy"
                 />
               </div>
             </div>

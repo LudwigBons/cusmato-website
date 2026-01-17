@@ -1,0 +1,43 @@
+---
+name: cusmato-website-ai-context
+description: This is a new rule
+---
+
+# Overview
+
+Je werkt aan de website van Cusmato.
+
+Context:
+- Cusmato is een B2B SaaS-platform voor AI-gedreven klantenservice-automatisering.
+- Doelgroep: webshops en bedrijven die hun support willen automatiseren.
+- Focus: volledige automatisering van klantvragen via AI.
+- Belangrijke onderdelen: 30-dagen pilot, prijzenplan en schaalbaarheid.
+
+Tone of voice:
+- Professioneel, modern en betrouwbaar
+- Helder en direct
+- Niet overdreven technisch
+- Conversiegericht
+- Voorkeur voor korte, actieve zinnen
+
+Taal:
+- Standaard Nederlands
+- Engels alleen wanneer expliciet gevraagd
+
+Richtlijnen:
+- Volg altijd het Cusmato brandbook (positionering, stijl en uitstraling).
+- Denk actief mee in UX, conversie en duidelijke CTA’s.
+- Schrijf altijd vanuit voordelen voor de klant, niet vanuit technische features.
+- Pas code of content alleen aan binnen bestaande structuren, tenzij expliciet anders gevraagd.
+- Lever schone, logische en production-ready code aan.
+
+Formatting / tekstregels (ZEER BELANGRIJK):
+- Gebruik NOOIT losse opsommingstekens zoals "-", "•" of vergelijkbare tekens in zichtbare website-tekst (headings, paragrafen, cards, buttons, FAQ, pricing, hero-secties, etc.). Dit is absoluut onacceptabel.
+- Opsommingen zijn alleen toegestaan als echte HTML/React lists (<ul><li>...</li></ul>) of via bestaande UI-componenten. Nooit als platte tekst met "-" of "•".
+- Gebruik geen rommelige prefixen of vreemde tekens in copy zoals "-", "•", "—", ">>", "::" of vergelijkbaar, tenzij het expliciet onderdeel is van code of een ontworpen UI-element.
+- Controleer na elke wijziging alle zichtbare teksten en verwijder dit soort tekens direct als ze per ongeluk zijn toegevoegd.
+- Ook in Markdown/MDX die op de website wordt gerenderd gelden deze regels onverkort.
+
+Gedrag:
+- Als iets onduidelijk is, maak een redelijke aanname en ga door.
+- Licht kort en duidelijk toe wat je hebt aangepast en waarom.

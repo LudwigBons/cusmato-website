@@ -1,58 +1,84 @@
+import { Suspense, lazy } from "react";
+import ImageFrame from "../components/ImageFrame";
+import FinalCTA from "../components/FinalCTA";
+
+const plans = [
+  {
+    name: "Starter",
+    price: "Vanaf €99",
+    description: "Perfect voor kleine teams die willen beginnen met automatisering.",
+    features: [
+      "Tot 500 tickets/maand",
+      "E-mail automatisering",
+      "Basis integraties",
+      "Email support",
+    ],
+  },
+  {
+    name: "Growth",
+    price: "Vanaf €299",
+    description: "Voor groeiende bedrijven die meer automatisering nodig hebben.",
+    features: [
+      "Tot 2000 tickets/maand",
+      "Alle automatisering functies",
+      "Alle integraties",
+      "Prioriteit support",
+      "Custom tone of voice",
+    ],
+    popular: true,
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    description: "Voor grote organisaties met specifieke wensen en eisen.",
+    features: [
+      "Onbeperkt tickets",
+      "Dedicated account manager",
+      "Custom integraties",
+      "24/7 support",
+      "SLA garantie",
+      "On-premise optie",
+    ],
+  },
+];
+
 export default function PricingPage() {
-  const plans = [
-    {
-      name: "Starter",
-      price: "Vanaf €99",
-      description: "Perfect voor kleine teams die willen beginnen met automatisering.",
-      features: [
-        "Tot 500 tickets/maand",
-        "E-mail automatisering",
-        "Basis integraties",
-        "Email support",
-      ],
-    },
-    {
-      name: "Growth",
-      price: "Vanaf €299",
-      description: "Voor groeiende bedrijven die meer automatisering nodig hebben.",
-      features: [
-        "Tot 2000 tickets/maand",
-        "Alle automatisering functies",
-        "Alle integraties",
-        "Prioriteit support",
-        "Custom tone of voice",
-      ],
-      popular: true,
-    },
-    {
-      name: "Enterprise",
-      price: "Custom",
-      description: "Voor grote organisaties met specifieke wensen en eisen.",
-      features: [
-        "Onbeperkt tickets",
-        "Dedicated account manager",
-        "Custom integraties",
-        "24/7 support",
-        "SLA garantie",
-        "On-premise optie",
-      ],
-    },
-  ];
-
   return (
-    <div className="min-h-screen overflow-x-hidden">
-      <main className="pt-20 sm:pt-24 pb-12 sm:pb-16 bg-slate-50">
+    <div className="min-h-screen overflow-x-hidden bg-white">
+      <main className="pt-20 sm:pt-24 pb-12 sm:pb-16">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div className="text-center mb-10 sm:mb-12 md:mb-16">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-5">
-              Eenvoudige, transparante prijzen
-            </h1>
-            <p className="text-sm sm:text-lg text-slate-600 max-w-2xl mx-auto leading-snug sm:leading-relaxed">
-              Kies het plan dat past bij jouw behoeften. Start altijd met 14 dagen gratis proberen.
-            </p>
-          </div>
+          {/* Intro Section - Split Layout */}
+          <section className="mb-16 sm:mb-20 lg:mb-24">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
+              {/* Left: Text */}
+              <div className="text-center lg:text-left">
+                <h1 className="text-4xl sm:text-[42px] md:text-[48px] lg:text-[52px] font-semibold text-slate-900 mb-6 leading-[1.05] tracking-tight">
+                  Eenvoudige, transparante prijzen
+                </h1>
+                <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                  Kies het plan dat past bij jouw behoeften. Start altijd met 14 dagen gratis proberen.
+                </p>
+              </div>
+              {/* Right: Image */}
+              <div className="flex justify-center lg:justify-end">
+                <Suspense fallback={null}>
+                  <ImageFrame
+                    src="/Focused Support Automation.webp"
+                    alt="Cusmato pricing en schaalbaarheid"
+                    aspectRatio="16/10"
+                    variant="light"
+                    showGlow={true}
+                    loading="eager"
+                    className="max-w-[520px]"
+                  />
+                </Suspense>
+              </div>
+            </div>
+          </section>
 
-          <div className="grid md:grid-cols-3 gap-4 sm:gap-6 mb-12">
+          {/* Pricing Cards */}
+          <section className="mb-16 sm:mb-20 lg:mb-24">
+            <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             {plans.map((plan, index) => (
               <div
                 key={index}
@@ -94,9 +120,29 @@ export default function PricingPage() {
                 </div>
               </div>
             ))}
-          </div>
+            </div>
+          </section>
+
+          {/* Separator */}
+          <div className="border-t border-slate-200 my-16 sm:my-20" />
+
+          {/* AI Modules Section */}
+          <section>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-semibold text-slate-900 mb-4">
+                AI-modules (optioneel)
+              </h2>
+              <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
+                Voeg extra AI-capaciteiten toe aan je plan wanneer je ze nodig hebt.
+              </p>
+            </div>
+            {/* AI modules content kan hier later toegevoegd worden */}
+          </section>
         </div>
       </main>
+
+      {/* Final CTA */}
+      <FinalCTA />
     </div>
   );
 }

@@ -127,7 +127,7 @@ export default function AIHelpdeskPage() {
       
       {/* Content */}
       <div className="relative z-10">
-      {/* 1. Hero Section - Minimal Kinso Style */}
+      {/* 1. Hero Section - Clean Text Only */}
       <SubpageHeroMinimal
         eyebrow="AI HELPDESK"
         title={
@@ -136,7 +136,7 @@ export default function AIHelpdeskPage() {
             <span className="hidden sm:inline">Automatiseer e-commerce klantenservice met Cusmato AI Helpdesk</span>
           </>
         }
-        description="Cusmato begrijpt klantvragen, schrijft antwoorden in jouw tone of voice en handelt tickets automatisch af — met of zonder goedkeuring."
+        description="Cusmato begrijpt klantvragen, schrijft antwoorden in jouw tone of voice en handelt tickets automatisch af, met of zonder goedkeuring."
         primaryCTA={{
           text: "Probeer 14 dagen gratis",
           href: "/probeer-14-dagen-gratis",
@@ -232,7 +232,7 @@ export default function AIHelpdeskPage() {
                 <span className="hidden sm:inline">Wat automatiseert de AI Helpdesk?</span>
               </h2>
               <p className="text-base sm:text-lg text-slate-600 max-w-[28rem] sm:max-w-2xl mx-auto leading-relaxed">
-                Herhaalbare e-commerce vragen worden automatisch afgehandeld — 24/7, zonder handmatig werk.
+                Herhaalbare e-commerce vragen worden automatisch afgehandeld, 24/7 en zonder handmatig werk.
               </p>
             </div>
           </Reveal>
@@ -344,7 +344,7 @@ export default function AIHelpdeskPage() {
                     </h3>
                   </div>
                   <p className="text-sm sm:text-lg text-slate-600 leading-snug sm:leading-[1.7] mb-5">
-                    Koppel je support inbox (Gmail/Outlook/Zendesk/Intercom) en Cusmato leest direct je binnenkomende vragen. Geen gedoe met migraties — je kunt vandaag nog live.
+                    Koppel je support inbox zoals Gmail, Outlook, Zendesk of Intercom en Cusmato leest direct je binnenkomende vragen. Geen gedoe met migraties, je kunt vandaag nog live.
                   </p>
                   <div className="flex flex-wrap gap-4 text-xs sm:text-sm text-slate-500">
                     <span className="flex items-center gap-2">
@@ -635,15 +635,47 @@ export default function AIHelpdeskPage() {
           </Reveal>
           <Reveal delay={0.15}>
             <div className="text-center">
-              <span className="inline-flex items-center text-base font-semibold text-blue-600">
+              <Link
+                to="/in-house-ai"
+                className="inline-flex items-center text-base font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+              >
                 Lees hoe onze AI werkt →
-              </span>
+              </Link>
             </div>
           </Reveal>
         </div>
       </Section>
 
-      {/* 8. FAQ */}
+      {/* 8. Image Section - Automated Customer Support */}
+      <Section variant="default">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="order-2 lg:order-1 text-center sm:text-left">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-slate-900 mb-4 sm:mb-6 leading-[1.15]">
+                Volledig geautomatiseerde klantensupport
+              </h2>
+              <p className="text-base sm:text-lg text-slate-600 mb-6 leading-relaxed">
+                Cusmato handelt klantvragen automatisch af, 24/7. Van orderstatus tot retourprocessen verloopt alles naadloos zonder handmatig werk.
+              </p>
+            </div>
+            <div className="order-1 lg:order-2">
+              <div className="relative w-full max-w-[520px] mx-auto">
+                <div className="aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                  <img
+                    src="/Automated Customer Support.webp"
+                    alt="Automated customer support met Cusmato AI"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* 9. FAQ */}
       <Section variant="soft">
         <div className="max-w-4xl mx-auto sm:px-6 lg:px-8">
           <Reveal>

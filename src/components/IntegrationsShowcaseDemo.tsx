@@ -1,6 +1,6 @@
 // IntegrationsShowcaseDemo.tsx - Premium clean integrations UI
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 const INTEGRATIONS = [
@@ -16,7 +16,7 @@ const CONTEXT_DATA = [
   { label: "Eerdere tickets", value: "2" },
 ];
 
-export default function IntegrationsShowcaseDemo() {
+function IntegrationsShowcaseDemo() {
   const [connectedIntegrations, setConnectedIntegrations] = useState<string[]>([]);
   const [loadedData, setLoadedData] = useState<string[]>([]);
   const [isPaused, setIsPaused] = useState(false);
@@ -64,7 +64,10 @@ export default function IntegrationsShowcaseDemo() {
     runAnimation();
 
     return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
     };
   }, [isPaused, reducedMotion]);
 
@@ -259,3 +262,5 @@ export default function IntegrationsShowcaseDemo() {
     </div>
   );
 }
+
+export default memo(IntegrationsShowcaseDemo);

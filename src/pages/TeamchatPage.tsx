@@ -27,7 +27,7 @@ export default function TeamchatPage() {
     {
       icon: "besluiten",
       title: "Besluiten vastleggen bij het ticket",
-      description: "Leg besluiten en acties vast direct naast het ticket. Geen zoekwerk achteraf — alles staat op één plek.",
+      description: "Leg besluiten en acties vast direct naast het ticket. Geen zoekwerk achteraf, alles staat op één plek.",
     },
     {
       icon: "notities",
@@ -60,7 +60,7 @@ export default function TeamchatPage() {
     {
       number: "3",
       title: "Besluit → actie: label, response, of escalatie",
-      description: "Leg besluiten vast en voer direct acties uit. Label tickets, stuur antwoorden of escal naar een collega — alles vanuit één overzicht.",
+      description: "Leg besluiten vast en voer direct acties uit. Label tickets, stuur antwoorden of escal naar een collega, alles vanuit één overzicht.",
     },
   ], []);
 
@@ -145,7 +145,7 @@ export default function TeamchatPage() {
             {/* Description */}
             <Reveal delay={0.15}>
               <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-8 sm:mb-10 leading-relaxed max-w-[28rem] sm:max-w-2xl mx-auto">
-                Werk samen in kanalen, tag collega's en leg besluiten vast — zonder tickets te verliezen in Slack/WhatsApp.
+                Werk samen in kanalen, tag collega's en leg besluiten vast zonder tickets te verliezen in Slack of WhatsApp.
               </p>
             </Reveal>
 
@@ -219,7 +219,7 @@ export default function TeamchatPage() {
                 <span className="hidden md:inline">Zo werkt Teamchat in de praktijk</span>
               </h2>
               <p className="text-base sm:text-lg text-slate-600 max-w-[28rem] sm:max-w-2xl mx-auto leading-relaxed">
-                Bespreek een case, tag collega's en zet direct een actie klaar — zonder context te verliezen.
+                Bespreek een case, tag collega's en zet direct een actie klaar zonder context te verliezen.
               </p>
             </div>
           </Reveal>
@@ -396,6 +396,33 @@ export default function TeamchatPage() {
             backgroundSize: "32px 32px",
           }}
         />
+
+        {/* Image Section */}
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-16 sm:mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="text-center sm:text-left">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
+                Mensen achter Cusmato AI
+              </h3>
+              <p className="text-base sm:text-lg text-slate-600 mb-6 leading-relaxed">
+                Teamchat verbindt je team rondom elk ticket. Werk samen, deel context en los vragen sneller op, allemaal vanuit hetzelfde dashboard.
+              </p>
+            </div>
+            <div>
+              <div className="relative w-full max-w-[520px] mx-auto">
+                <div className="aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                  <img
+                    src="/People Behind Cusmato AI Dashboard.webp"
+                    alt="People behind Cusmato AI dashboard - Team samenwerking"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="relative z-10 max-w-3xl mx-auto sm:px-6 lg:px-8 text-center">
           <Reveal delay={0.1}>

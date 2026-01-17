@@ -1,6 +1,6 @@
 // HelpdeskShowcaseDemo.tsx - Premium clean dashboard UI animatie
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, memo } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 type TicketStatus = "open" | "ai-processing" | "ready" | "sent";

@@ -1,48 +1,9 @@
-import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Reveal from "../components/Reveal";
 import UniversalCTA from "../components/UniversalCTA";
-
-declare global {
-  interface Window {
-    Calendly?: {
-      initInlineWidget: (options: { url: string; parentElement: HTMLElement }) => void;
-    };
-  }
-}
+import CalendlyInline from "../components/CalendlyInline";
 
 export default function GratisProefperiodePage() {
-  useEffect(() => {
-    const loadCalendlyScript = () => {
-      if (!document.querySelector('script[src*="calendly.com"]')) {
-        const script = document.createElement("script");
-        script.src = "https://assets.calendly.com/assets/external/widget.js";
-        script.async = true;
-        script.onload = () => {
-          // Initialize Calendly inline widget after script loads
-          const widgetElement = document.getElementById("calendly-widget");
-          if (widgetElement && window.Calendly) {
-            window.Calendly.initInlineWidget({
-              url: "https://calendly.com/cusmato/cusmato-kennismakingsgesprek",
-              parentElement: widgetElement,
-            });
-          }
-        };
-        document.body.appendChild(script);
-      } else {
-        // Script already loaded, just initialize
-        const widgetElement = document.getElementById("calendly-widget");
-        if (widgetElement && window.Calendly) {
-          window.Calendly.initInlineWidget({
-            url: "https://calendly.com/cusmato/cusmato-kennismakingsgesprek",
-            parentElement: widgetElement,
-          });
-        }
-      }
-    };
-
-    loadCalendlyScript();
-  }, []);
 
   const features = [
     "Automatisch antwoorden via e-mail & chat",
@@ -91,11 +52,7 @@ export default function GratisProefperiodePage() {
               </div>
 
               {/* Calendly Widget Container */}
-              <div 
-                id="calendly-widget" 
-                className="w-full overflow-hidden rounded-lg"
-                style={{ minHeight: "1200px" }}
-              />
+              <CalendlyInline />
             </div>
           </Reveal>
         </div>

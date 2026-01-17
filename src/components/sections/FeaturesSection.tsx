@@ -44,7 +44,7 @@ export default function FeaturesSection() {
               AI die je klantenservice écht overneemt
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Cusmato handelt klantvragen zelfstandig af — terwijl jij de controle houdt.
+              Cusmato handelt klantvragen zelfstandig af, terwijl jij de controle houdt.
             </p>
           </div>
         </Reveal>

@@ -1,229 +1,94 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-declare global {
-  interface Window {
-    Calendly?: {
-      initInlineWidget: (options: { url: string; parentElement: HTMLElement }) => void;
-    };
-  }
-}
-
-const CALENDLY_SCRIPT_URL = "https://assets.calendly.com/assets/external/widget.js";
 const CALENDLY_URL = "https://calendly.com/cusmato/cusmato-kennismakingsgesprek";
-
-// Global flag to ensure script is only loaded once across all instances
-let scriptLoadingPromise: Promise<void> | null = null;
-let isScriptLoaded = false;
-const scriptLoadedCallbacks: Set<() => void> = new Set();
 
 interface CalendlyInlineProps {
   url?: string;
 }
 
-function loadCalendlyScript(): Promise<void> {
-  // If already loaded, resolve immediately
-  if (isScriptLoaded && window.Calendly) {
-    return Promise.resolve();
-  }
-
-  // If script is already loading, return existing promise
-  if (scriptLoadingPromise) {
-    return scriptLoadingPromise;
-  }
-
-  // Check if script already exists in DOM
-  const existingScript = document.querySelector<HTMLScriptElement>(
-    `script[src="${CALENDLY_SCRIPT_URL}"]`
-  );
-
-  if (existingScript) {
-    // Script tag exists, wait for it to load
-    scriptLoadingPromise = new Promise((resolve, reject) => {
-      if (window.Calendly) {
-        isScriptLoaded = true;
-        resolve();
-        return;
-      }
-
-      const handleLoad = () => {
-        isScriptLoaded = true;
-        scriptLoadingPromise = null;
-        // Execute all queued callbacks
-        scriptLoadedCallbacks.forEach(cb => cb());
-        scriptLoadedCallbacks.clear();
-        resolve();
-      };
-
-      existingScript.addEventListener("load", handleLoad, { once: true });
-      existingScript.addEventListener("error", () => {
-        scriptLoadingPromise = null;
-        reject(new Error("Failed to load Calendly script"));
-      }, { once: true });
-
-      // Fallback: poll for Calendly availability (max 10 seconds)
-      let pollCount = 0;
-      const pollInterval = setInterval(() => {
-        if (window.Calendly) {
-          clearInterval(pollInterval);
-          handleLoad();
-        } else if (pollCount++ > 100) {
-          clearInterval(pollInterval);
-          scriptLoadingPromise = null;
-          reject(new Error("Calendly script timeout"));
-        }
-      }, 100);
-    });
-
-    return scriptLoadingPromise;
-  }
-
-  // Create and load script
-  scriptLoadingPromise = new Promise((resolve, reject) => {
-    const script = document.createElement("script");
-    script.src = CALENDLY_SCRIPT_URL;
-    script.async = true;
-
-    script.onload = () => {
-      // Small delay to ensure Calendly is fully initialized
-      setTimeout(() => {
-        isScriptLoaded = true;
-        scriptLoadingPromise = null;
-        // Execute all queued callbacks
-        scriptLoadedCallbacks.forEach(cb => cb());
-        scriptLoadedCallbacks.clear();
-        resolve();
-      }, 100);
-    };
-
-    script.onerror = () => {
-      scriptLoadingPromise = null;
-      reject(new Error("Failed to load Calendly script"));
-    };
-
-    document.head.appendChild(script);
-  });
-
-  return scriptLoadingPromise;
-}
-
 export default function CalendlyInline({ url = CALENDLY_URL }: CalendlyInlineProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const [isInView, setIsInView] = useState(false);
-  const initializedRef = useRef(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Lazy load: IntersectionObserver to detect when widget is in view
   useEffect(() => {
-    if (!wrapperRef.current) return;
+    const iframe = iframeRef.current;
+    if (!iframe) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsInView(true);
-            observer.disconnect();
-          }
-        });
-      },
-      {
-        rootMargin: "100px", // Start loading 100px before widget enters viewport
-        threshold: 0.01,
+    // Set timeout to show fallback after 6 seconds
+    timeoutRef.current = setTimeout(() => {
+      setHasError(true);
+      setIsLoading(false);
+    }, 6000);
+
+    // Check if iframe loads successfully
+    const handleLoad = () => {
+      setIsLoading(false);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
       }
-    );
+    };
 
-    observer.observe(wrapperRef.current);
+    const handleError = () => {
+      setHasError(true);
+      setIsLoading(false);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+    };
+
+    iframe.addEventListener("load", handleLoad);
+    iframe.addEventListener("error", handleError);
 
     return () => {
-      observer.disconnect();
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      iframe.removeEventListener("load", handleLoad);
+      iframe.removeEventListener("error", handleError);
     };
   }, []);
 
-  // Load script and initialize widget when in view
-  useEffect(() => {
-    if (!isInView) return;
-
-    let isMounted = true;
-
-    const initializeWidget = async () => {
-      // Guard: prevent double initialization
-      if (initializedRef.current || !containerRef.current) {
-        return;
-      }
-
-      try {
-        // Load script (single-load guard handled by loadCalendlyScript)
-        await loadCalendlyScript();
-
-        if (!isMounted || !containerRef.current || !window.Calendly) {
-          return;
-        }
-
-        // Mark as initialized before calling initInlineWidget
-        initializedRef.current = true;
-
-        // Clear container to prevent duplicates
-        containerRef.current.innerHTML = "";
-
-        // Initialize Calendly inline widget
-        window.Calendly.initInlineWidget({
-          url,
-          parentElement: containerRef.current,
-        });
-
-        setIsLoading(false);
-        setHasError(false);
-      } catch (error) {
-        console.error("Error initializing Calendly widget:", error);
-        if (isMounted) {
-          setHasError(true);
-          setIsLoading(false);
-        }
-      }
-    };
-
-    initializeWidget();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [isInView, url]);
+  const iframeUrl = url.includes("?") ? `${url}&hide_gdpr_banner=1` : `${url}?hide_gdpr_banner=1`;
 
   return (
-    <div 
-      ref={wrapperRef}
-      className="w-full calendly-widget-wrapper relative"
-    >
-      <div
-        ref={containerRef}
-        className="calendly-inline-widget"
-        style={{ 
-          width: "100%"
-        }}
-      />
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center calendly-skeleton">
+    <div className="relative w-full">
+      {isLoading && !hasError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-white rounded-lg border border-slate-200 min-h-[600px] sm:min-h-[700px]">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-sm text-slate-500">Calendly wordt geladen...</p>
+            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent mb-4"></div>
+            <p className="text-sm text-slate-600">Calendly wordt geladen…</p>
           </div>
         </div>
       )}
-      {hasError && (
-        <div className="absolute inset-0 flex items-center justify-center calendly-error">
-          <div className="text-center px-4">
-            <p className="text-sm text-slate-600 mb-3">
-              Er was een probleem met het laden van de kalender.
-            </p>
-            <a
-              href={url}
-              className="inline-flex items-center justify-center text-sm text-blue-600 hover:text-blue-700 underline"
-            >
-              Open kalender in nieuw venster
-            </a>
-          </div>
+
+      {hasError ? (
+        <div className="flex flex-col items-center justify-center bg-white rounded-lg border border-slate-200 p-8 min-h-[600px] sm:min-h-[700px]">
+          <p className="text-base text-slate-700 mb-6 text-center">
+            Lukt het niet om Calendly te laden? Open de planner in een nieuw tabblad.
+          </p>
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-sm"
+          >
+            Open planner
+          </a>
         </div>
+      ) : (
+        <iframe
+          ref={iframeRef}
+          src={iframeUrl}
+          title="Plan een kennismakingsgesprek met Cusmato"
+          className="w-full min-h-[600px] sm:min-h-[700px] border-0 rounded-lg"
+          loading="lazy"
+          allow="camera; microphone; fullscreen"
+        />
       )}
     </div>
   );

@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import Reveal from "../components/Reveal";
 import Section from "../components/Section";
 import FAQAccordion from "../components/FAQAccordion";
+import SubpageHeroSplit from "../components/SubpageHeroSplit";
+import WorkflowSetupShowcase from "../components/WorkflowSetupShowcase";
 
 export default function WorkflowsRegelsPage() {
   const shouldReduceMotion = useReducedMotion();
@@ -40,52 +42,41 @@ export default function WorkflowsRegelsPage() {
     {
       icon: "retour",
       title: "Retourstatus",
-      description: "Als retourtermijn voorbij is → standaard antwoord + escalatie tag. Cusmato informeert de klant en tagt het ticket voor handmatige review.",
+      shortDesc: "Als retourtermijn voorbij is → standaard antwoord + escalatie tag.",
+      bullets: ["Automatisch antwoord naar klant", "Ticket taggen voor review"],
     },
     {
       icon: "verzending",
       title: "Verzending",
-      description: "Als tracking ontbreekt → vraag om info + label 'tracking nodig'. Cusmato vraagt de klant naar meer informatie en tagt het ticket voor follow-up.",
+      shortDesc: "Als tracking ontbreekt → vraag om info + label toevoegen.",
+      bullets: ["Vraag om trackingcode", "Tag ticket voor follow-up"],
     },
     {
       icon: "factuur",
       title: "Factuur",
-      description: "Als klant factuur opnieuw wil → concept klaarzetten + optioneel auto-send. Cusmato bereidt een antwoord voor met factuur als bijlage, jij keurt goed of laat automatisch versturen.",
+      shortDesc: "Als klant factuur opnieuw wil → concept klaarzetten + optioneel auto-send.",
+      bullets: ["Bereid antwoord met bijlage", "Goedkeuring of automatisch"],
     },
     {
       icon: "levertijd",
       title: "Levertijd",
-      description: "Bij vertraging > X dagen → proactieve update template. Cusmato stuurt automatisch een bericht naar de klant voordat er vragen komen.",
+      shortDesc: "Bij vertraging > X dagen → proactieve update template.",
+      bullets: ["Automatisch bericht versturen", "Voorkom vragen van klant"],
     },
     {
       icon: "vip",
       title: "VIP klanten",
-      description: "Bij VIP tag → altijd approval. Voor belangrijke klanten wordt elk antwoord eerst ter goedkeuring voorgelegd, ongeacht de categorie.",
+      shortDesc: "Bij VIP tag → altijd approval voor belangrijke klanten.",
+      bullets: ["Elk antwoord eerst goedkeuren", "Extra controle per regel"],
     },
     {
       icon: "taal",
       title: "Taal",
-      description: "Als ticket Engels is → Engels tone-of-voice template. Cusmato herkent de taal en gebruikt automatisch het juiste template en tone of voice.",
+      shortDesc: "Als ticket Engels is → Engels tone-of-voice template.",
+      bullets: ["Taal automatisch herkennen", "Juiste template gebruiken"],
     },
   ];
 
-  const setupSteps = [
-    {
-      number: "1",
-      title: "Kies categorie",
-      description: "Selecteer een categorie (retour, bestelling, factuur, algemeen) waar je regels voor wilt instellen. Je kunt meerdere categorieën configureren met verschillende workflows.",
-    },
-    {
-      number: "2",
-      title: "Definieer regels + uitzonderingen",
-      description: "Stel in wanneer Cusmato automatisch mag handelen, welke templates gebruikt moeten worden, en wanneer er geëscaleerd moet worden. Je kunt per regel instellen of goedkeuring verplicht is.",
-    },
-    {
-      number: "3",
-      title: "Test & ga live (met approval als start)",
-      description: "Begin veilig met approval mode, zodat je alle antwoorden eerst controleert. Zodra je vertrouwen hebt, kun je specifieke onderdelen stap voor stap op autopilot zetten.",
-    },
-  ];
 
   const faqItems = [
     {
@@ -186,7 +177,7 @@ export default function WorkflowsRegelsPage() {
             {/* Description */}
             <Reveal delay={0.15}>
               <p className="text-lg md:text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl mx-auto">
-                Stel duidelijke regels in per categorie (retour, bestelling, factuur, escalatie). Cusmato volgt jouw policies, gebruikt de juiste tone of voice en voert alleen uit wat jij toestaat — automatisch of met goedkeuring.
+                Stel duidelijke regels in per categorie zoals retour, bestelling, factuur en escalatie. Cusmato volgt jouw policies, gebruikt de juiste tone of voice en voert alleen uit wat jij toestaat, automatisch of met goedkeuring.
               </p>
             </Reveal>
 
@@ -357,23 +348,18 @@ export default function WorkflowsRegelsPage() {
             {exampleRules.map((rule, index) => (
               <Reveal key={index} delay={0.15 + index * 0.05}>
                 <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05, duration: 0.4 }}
                   whileHover={shouldReduceMotion ? {} : { 
                     y: -2,
                     transition: { duration: 0.2 }
                   }}
-                  className="group bg-white rounded-xl border border-slate-200/80 p-7 shadow-sm hover:shadow-lg transition-all duration-300 relative"
+                  className="group bg-white rounded-xl border border-slate-200/80 p-6 shadow-sm hover:shadow-md transition-all duration-300 relative h-full flex flex-col"
                   style={{ boxShadow: "0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04)" }}
                 >
-                  {!shouldReduceMotion && (
-                    <motion.div
-                      className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 pointer-events-none"
-                      style={{
-                        boxShadow: "0 0 0 1px rgba(59, 130, 246, 0.2), 0 8px 24px rgba(59, 130, 246, 0.08)",
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  )}
-                  <div className="flex items-start gap-4 relative z-10">
+                  <div className="flex items-start gap-4 relative z-10 flex-1">
                     <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center">
                       {rule.icon === "retour" && (
                         <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -410,9 +396,19 @@ export default function WorkflowsRegelsPage() {
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">
                         {rule.title}
                       </h3>
-                      <p className="text-sm text-slate-600 leading-relaxed">
-                        {rule.description}
+                      <p className="text-sm text-slate-600 leading-relaxed mb-3">
+                        {rule.shortDesc}
                       </p>
+                      <ul className="space-y-1.5">
+                        {rule.bullets.map((bullet, idx) => (
+                          <li key={idx} className="flex items-start gap-2 text-xs text-slate-600">
+                            <svg className="w-3.5 h-3.5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                 </motion.div>
@@ -520,49 +516,8 @@ export default function WorkflowsRegelsPage() {
         </div>
       </Section>
 
-      {/* Zo stel je het in - Enhanced Timeline */}
-      <Section variant="soft" className="py-14 sm:py-20 md:py-24 bg-slate-50/60 cv-auto">
-        <div className="max-w-5xl mx-auto">
-          <Reveal delay={0.1}>
-            <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 mb-4 text-center">
-              Zo stel je het in
-            </h2>
-            <p className="text-lg text-slate-600 mb-12 text-center max-w-2xl mx-auto">
-              Begin veilig met approval, zet pas later onderdelen op autopilot.
-            </p>
-          </Reveal>
-
-          <div className="relative">
-            {/* Enhanced Timeline connector line */}
-            {/* REMOVED drop-shadow filter for scroll performance - using solid gradient */}
-            <div className="hidden md:block absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-200 via-blue-400 to-blue-200" />
-
-            <div className="space-y-12 md:space-y-16">
-              {setupSteps.map((step, index) => (
-                <Reveal key={index} delay={0.15 + index * 0.1}>
-                  <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start relative">
-                    {/* Enhanced Number badge */}
-                    <div className="flex-shrink-0 relative z-10">
-                      <div className="w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center text-xl font-bold shadow-lg border-4 border-white" style={{ boxShadow: "0 4px 12px rgba(59, 130, 246, 0.3), 0 0 0 4px rgba(255, 255, 255, 1)" }}>
-                        {step.number}
-                      </div>
-                    </div>
-                    {/* Enhanced Content Card */}
-                    <div className="flex-1 bg-white rounded-xl border border-slate-200/80 p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow" style={{ boxShadow: "0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04)" }}>
-                      <h3 className="text-xl md:text-2xl font-semibold text-slate-900 mb-3">
-                        {step.title}
-                      </h3>
-                      <p className="text-base md:text-lg text-slate-600 leading-relaxed">
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </Section>
+      {/* Zo stel je het in - Workflow Setup Showcase */}
+      <WorkflowSetupShowcase />
 
       {/* FAQ */}
       <Section variant="default" className="py-14 sm:py-20 md:py-24 cv-auto">
@@ -605,6 +560,31 @@ export default function WorkflowsRegelsPage() {
               Probeer 14 dagen gratis
             </Link>
           </Reveal>
+
+          {/* Image Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mt-16 sm:mt-20">
+            <div className="order-2 lg:order-1 text-center sm:text-left">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
+                One inbox. Full control.
+              </h3>
+              <p className="text-base sm:text-lg text-slate-600 mb-6 leading-relaxed">
+                Beheer alle workflows en regels vanuit één centrale inbox. Volledige controle over wanneer Cusmato automatisch handelt en wanneer jij wilt meedenken.
+              </p>
+            </div>
+            <div className="order-1 lg:order-last">
+              <div className="relative w-full max-w-[520px] mx-auto">
+                <div className="aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                  <img
+                    src="/One Inbox. Full Control..webp"
+                    alt="One inbox full control met Cusmato workflows"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>

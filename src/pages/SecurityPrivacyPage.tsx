@@ -171,7 +171,7 @@ export default function SecurityPrivacyPage() {
               <p>
                 {/* TODO: Plak hier de intro/summary tekst van https://www.cusmato.app/privacy */}
                 Plak hier de officiële introductietekst van jullie privacy-pagina. Houd het kort en
-                duidelijk (1–2 alinea's).
+                duidelijk, 1 tot 2 alinea's.
               </p>
 
               <div className="not-prose mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -203,7 +203,7 @@ export default function SecurityPrivacyPage() {
                   <strong>Ticket- en communicatiegegevens</strong> (bijv. e-mail/chat inhoud, attachments).
                 </li>
                 <li>
-                  <strong>Shop- en ordercontext</strong> (bijv. ordernummer, status, verzendinfo — afhankelijk van integraties).
+                  <strong>Shop- en ordercontext</strong> zoals ordernummer, status en verzendinfo, afhankelijk van je integraties.
                 </li>
                 <li>
                   <strong>Technische data</strong> (bijv. logs, security events, apparaat/browser info).

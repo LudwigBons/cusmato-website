@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, lazy, Suspense } from "react";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { integrations, categories, Integration, IntegrationCategory } from "../data/integrations";
@@ -6,6 +6,10 @@ import IntegrationCard from "../components/integrations/IntegrationCard";
 import IntegrationModal from "../components/integrations/IntegrationModal";
 import GlobalCTA from "../components/GlobalCTA";
 import Reveal from "../components/Reveal";
+import SubpageHeroMinimal from "../components/SubpageHeroMinimal";
+import PremiumImage from "../components/PremiumImage";
+import WorkflowSteps from "../components/WorkflowSteps";
+
 
 type SortOption = "name" | "category" | "status";
 
@@ -44,17 +48,21 @@ export default function IntegrationsPage() {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      <main className="pt-20 sm:pt-24 pb-12 sm:pb-16">
+      {/* Clean Text-Only Hero */}
+      <SubpageHeroMinimal
+        title="Integraties"
+        description="Verbind je tools en automatiseer klantantwoorden via e-mail en chat. Koppel Shopify, Zendesk, Gmail, Outlook en tientallen andere tools in minuten."
+        primaryCTA={{
+          text: "Probeer 14 dagen gratis",
+          href: "/probeer-14-dagen-gratis",
+        }}
+      />
+
+      <main className="pt-0 pb-12 sm:pb-16">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          {/* Header */}
+          {/* Info Badge */}
           <Reveal>
-            <div className="text-center mb-12">
-              <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-4 leading-[1.05]">
-                Integraties
-              </h1>
-              <p className="text-base sm:text-lg text-slate-600 max-w-[28rem] sm:max-w-2xl mx-auto mb-8 leading-relaxed">
-                Verbind je tools en automatiseer klantantwoorden via e-mail en chat.
-              </p>
+            <div className="text-center mb-8">
               <p className="text-xs sm:text-sm text-slate-500 inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-full">
                 <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -67,7 +75,7 @@ export default function IntegrationsPage() {
           {/* Intro text above grid */}
           <Reveal>
             <p className="text-xs sm:text-sm text-slate-600 text-center mb-6 max-w-2xl mx-auto">
-              Alle integraties zijn gericht op het automatisch beantwoorden van klantvragen — zonder handmatig werk.
+              Alle integraties zijn gericht op het automatisch beantwoorden van klantvragen, zonder handmatig werk.
             </p>
           </Reveal>
 
@@ -225,6 +233,100 @@ export default function IntegrationsPage() {
               </motion.a>
             </div>
           </Reveal>
+
+          {/* WorkflowSteps Section - How integrations work */}
+          <section className="mt-16 sm:mt-20 lg:mt-24">
+            <WorkflowSteps
+              steps={[
+                {
+                  id: "connect",
+                  title: "Koppel je bronnen",
+                  sentence: "Verbind Shopify, bol.com, WooCommerce en e-mail met Cusmato in minuten.",
+                  chips: ["Shopify", "bol.com", "WooCommerce", "E-mail"],
+                  visual: {
+                    type: "connection",
+                    sources: ["Shopify", "bol.com", "Gmail"],
+                    target: "Cusmato Inbox",
+                  },
+                  logos: ["/logo-shopify.png", "/logo-gmail.png", "/Bol-logo-short.png"],
+                },
+                {
+                  id: "centralize",
+                  title: "Centraliseer klantprofielen",
+                  sentence: "Cusmato verzamelt automatisch contactgegevens en orderhistorie in één profiel.",
+                  chips: ["Contact sync", "Orderhistorie", "Automatisch"],
+                  visual: {
+                    type: "profile",
+                  },
+                  logos: ["/logo-shopify.png", "/logo-zendesk.png"],
+                },
+                {
+                  id: "ticket",
+                  title: "Automatische context",
+                  sentence: "Bij elk nieuw ticket voegt Cusmato direct relevante klantcontext toe.",
+                  chips: ["Ticket context", "Klantgeschiedenis", "Auto toevoegen"],
+                  visual: {
+                    type: "ticket",
+                  },
+                  logos: ["/logo-zendesk.png", "/logo-gmail.png"],
+                },
+              ]}
+              title="Zo werkt de koppeling"
+              subtitle="In drie stappen koppel je je tools en start je met automatiseren."
+            />
+          </section>
+
+          {/* Features Grid - Converted from long text */}
+          <section className="mt-16 sm:mt-20 lg:mt-24">
+            <Reveal>
+              <div className="grid sm:grid-cols-3 gap-6 lg:gap-8">
+                {[
+                  {
+                    title: "Snelle setup",
+                    description: "Koppel in minuten via API's en webhooks.",
+                    icon: (
+                      <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    title: "Realtime sync",
+                    description: "Automatische synchronisatie van data en context.",
+                    icon: (
+                      <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    title: "Geen gedoe",
+                    description: "Geen migraties nodig, start direct met automatiseren.",
+                    icon: (
+                      <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    ),
+                  },
+                ].map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-white rounded-xl border border-slate-200 p-6 hover:shadow-md transition-shadow"
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center mb-4">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">{feature.title}</h3>
+                    <p className="text-sm text-slate-600 leading-relaxed">{feature.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </Reveal>
+          </section>
         </div>
       </main>
 

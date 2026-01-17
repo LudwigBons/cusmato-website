@@ -1,11 +1,11 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, memo } from "react";
 
 interface AnimatedDemoCardProps {
   variant?: "inbox" | "draft" | "approval";
 }
 
-export default function AnimatedDemoCard({ variant = "inbox" }: AnimatedDemoCardProps) {
+function AnimatedDemoCard({ variant = "inbox" }: AnimatedDemoCardProps) {
   const shouldReduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(true);

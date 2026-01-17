@@ -1,4 +1,6 @@
-export default function AIChatSection() {
+import { memo } from "react";
+
+function AIChatSection() {
   const features = [
     "Antwoorden in het Nederlands en Engels",
     "24/7 beschikbaar",
@@ -44,6 +46,7 @@ export default function AIChatSection() {
                 alt="AI chat conversatie op mobiel"
                 className="w-full h-auto object-cover block"
                 loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -52,3 +55,5 @@ export default function AIChatSection() {
     </section>
   );
 }
+
+export default memo(AIChatSection);

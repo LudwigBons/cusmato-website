@@ -54,7 +54,7 @@ export default function KnowledgebasePage() {
     {
       icon: "consistentie",
       title: "Consistentie",
-      description: "Klanten krijgen dezelfde, accurate informatie via elk kanaal — Shopify, bol.com of e-mail.",
+      description: "Klanten krijgen dezelfde, accurate informatie via elk kanaal, zoals Shopify, bol.com of e-mail.",
     },
     {
       icon: "sneller",
@@ -113,7 +113,7 @@ export default function KnowledgebasePage() {
     {
       id: "update-snelheid",
       question: "Hoe snel pakt Cusmato updates op?",
-      answer: "Updates in de knowledgebase worden binnen enkele minuten actief. Zodra je content toevoegt, wijzigt of verwijdert, gebruikt Cusmato de nieuwe informatie bij het volgende relevante ticket. Er is geen handmatige sync of refresh nodig — alles gebeurt automatisch.",
+      answer: "Updates in de knowledgebase worden binnen enkele minuten actief. Zodra je content toevoegt, wijzigt of verwijdert, gebruikt Cusmato de nieuwe informatie bij het volgende relevante ticket. Er is geen handmatige sync of refresh nodig, alles gebeurt automatisch.",
       category: "Technisch",
     },
   ];
@@ -173,7 +173,7 @@ export default function KnowledgebasePage() {
             {/* Description */}
             <Reveal delay={0.15}>
               <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-8 sm:mb-10 leading-relaxed max-w-[28rem] sm:max-w-2xl mx-auto">
-                Cusmato koppelt je webshop, marketplace en e-mail aan één centrale knowledgebase. Beheer policies, productinfo en antwoorden per categorie — en laat de AI Helpdesk consistent reageren in jouw tone of voice.
+                Cusmato koppelt je webshop, marketplace en e-mail aan één centrale knowledgebase. Beheer policies, productinfo en antwoorden per categorie en laat de AI Helpdesk consistent reageren in jouw tone of voice.
               </p>
             </Reveal>
 
@@ -406,7 +406,7 @@ export default function KnowledgebasePage() {
               Zo werkt het
             </h2>
             <p className="text-lg text-slate-600 mb-12 text-center max-w-2xl mx-auto">
-              Koppel je kanalen en voeg kennis toe — Cusmato gebruikt het automatisch.
+              Koppel je kanalen en voeg kennis toe. Cusmato gebruikt het automatisch.
             </p>
           </Reveal>
 
@@ -501,6 +501,33 @@ export default function KnowledgebasePage() {
             backgroundSize: "32px 32px",
           }}
         />
+
+        {/* Image Section */}
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-16 sm:mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="order-2 lg:order-1 text-center sm:text-left">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
+                Smarter support operations
+              </h3>
+              <p className="text-base sm:text-lg text-slate-600 mb-6 leading-relaxed">
+                Koppel je knowledgebase aan Cusmato en laat de AI automatisch de juiste informatie gebruiken voor perfecte klantantwoorden.
+              </p>
+            </div>
+            <div className="order-1 lg:order-last">
+              <div className="relative w-full max-w-[520px] mx-auto">
+                <div className="aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                  <img
+                    src="/Smarter Support Operations.webp"
+                    alt="Smarter support operations met knowledgebase"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="relative z-10 max-w-3xl mx-auto sm:px-6 lg:px-8 text-center">
           <Reveal delay={0.1}>

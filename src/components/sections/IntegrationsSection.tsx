@@ -23,7 +23,7 @@ export default function IntegrationsSection() {
               Naadloos te koppelen met jouw tools
             </h2>
             <p className="text-base text-slate-600 leading-relaxed max-w-prose mx-auto mb-6">
-              Cusmato sluit direct aan op de tools die je al gebruikt — zonder complexe implementaties.
+              Cusmato sluit direct aan op de tools die je al gebruikt, zonder complexe implementaties.
             </p>
           </div>
         </Reveal>

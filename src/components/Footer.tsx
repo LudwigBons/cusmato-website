@@ -1,32 +1,7 @@
 import { Link } from "react-router-dom";
+import { ROUTES } from "../lib/constants";
 
 type FooterLink = { label: string; href: string; external?: boolean };
-
-const routes = {
-  home: "/",
-
-  // product
-  aiHelpdesk: "/ai-helpdesk",
-  bestellingenRetouren: "/bestellingen-retouren",
-  aiFacturatie: "/ai-facturatie",
-  workflowsRegels: "/workflows-regels",
-  knowledgebase: "/knowledgebase",
-  klantdata: "/klantdata",
-  teamchat: "/teamchat",
-
-  // resources
-  integraties: "/integraties",
-  faq: "/faq",
-  blog: "/blog",
-
-  // legal
-  terms: "/algemene-voorwaarden",
-  privacy: "/security-privacy",
-
-  // CTA
-  tryFree: "/probeer-14-dagen-gratis",
-  onboarding: "https://www.cusmato.app/welkom",
-};
 
 function LinkItem({ link }: { link: FooterLink }) {
   if (link.external) {
@@ -69,30 +44,30 @@ function Col({ title, links }: { title: string; links: FooterLink[] }) {
 
 export default function Footer() {
   const productLinks: FooterLink[] = [
-    { label: "AI Helpdesk", href: routes.aiHelpdesk },
-    { label: "Bestellingen & retouren", href: routes.bestellingenRetouren },
-    { label: "AI facturatie", href: routes.aiFacturatie },
-    { label: "Workflows & regels", href: routes.workflowsRegels },
-    { label: "Knowledgebase", href: routes.knowledgebase },
-    { label: "Klantdata", href: routes.klantdata },
-    { label: "Teamchat", href: routes.teamchat },
+    { label: "AI Helpdesk", href: ROUTES.aiHelpdesk },
+    { label: "Bestellingen & retouren", href: ROUTES.bestellingenRetouren },
+    { label: "AI facturatie", href: ROUTES.aiFacturatie },
+    { label: "Workflows & regels", href: ROUTES.workflowsRegels },
+    { label: "Knowledgebase", href: ROUTES.knowledgebase },
+    { label: "Klantdata", href: ROUTES.klantdata },
+    { label: "Teamchat", href: ROUTES.teamchat },
   ];
 
   const resourcesLinks: FooterLink[] = [
-    { label: "Integraties", href: routes.integraties },
-    { label: "FAQ", href: routes.faq },
-    { label: "Blog", href: routes.blog },
+    { label: "Integraties", href: ROUTES.integraties },
+    { label: "FAQ", href: ROUTES.faq },
+    { label: "Blog", href: ROUTES.blog },
   ];
 
   const companyLinks: FooterLink[] = [
-    { label: "Probeer 14 dagen gratis", href: routes.tryFree },
-    { label: "Neem contact op", href: routes.tryFree }, // jouw regel
-    { label: "Start onboarding", href: routes.onboarding, external: true }, // jouw regel
+    { label: "Probeer 14 dagen gratis", href: ROUTES.tryFree },
+    { label: "Neem contact op", href: ROUTES.contact },
+    { label: "Start onboarding", href: ROUTES.onboarding, external: true },
   ];
 
   const legalLinks: FooterLink[] = [
-    { label: "Algemene voorwaarden", href: routes.terms },
-    { label: "Security & privacy", href: routes.privacy },
+    { label: "Algemene voorwaarden", href: ROUTES.terms },
+    { label: "Security & privacy", href: ROUTES.privacy },
   ];
 
   return (
@@ -108,7 +83,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
           {/* Brand/CTA */}
           <div className="lg:col-span-4">
-            <Link to={routes.home} className="inline-flex items-center gap-2.5 mb-4 group">
+            <Link to={ROUTES.home} className="inline-flex items-center gap-2.5 mb-4 group">
               <img
                 className="w-8 h-8 object-contain transition-all"
                 style={{ filter: 'drop-shadow(0 2px 4px rgba(47,102,255,0.15))' }}
@@ -125,14 +100,14 @@ export default function Footer() {
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link
-                to={routes.tryFree}
+                to={ROUTES.tryFree}
                 className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition-colors"
               >
                 Probeer 14 dagen gratis
               </Link>
 
               <a
-                href={routes.onboarding}
+                href={ROUTES.onboarding}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50 transition-colors"
@@ -173,7 +148,7 @@ export default function Footer() {
                   <div className="text-sm text-slate-600">
                     Vragen?{" "}
                     <Link
-                      to={routes.tryFree}
+                      to={ROUTES.tryFree}
                       className="font-semibold text-blue-700 hover:text-blue-800 transition-colors"
                     >
                       Neem contact op
@@ -194,19 +169,19 @@ export default function Footer() {
 
           <div className="flex items-center gap-6">
             <Link
-              to={routes.tryFree}
+              to={ROUTES.contact}
               className="text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors"
             >
               Contact
             </Link>
             <Link
-              to={routes.privacy}
+              to={ROUTES.privacy}
               className="text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors"
             >
               Privacy
             </Link>
             <Link
-              to={routes.terms}
+              to={ROUTES.terms}
               className="text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors"
             >
               Voorwaarden

@@ -12,9 +12,9 @@ export default function AIFacturatiePage() {
   }, []);
 
   const flowSteps = [
-    { title: "Factuurvraag in inbox", description: "Ticket binnen in AI Helpdesk" },
-    { title: "Factuur match + status", description: "Cusmato koppelt factuurdata" },
-    { title: "Antwoord + actie verstuurd", description: "PDF/link + antwoord naar klant" },
+    { title: "Factuurvraag in inbox", description: "Het ticket komt binnen in je AI Helpdesk" },
+    { title: "Factuur match en status", description: "Cusmato koppelt automatisch de factuurdata" },
+    { title: "Antwoord en actie verstuurd", description: "Het antwoord en de factuur worden naar de klant gestuurd via PDF of link" },
   ];
 
   const features = [
@@ -26,7 +26,7 @@ export default function AIFacturatiePage() {
     {
       icon: "versturen",
       title: "Factuur opnieuw versturen",
-      description: "Bij 'ik mis mijn factuur' zoekt Cusmato de factuur op en stuurt deze automatisch opnieuw — als PDF bijlage of via een beveiligde link. Alles gebeurt binnen AI Helpdesk met volledige logging.",
+      description: "Wanneer een klant aangeeft zijn factuur kwijt te zijn, zoekt Cusmato de factuur op en stuurt deze automatisch opnieuw als PDF bijlage of via een beveiligde link. Alles gebeurt binnen AI Helpdesk met volledige logging.",
     },
     {
       icon: "betaalstatus",
@@ -35,7 +35,7 @@ export default function AIFacturatiePage() {
     },
     {
       icon: "btw",
-      title: "BTW / factuurgegevens vragen beantwoorden",
+      title: "BTW en factuurgegevens vragen beantwoorden",
       description: "Vragen over BTW-tarieven, factuurnummers, betaalgegevens of factuurdetails worden automatisch beantwoord. Cusmato haalt de juiste informatie uit je factuursysteem en geeft contextrijke antwoorden.",
     },
     {
@@ -53,31 +53,31 @@ export default function AIFacturatiePage() {
   const workflowSteps = [
     {
       number: "1",
-      title: "Ticket binnen: 'Ik mis mijn factuur' / 'BTW?' / 'Betaalstatus?'",
+      title: "Ticket komt binnen met een factuurvraag, BTW vraag of betaalstatus vraag",
       description: "Een klant vraagt via e-mail of chat naar een factuur, BTW-informatie of betaalstatus. Het ticket verschijnt automatisch in je AI Helpdesk inbox, gekoppeld aan de klant.",
     },
     {
       number: "2",
-      title: "Cusmato matcht klant + order + factuur (en controleert status)",
-      description: "Cusmato zoekt automatisch de bijbehorende factuur op via je factuursysteem of webshop integratie. Het checkt betaalstatus, factuurdatum, bedrag en alle relevante gegevens. Alle context wordt aan het ticket gekoppeld.",
+      title: "Cusmato koppelt automatisch de klant, order en factuur en controleert de status",
+      description: "Cusmato zoekt automatisch de bijbehorende factuur op via je factuursysteem of webshop integratie. Het controleert betaalstatus, factuurdatum, bedrag en alle relevante gegevens. Alle context wordt aan het ticket gekoppeld.",
     },
     {
       number: "3",
-      title: "Cusmato maakt antwoord + voegt bijlage/link toe",
-      description: "Cusmato genereert een gepersonaliseerd antwoord in jouw tone of voice en voegt automatisch de factuur toe (PDF bijlage of beveiligde link). Bij BTW-vragen geeft het direct de juiste informatie.",
+      title: "Cusmato maakt een antwoord en voegt de bijlage of link toe",
+      description: "Cusmato genereert een gepersonaliseerd antwoord in jouw tone of voice en voegt automatisch de factuur toe als PDF bijlage of beveiligde link. Bij BTW-vragen geeft het direct de juiste informatie.",
     },
     {
       number: "4",
-      title: "Versturen automatisch of met goedkeuring + logging in dashboard",
+      title: "Het antwoord wordt automatisch verstuurd of ter goedkeuring voorgelegd en gelogd in je dashboard",
       description: "Afhankelijk van jouw instellingen wordt het antwoord automatisch verstuurd of eerst ter goedkeuring voorgelegd. Alles wordt gelogd in je AI Helpdesk dashboard, zodat je altijd ziet wat er is verstuurd en waarom.",
     },
   ];
 
   const controlPoints = [
-    "Per categorie goedkeuring instelbaar",
-    "Templates + tone of voice consistent",
-    "Audit trail: wat is verstuurd en waarom",
-    "Escalaties naar finance/team",
+    "Je kunt per categorie instellen of goedkeuring verplicht is",
+    "Templates en tone of voice blijven consistent in alle communicatie",
+    "Je ziet in het audit trail precies wat er is verstuurd en waarom",
+    "Complexe vragen worden automatisch doorgestuurd naar je finance team",
   ];
 
   const faqItems = [
@@ -95,14 +95,14 @@ export default function AIFacturatiePage() {
     },
     {
       id: "refunds-creditnota",
-      question: "Werkt dit met refunds/creditnota's?",
-      answer: "Ja, Cusmato herkent vragen over refunds en creditnota's en kan deze automatisch opzoeken en uitleggen. Bij refunds wordt de status gecheckt en de klant geïnformeerd over wanneer de terugbetaling wordt verwerkt. Creditnota's worden net als facturen automatisch gekoppeld aan tickets en kunnen opnieuw worden verstuurd indien nodig.",
+      question: "Werkt dit met refunds en creditnota's?",
+      answer: "Ja, Cusmato herkent vragen over refunds en creditnota's en kan deze automatisch opzoeken en uitleggen. Bij refunds wordt de status gecontroleerd en de klant geïnformeerd over wanneer de terugbetaling wordt verwerkt. Creditnota's worden net als facturen automatisch gekoppeld aan tickets en kunnen opnieuw worden verstuurd indien nodig.",
       category: "Functionaliteit",
     },
     {
       id: "goedkeuring-financieel",
       question: "Kan ik goedkeuring verplichten voor financiële mails?",
-      answer: "Ja, je kunt per categorie instellen of Cusmato direct mag handelen of eerst jouw goedkeuring nodig heeft. Voor financiële mails (zoals facturen versturen, betaalstatus wijzigen, of refunds) kun je instellen dat deze altijd eerst worden goedgekeurd. Dit regel je per actietype in je AI Helpdesk instellingen, zodat je volledige controle hebt over wat automatisch gaat en wat eerst wordt gereviewd.",
+      answer: "Ja, je kunt per categorie instellen of Cusmato direct mag handelen of eerst jouw goedkeuring nodig heeft. Voor financiële mails zoals facturen versturen, betaalstatus wijzigen of refunds kun je instellen dat deze altijd eerst worden goedgekeurd. Dit regel je per actietype in je AI Helpdesk instellingen, zodat je volledige controle hebt over wat automatisch gaat en wat eerst wordt gereviewd.",
       category: "Controle",
     },
   ];
@@ -143,7 +143,7 @@ export default function AIFacturatiePage() {
             {/* Description */}
             <Reveal delay={0.15}>
               <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-8 sm:mb-10 leading-relaxed max-w-[28rem] sm:max-w-2xl mx-auto">
-                Cusmato herkent factuurvragen, zoekt de juiste factuur/gegevens, maakt een antwoord in jouw tone of voice en voert acties uit (sturen, reminder, status) — automatisch of met goedkeuring.
+                Cusmato herkent factuurvragen, zoekt de juiste factuur en gegevens op, maakt een antwoord in jouw tone of voice en voert acties uit zoals versturen, herinneringen sturen of statusinformatie geven. Dit gebeurt automatisch of met goedkeuring.
               </p>
             </Reveal>
 
@@ -231,14 +231,14 @@ export default function AIFacturatiePage() {
                 <div className="rounded-2xl border border-slate-700/50 shadow-2xl overflow-hidden bg-slate-800/40">
                   <img
                     src="/Ai facturatie.png"
-                    alt="Facturen overzicht & status - AI Helpdesk dashboard"
+                    alt="Facturen overzicht en status in het AI Helpdesk dashboard"
                     className="w-full h-auto"
                     loading="lazy"
                     decoding="async"
                   />
                 </div>
                 <p className="text-center text-sm text-slate-400 mt-4">
-                  Facturen overzicht & status
+                  Je ziet alle facturen in overzicht met hun status
                 </p>
               </div>
             </Reveal>
@@ -248,14 +248,14 @@ export default function AIFacturatiePage() {
                 <div className="rounded-2xl border border-slate-700/50 shadow-2xl overflow-hidden bg-slate-800/40">
                   <img
                     src="/Klantdata.png"
-                    alt="Klantdata als context per ticket - AI Helpdesk"
+                    alt="Klantdata als context per ticket in de AI Helpdesk"
                     className="w-full h-auto"
                     loading="lazy"
                     decoding="async"
                   />
                 </div>
                 <p className="text-center text-sm text-slate-400 mt-4">
-                  Klantdata als context per ticket
+                  Alle klantdata wordt gebruikt als context bij elk ticket
                 </p>
               </div>
             </Reveal>
@@ -272,7 +272,7 @@ export default function AIFacturatiePage() {
               <span className="hidden md:inline">Wat automatiseert Cusmato hier?</span>
             </h2>
             <p className="text-base sm:text-lg text-slate-600 mb-12 text-center max-w-[28rem] sm:max-w-2xl mx-auto leading-relaxed">
-              Alles gebeurt binnen je AI Helpdesk — van factuurvraag tot antwoord tot actie.
+              Alles gebeurt binnen je AI Helpdesk, van het moment dat een factuurvraag binnenkomt tot het versturen van het antwoord en het uitvoeren van acties.
             </p>
           </Reveal>
 
@@ -353,7 +353,7 @@ export default function AIFacturatiePage() {
               <span className="hidden md:inline">Zo werkt het in de AI Helpdesk</span>
             </h2>
             <p className="text-lg text-slate-600 mb-12 text-center max-w-2xl mx-auto">
-              Van factuurvraag binnen tot antwoord verstuurd — alles in één flow.
+              Van het moment dat een factuurvraag binnenkomt tot het versturen van het antwoord gebeurt alles in één naadloze flow.
             </p>
           </Reveal>
 
@@ -444,6 +444,33 @@ export default function AIFacturatiePage() {
             backgroundSize: "32px 32px",
           }}
         />
+
+        {/* Image Section */}
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-16 sm:mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="order-2 lg:order-1 text-center sm:text-left">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
+                AI-driven support teams
+              </h3>
+              <p className="text-base sm:text-lg text-slate-600 mb-6 leading-relaxed">
+                Cusmato helpt je support team met AI-ondersteuning. Automatiseer factuurvragen en laat je team zich focussen op complexere klantvragen.
+              </p>
+            </div>
+            <div className="order-1 lg:order-last">
+              <div className="relative w-full max-w-[520px] mx-auto">
+                <div className="aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                  <img
+                    src="/AI-Driven Support Teams.webp"
+                    alt="AI-driven support teams met Cusmato facturatie"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="relative z-10 max-w-3xl mx-auto sm:px-6 lg:px-8 text-center">
           <Reveal delay={0.1}>

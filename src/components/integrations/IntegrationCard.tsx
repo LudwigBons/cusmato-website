@@ -36,6 +36,8 @@ export default function IntegrationCard({ integration, onDetailsClick }: Integra
                 src={integration.logo}
                 alt={`${integration.name} logo`}
                 className="w-10 h-10 object-contain opacity-90 flex-shrink-0"
+                loading="lazy"
+                decoding="async"
               />
             ) : (
               <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0">

@@ -36,6 +36,11 @@ export default function MobileMegaMenu({ onLinkClick }: { onLinkClick: () => voi
         ...(megaMenuData.sections[2]?.items.filter((item) => item.href === "/klantdata") || []),
         // Teamchat - #6
         ...(megaMenuData.sections[2]?.items.filter((item) => item.href === "/teamchat") || []),
+        // In-house AI - #7 (direct na Teamchat)
+        {
+          label: "In-house AI",
+          href: "/in-house-ai",
+        },
       ],
     },
     {

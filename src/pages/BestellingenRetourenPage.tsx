@@ -31,7 +31,7 @@ export default function BestellingenRetourenPage() {
     {
       icon: "retour",
       title: "Retouren met regels",
-      description: "Policy-based retouraanvragen worden automatisch verwerkt binnen AI Helpdesk. Cusmato checkt regels, maakt labels aan en geeft statusupdates — alles vanuit dezelfde inbox.",
+      description: "Policy-based retouraanvragen worden automatisch verwerkt binnen AI Helpdesk. Cusmato checkt regels, maakt labels aan en geeft statusupdates, alles vanuit dezelfde inbox.",
     },
     {
       icon: "proactief",
@@ -41,7 +41,7 @@ export default function BestellingenRetourenPage() {
     {
       icon: "kanaal",
       title: "Kanaal-onafhankelijk",
-      description: "Of een vraag binnenkomt via Shopify, bol.com of andere marketplaces — alles komt samen in je AI Helpdesk inbox. Cusmato behandelt alle orders consistent, ongeacht het kanaal.",
+      description: "Of een vraag binnenkomt via Shopify, bol.com of andere marketplaces, alles komt samen in je AI Helpdesk inbox. Cusmato behandelt alle orders consistent, ongeacht het kanaal.",
     },
     {
       icon: "escalatie",
@@ -144,7 +144,7 @@ export default function BestellingenRetourenPage() {
                 Bestellingen & retouren worden automatisch afgehandeld vanuit je AI Helpdesk. Tickets + orders + verzendstatus in één flow.
               </p>
               <p className="text-base text-slate-500 mb-10 max-w-2xl mx-auto">
-                Cusmato koppelt orderdata aan elk ticket en handelt acties af (retour, tracking, statusupdates) — automatisch of met goedkeuring.
+                Cusmato koppelt orderdata aan elk ticket en handelt acties af zoals retour, tracking en statusupdates, automatisch of met goedkeuring.
               </p>
             </Reveal>
 
@@ -273,7 +273,7 @@ export default function BestellingenRetourenPage() {
               <span className="hidden md:inline">Wat automatiseert Cusmato in deze flow?</span>
             </h2>
             <p className="text-base sm:text-lg text-slate-600 mb-12 text-center max-w-[28rem] sm:max-w-2xl mx-auto leading-relaxed">
-              Alles gebeurt binnen je AI Helpdesk — van ticket tot actie tot antwoord.
+              Alles gebeurt binnen je AI Helpdesk, van het moment dat een ticket binnenkomt tot de actie en het antwoord.
             </p>
           </Reveal>
 
@@ -354,7 +354,7 @@ export default function BestellingenRetourenPage() {
               <span className="hidden md:inline">Zo werkt het in de AI Helpdesk</span>
             </h2>
             <p className="text-lg text-slate-600 mb-12 text-center max-w-2xl mx-auto">
-              Van vraag binnen tot antwoord verstuurd — alles in één flow.
+              Van het moment dat een vraag binnenkomt tot het versturen van het antwoord gebeurt alles in één flow.
             </p>
           </Reveal>
 
@@ -425,6 +425,35 @@ export default function BestellingenRetourenPage() {
                 </div>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* Image Section */}
+      <Section variant="soft">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="order-2 lg:order-1">
+              <div className="relative w-full max-w-[520px] mx-auto">
+                <div className="aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                  <img
+                    src="/Built for Support Teams.webp"
+                    alt="Built for support teams - Bestellingen en retouren automatisering"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="order-1 lg:order-2 text-center sm:text-left">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
+                Gebouwd voor support teams
+              </h3>
+              <p className="text-base sm:text-lg text-slate-600 mb-6 leading-relaxed">
+                Cusmato is gemaakt voor e-commerce support teams. Automatiseer bestellingen en retouren terwijl je team zich focust op complexere vragen.
+              </p>
+            </div>
           </div>
         </div>
       </Section>

@@ -21,6 +21,7 @@ const TeamchatPage = lazy(() => import("./pages/TeamchatPage"));
 const AlgemeneVoorwaardenPage = lazy(() => import("./pages/AlgemeneVoorwaardenPage"));
 const PrijzenPage = lazy(() => import("./pages/PrijzenPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+const InHouseAIPage = lazy(() => import("./pages/InHouseAIPage"));
 
 // Ultra-light loading fallback component (minimal re-render cost)
 const PageLoader = () => (
@@ -171,6 +172,14 @@ export default function App() {
             element={
               <Suspense fallback={<PageLoader />}>
                 <ContactPage />
+              </Suspense>
+            } 
+          />
+          <Route 
+            path="in-house-ai" 
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <InHouseAIPage />
               </Suspense>
             } 
           />
