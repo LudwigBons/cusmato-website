@@ -26,8 +26,8 @@ function ShowcaseSection({
   };
 
   return (
-    <section className={`py-12 sm:py-16 lg:py-24 ${getBackgroundClass()}`}>
-      <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <section className={`py-24 sm:py-16 lg:py-24 ${getBackgroundClass()}`}>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
           className={`grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-16 xl:gap-20 items-center min-h-0 lg:min-h-[500px] lg:h-[500px] ${
             reverse ? "lg:grid-flow-col-dense" : ""

@@ -38,11 +38,12 @@ function PremiumImage({
   glowPosition = "center",
   offset = false,
 }: PremiumImageProps) {
-  const borderClass = variant === "dark" ? "border-white/10" : "border-slate-200/70";
+  const borderClass = variant === "dark" ? "border-white/10" : "border-slate-200/70 md:border-slate-200/70";
+  // Mobile: very subtle shadow or none, desktop: original shadow
   const shadowClass =
     variant === "dark"
-      ? "shadow-[0_30px_90px_rgba(0,0,0,0.35)]"
-      : "shadow-[0_30px_90px_rgba(0,0,0,0.25)]";
+      ? "shadow-none md:shadow-[0_30px_90px_rgba(0,0,0,0.35)]"
+      : "shadow-none md:shadow-[0_30px_90px_rgba(0,0,0,0.25)]";
 
   const glowPositions = {
     center: "-inset-12",
@@ -54,14 +55,16 @@ function PremiumImage({
     <div
       className={`relative w-full ${maxWidthClasses[maxWidth]} mx-auto ${offset ? "lg:-mt-6 lg:translate-y-0" : ""} ${className}`}
     >
-      {/* Glow Blob Behind Image */}
+      {/* Glow Blob Behind Image - hidden on mobile */}
       {showGlow && (
         <div
-          className={`absolute ${glowPositions[glowPosition]} -z-10 opacity-[0.15] sm:opacity-[0.20] lg:opacity-[0.25]`}
+          className={`hidden md:block absolute ${glowPositions[glowPosition]} -z-10 opacity-[0.15] sm:opacity-[0.20] lg:opacity-[0.25]`}
           style={{
             background: "radial-gradient(circle, rgba(56, 189, 248, 0.20) 0%, transparent 70%)",
             filter: "blur(110px)",
             animation: "workflow-glow-breathe 15s ease-in-out infinite",
+            willChange: "opacity",
+            transform: "translateZ(0)",
           }}
         />
       )}
@@ -77,6 +80,8 @@ function PremiumImage({
             className="w-full h-full object-cover"
             loading="lazy"
             decoding="async"
+            width={aspectRatio === "16/9" ? 1600 : aspectRatio === "16/10" ? 1600 : aspectRatio === "4/3" ? 1200 : 2100}
+            height={aspectRatio === "16/9" ? 900 : aspectRatio === "16/10" ? 1000 : aspectRatio === "4/3" ? 900 : 900}
           />
         </div>
       </div>

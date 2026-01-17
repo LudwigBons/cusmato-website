@@ -80,7 +80,7 @@ export default function IntegrationsPage() {
           </Reveal>
 
           {/* Sticky Filter Bar */}
-          <div className="sticky top-[64px] z-40 bg-white/98 border-b border-slate-200/80 py-3 mb-6 sm:mb-8 -mx-5 sm:-mx-6 lg:-mx-8 px-5 sm:px-6 lg:px-8">
+          <div className="sticky top-[64px] z-40 bg-white/98 border-b border-slate-200/80 py-3 mb-6 sm:mb-8 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
               {/* Search */}
               <div className="flex-1 w-full sm:max-w-sm">

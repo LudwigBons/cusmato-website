@@ -298,7 +298,7 @@ export default function FAQPage() {
           {/* Category Pills */}
           <Reveal>
             <div className="mb-8 md:mb-12">
-              <div className="flex flex-wrap gap-2 justify-center overflow-x-auto pb-2 -mx-5 px-5 sm:mx-0 sm:px-0">
+              <div className="flex flex-wrap gap-2 justify-center overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
                 <button
                   onClick={() => setSelectedCategory("Alle")}
                   className={`px-4 py-2 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${

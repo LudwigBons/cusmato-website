@@ -47,7 +47,7 @@ export default function InHouseAIPage() {
       <main className="relative z-10 pt-20 sm:pt-24 pb-12 sm:pb-16">
         {/* Sectie 1 - Hero (tekst-first met image card rechts) */}
         <section className="mb-20 sm:mb-28 lg:mb-32">
-          <div className="max-w-[1200px] mx-auto sm:px-6 lg:px-8">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-8 lg:gap-12 xl:gap-16 items-center">
               {/* Left: Text Content */}
               <div className="text-center lg:text-left order-2 lg:order-1">
@@ -93,7 +93,7 @@ export default function InHouseAIPage() {
 
         {/* Sectie 2 - "Wat maakt onze AI anders?" (equal height cards) */}
         <section className="mb-20 sm:mb-28 lg:mb-32">
-          <div className="max-w-[1200px] mx-auto sm:px-6 lg:px-8">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
             <Reveal>
               <div className="text-center mb-12 sm:mb-16">
                 <h2 className="text-3xl sm:text-4xl font-semibold text-white mb-4">
@@ -158,7 +158,7 @@ export default function InHouseAIPage() {
 
         {/* Sectie 3 - "Gebouwd sinds januari 2024" (grote sectie met timeline cards) */}
         <section className="mb-20 sm:mb-28 lg:mb-32">
-          <div className="max-w-[1200px] mx-auto sm:px-6 lg:px-8">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-8 lg:gap-12 xl:gap-16 items-center">
               {/* Left: Timeline Content */}
               <div className="order-2 lg:order-1">
@@ -212,7 +212,7 @@ export default function InHouseAIPage() {
 
         {/* Sectie 4 - Integraties/logo strip (dark background card) */}
         <section className="mb-20 sm:mb-28 lg:mb-32">
-          <div className="max-w-[1200px] mx-auto sm:px-6 lg:px-8">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-[50%_50%] gap-8 lg:gap-12 xl:gap-16 items-center">
               {/* Left: Image Card - Use LogoWallFrame */}
               <div className="order-2 lg:order-1">
@@ -278,7 +278,7 @@ export default function InHouseAIPage() {
 
         {/* Sectie 5 - "Waarom in-house AI belangrijk is" (upgraded) */}
         <section className="mb-20 sm:mb-28 lg:mb-32">
-          <div className="max-w-[1200px] mx-auto sm:px-6 lg:px-8">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
             <Reveal>
               <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-sm p-10 sm:p-12 lg:p-14">
                 <div className="max-w-3xl mx-auto text-center">
@@ -331,7 +331,7 @@ export default function InHouseAIPage() {
 
         {/* Sectie 6 - Security/controle (equal height cards) */}
         <section className="mb-20 sm:mb-28 lg:mb-32">
-          <div className="max-w-[1200px] mx-auto sm:px-6 lg:px-8">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-[50%_50%] gap-8 lg:gap-12 xl:gap-16 items-center">
               {/* Left: Text + Cards */}
               <div className="order-2 lg:order-1">

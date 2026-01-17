@@ -81,6 +81,8 @@ export default function AIHelpdeskPage() {
             className="absolute top-0 left-0 w-[120%] h-[120%] overflow-hidden pointer-events-none"
             style={{
               background: "radial-gradient(ellipse 50% 40% at 15% 25%, rgba(59, 130, 246, 0.04) 0%, transparent 60%)",
+              willChange: "transform",
+              transform: "translateZ(0)",
             }}
             animate={{
               x: [0, 30, -20, 0],
@@ -96,6 +98,8 @@ export default function AIHelpdeskPage() {
             className="absolute top-0 right-0 w-[120%] h-[120%] overflow-hidden pointer-events-none"
             style={{
               background: "radial-gradient(ellipse 50% 40% at 85% 75%, rgba(147, 197, 253, 0.03) 0%, transparent 60%)",
+              willChange: "transform",
+              transform: "translateZ(0)",
             }}
             animate={{
               x: [0, -40, 20, 0],
@@ -111,6 +115,8 @@ export default function AIHelpdeskPage() {
             className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[100%] h-[80%] overflow-hidden pointer-events-none"
             style={{
               background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(59, 130, 246, 0.02) 0%, transparent 50%)",
+              willChange: "opacity, transform",
+              transform: "translateZ(0)",
             }}
             animate={{
               opacity: [0.3, 0.5, 0.3],

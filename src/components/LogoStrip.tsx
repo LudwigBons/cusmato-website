@@ -53,6 +53,8 @@ export default function LogoStrip() {
                     <img
                       src={logo.path}
                       alt={`${logo.name} logo`}
+                      width="120"
+                      height="36"
                       loading="lazy"
                       decoding="async"
                       className="h-8 md:h-9 w-auto object-contain max-w-full"
@@ -79,6 +81,8 @@ export default function LogoStrip() {
                     <img
                       src={logo.path}
                       alt={`${logo.name} logo`}
+                      width="120"
+                      height="36"
                       loading="lazy"
                       decoding="async"
                       className="h-8 md:h-9 w-auto object-contain"

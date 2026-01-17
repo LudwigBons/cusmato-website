@@ -168,7 +168,7 @@ function WorkflowExplainer() {
           </div>
 
           {/* Mobile: Horizontal Scroll Alternative */}
-          <div className="md:hidden mt-6 flex gap-4 overflow-x-auto pb-4 scrollbar-hide scroll-snap-x snap-x snap-mandatory -mx-6 px-6">
+          <div className="md:hidden mt-6 flex gap-4 overflow-x-auto pb-4 scrollbar-hide scroll-snap-x snap-x snap-mandatory -mx-4 px-4 sm:-mx-6 sm:px-6">
             {workflowCards.map((card, index) => (
               <div
                 key={card.id}

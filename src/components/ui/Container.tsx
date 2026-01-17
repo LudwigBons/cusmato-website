@@ -16,7 +16,7 @@ const sizes = {
 
 function Container({ children, size = "xl", className = "" }: ContainerProps) {
   return (
-    <div className={`mx-auto ${sizes[size]} sm:px-6 lg:px-8 ${className}`}>
+    <div className={`mx-auto ${sizes[size]} px-4 sm:px-6 lg:px-8 ${className}`}>
       {children}
     </div>
   );

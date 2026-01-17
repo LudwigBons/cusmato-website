@@ -72,13 +72,8 @@ export default function Footer() {
 
   return (
     <footer className="relative border-t border-slate-200 bg-white">
-      {/* subtiele top glow + moving line (cleaner dan een dikke anim) */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-slate-50 to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] overflow-hidden">
-        <div className="footer-flow h-full w-[220px]" />
-      </div>
 
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 py-12 sm:py-14">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 py-12 sm:py-14">
         {/* Top grid */}
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
           {/* Brand/CTA */}
@@ -189,23 +184,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-
-      <style>{`
-        .footer-flow{
-          background: linear-gradient(90deg, rgba(37,99,235,0) 0%, rgba(37,99,235,.9) 50%, rgba(37,99,235,0) 100%);
-          animation: footerFlow 6s ease-in-out infinite;
-          transform: translateX(-40%);
-          opacity: .55;
-        }
-        @keyframes footerFlow{
-          0%   { transform: translateX(-40%); opacity: .25; }
-          45%  { opacity: .65; }
-          100% { transform: translateX(140%); opacity: .25; }
-        }
-        @media (prefers-reduced-motion: reduce){
-          .footer-flow{ animation: none; opacity: .35; transform: translateX(0); width: 100%; }
-        }
-      `}</style>
     </footer>
   );
 }

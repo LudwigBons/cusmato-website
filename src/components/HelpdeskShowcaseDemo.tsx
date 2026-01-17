@@ -161,7 +161,7 @@ export default function HelpdeskShowcaseDemo() {
       {/* Subtle background wash */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-transparent rounded-2xl -z-10" />
       
-      <div className="relative w-full max-w-full rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden scale-[0.95] sm:scale-100 origin-top flex flex-col" style={{ maxHeight: window.innerWidth < 640 ? '420px' : 'none' }}>
+      <div className="relative w-full max-w-full rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden scale-[0.95] sm:scale-100 origin-top flex flex-col max-h-[420px] sm:max-h-none">
         {/* Topbar */}
         <div className="flex items-center justify-between px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 border-b border-slate-200 bg-white flex-shrink-0">
           <div className="flex items-center gap-3">

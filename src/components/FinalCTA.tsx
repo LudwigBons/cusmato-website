@@ -1,12 +1,30 @@
-// FinalCTA.tsx - Premium clean final CTA
+// FinalCTA.tsx - Premium clean final CTA with background image
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 export default function FinalCTA() {
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-white">
-      <div className="mx-auto max-w-4xl sm:px-6 lg:px-8">
+    <section className="relative py-12 sm:py-16 lg:py-24 overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <img
+          src="/Onderkant footer.webp"
+          alt=""
+          className="w-full h-full object-cover object-bottom"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        />
+        {/* Overlay gradient for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/40 to-white/30" />
+      </div>
+      
+      {/* Fade-out to white at bottom */}
+      <div className="absolute inset-x-0 bottom-0 h-32 sm:h-40 lg:h-48 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
+      
+      {/* Content */}
+      <div className="mx-auto max-w-4xl sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

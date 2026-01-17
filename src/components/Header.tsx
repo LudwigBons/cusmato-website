@@ -398,7 +398,7 @@ export default function Header() {
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="fixed top-0 right-0 z-50 w-screen h-[100dvh] bg-white lg:hidden flex flex-col"
+                className="fixed top-0 right-0 z-50 w-full max-w-[100vw] h-[100dvh] bg-white lg:hidden flex flex-col"
                 role="dialog"
                 aria-modal="true"
                 aria-label="Navigation menu"

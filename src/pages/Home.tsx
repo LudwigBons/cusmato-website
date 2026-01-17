@@ -14,7 +14,7 @@ const FinalCTA = lazy(() => import("../components/FinalCTA"));
 
 export default function Home() {
   return (
-    <div className="relative bg-white overflow-x-hidden">
+    <div className="relative bg-white">
       {/* 1. Hero - Cinematic Product Scene */}
       <HeroProductScene />
 
@@ -59,24 +59,28 @@ export default function Home() {
       </ShowcaseSection>
 
       {/* 5. Showcase 2: Workflows & Regels */}
-      <section className="relative py-12 sm:py-16 lg:py-24 overflow-hidden">
+      <section className="relative py-12 sm:py-16 lg:py-24 mx-4 sm:mx-6 lg:mx-0 rounded-3xl sm:rounded-none overflow-hidden">
         {/* Dark background with moving glow */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl sm:rounded-none">
           {/* Moving glow blobs */}
           <div
             className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] pointer-events-none"
             style={{
               animation: "glow-drift-1 20s ease-in-out infinite",
+              willChange: "transform, opacity",
+              transform: "translateZ(0)",
             }}
           />
           <div
             className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-blue-400/10 rounded-full blur-[120px] pointer-events-none"
             style={{
               animation: "glow-drift-2 25s ease-in-out infinite",
+              willChange: "transform, opacity",
+              transform: "translateZ(0)",
             }}
           />
         </div>
-        <div className="relative z-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-8 lg:gap-12 xl:gap-16 items-center min-h-0 lg:min-h-[500px]">
             {/* Image Column - Larger (55%) */}
             <div className="order-2 lg:order-1 flex items-center justify-center">
@@ -118,11 +122,11 @@ export default function Home() {
               <span className="sm:hidden">Koppelingen</span>
               <span className="hidden sm:inline">Integraties + context</span>
             </h2>
-            <p className="text-base sm:text-lg text-slate-600 mb-4 sm:mb-6 leading-relaxed max-w-[28rem] sm:max-w-none mx-auto sm:mx-0">
+            <p className="text-base sm:text-lg text-slate-600 mb-6 sm:mb-8 leading-relaxed max-w-[36ch] sm:max-w-none mx-auto sm:mx-0">
               <span className="sm:hidden">Shopify, Zendesk, Gmail en meer.</span>
               <span className="hidden sm:inline">Koppel Shopify, Zendesk, Gmail, Outlook en tientallen andere tools.</span>
             </p>
-            <ul className="space-y-3 mb-8 sm:mb-10 text-left max-w-[28rem] sm:max-w-none mx-auto sm:mx-0">
+            <ul className="space-y-5 sm:space-y-3 mb-10 sm:mb-10 text-left max-w-[36ch] sm:max-w-none mx-auto sm:mx-0">
               <li className="flex items-start gap-3">
                 <svg className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -142,7 +146,7 @@ export default function Home() {
                 <span className="text-sm sm:text-base text-slate-700">Directe acties starten in gekoppelde systemen</span>
               </li>
             </ul>
-            <div className="flex flex-col items-center gap-3 sm:items-start sm:flex-row">
+            <div className="flex flex-col items-center gap-3 sm:items-start sm:flex-row mt-8 sm:mt-0">
               <Link
                 to="/integraties"
                 className="inline-flex items-center justify-center w-full max-w-[320px] sm:w-auto h-10 px-4 rounded-full bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors"
@@ -164,15 +168,15 @@ export default function Home() {
       </ShowcaseSection>
 
       {/* 7. Benefits Section - Text + Image Layout */}
-      <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-blue-50/70 to-white">
-        <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
+      <section className="py-24 sm:py-16 lg:py-24 bg-gradient-to-b from-blue-50/70 to-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-12 xl:gap-16 items-center">
             {/* Left: Text + Stats Cards */}
             <div className="text-center sm:text-left">
               <h2 className="text-3xl sm:text-3xl lg:text-4xl font-semibold text-slate-900 mb-4 sm:mb-6 leading-[1.15] tracking-tight">
                 Bespaar direct tijd en supportkosten
               </h2>
-              <p className="text-base sm:text-lg text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto sm:mx-0">
+              <p className="text-base sm:text-lg text-slate-600 mb-10 sm:mb-8 leading-relaxed max-w-[36ch] sm:max-w-xl mx-auto sm:mx-0">
                 Cusmato handelt tickets sneller af en verlaagt de workload van je team. Automatiseer waar mogelijk, handmatig waar nodig.
               </p>
               
@@ -236,7 +240,7 @@ export default function Home() {
             <div className="order-first lg:order-last">
               <Suspense fallback={null}>
                 <PremiumImage
-                  src="/Focused Support Automation.webp"
+                  src="/Automated Customer Support.webp"
                   alt="Focused support automation met Cusmato"
                   aspectRatio="16/9"
                   maxWidth="xl"

@@ -24,7 +24,7 @@ export default function SubpageHeroMinimal({
 }: SubpageHeroMinimalProps) {
   return (
     <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 bg-gradient-to-b from-slate-50/40 to-white">
-      <div className="max-w-4xl mx-auto sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           {/* Eyebrow */}
           {eyebrow && (
@@ -37,7 +37,7 @@ export default function SubpageHeroMinimal({
 
           {/* H1 - Editorial style */}
           <Reveal delay={0.1}>
-            <h1 className="text-4xl sm:text-[42px] md:text-[48px] lg:text-[52px] font-semibold text-slate-900 mb-4 sm:mb-6 leading-[1.05] tracking-[-0.01em]">
+            <h1 className="text-3xl sm:text-[42px] md:text-[48px] lg:text-[52px] font-semibold text-slate-900 mb-4 sm:mb-6 leading-[1.1] sm:leading-[1.05] tracking-[-0.01em]">
               {title}
             </h1>
           </Reveal>

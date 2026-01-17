@@ -6,10 +6,25 @@ export default function GlobalCTA() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="py-12 sm:py-20 md:py-28 bg-gradient-to-b from-blue-50 via-blue-50/50 to-white relative overflow-hidden">
-      {/* Subtle gradient glow */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-100/20 via-transparent to-blue-100/20 pointer-events-none" />
+    <section className="relative py-12 sm:py-20 md:py-28 overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <img
+          src="/Onderkant footer.webp"
+          alt=""
+          className="w-full h-full object-cover object-bottom"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        />
+        {/* Overlay gradient for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/40 to-white/30" />
+      </div>
       
+      {/* Fade-out to white at bottom */}
+      <div className="absolute inset-x-0 bottom-0 h-32 sm:h-40 md:h-48 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
+      
+      {/* Content */}
       <div className="max-w-4xl mx-auto sm:px-6 lg:px-8 relative z-10">
         <Reveal>
           <div className="text-center">

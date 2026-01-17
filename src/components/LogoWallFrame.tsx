@@ -9,15 +9,18 @@ interface LogoWallFrameProps {
 function LogoWallFrame({ image, alt, variant = "dark" }: LogoWallFrameProps) {
   const borderClass = variant === "dark" ? "border-white/10" : "border-slate-200/60";
   const bgClass = variant === "dark" ? "bg-slate-800/50 backdrop-blur-sm" : "bg-white/95 backdrop-blur-sm";
+  // Mobile: remove heavy shadow, light variant should have no shadow/glow
   const shadowClass =
     variant === "dark"
-      ? "shadow-[0_30px_80px_rgba(0,0,0,0.35)]"
-      : "shadow-[0_30px_90px_rgba(0,0,0,0.25)]";
+      ? "shadow-none md:shadow-[0_30px_80px_rgba(0,0,0,0.35)]"
+      : "shadow-none md:shadow-none";
 
   return (
     <div className="relative w-full">
-      {/* Subtle blue glow around frame */}
-      <div className="absolute -inset-4 bg-blue-400/10 rounded-[32px] blur-2xl -z-10 opacity-60" />
+      {/* Subtle blue glow around frame - hidden on mobile */}
+      {variant === "dark" && (
+        <div className="hidden md:block absolute -inset-4 bg-blue-400/10 rounded-[32px] blur-2xl -z-10 opacity-60" />
+      )}
       
       {/* Logo Wall Frame */}
       <div

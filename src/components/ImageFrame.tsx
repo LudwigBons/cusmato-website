@@ -27,10 +27,11 @@ function ImageFrame({
   loading = "lazy",
 }: ImageFrameProps) {
   const borderClass = variant === "dark" ? "border-white/10" : "border-blue-200/40";
+  // Mobile: no heavy shadow, just subtle border
   const shadowClass =
     variant === "dark"
-      ? "shadow-[0_30px_90px_rgba(0,0,0,0.35)]"
-      : "shadow-[0_30px_90px_rgba(0,0,0,0.25)]";
+      ? "shadow-none md:shadow-[0_30px_90px_rgba(0,0,0,0.35)]"
+      : "shadow-none md:shadow-[0_30px_90px_rgba(0,0,0,0.25)]";
 
   return (
     <div className={`relative w-full ${className}`}>
@@ -40,6 +41,8 @@ function ImageFrame({
           className="absolute -inset-4 lg:-inset-6 bg-blue-400/15 rounded-[32px] blur-2xl -z-10 opacity-60"
           style={{
             animation: "image-glow-breathe 8s ease-in-out infinite",
+            willChange: "opacity",
+            transform: "translateZ(0)",
           }}
         />
       )}
@@ -55,6 +58,8 @@ function ImageFrame({
             className="w-full h-full object-cover"
             loading={loading}
             decoding="async"
+            width={aspectRatio === "16/9" ? 1600 : aspectRatio === "16/10" ? 1600 : aspectRatio === "4/3" ? 1200 : 1500}
+            height={aspectRatio === "16/9" ? 900 : aspectRatio === "16/10" ? 1000 : aspectRatio === "4/3" ? 900 : 1000}
           />
           {/* Dark gradient overlay for premium look */}
           {variant === "dark" && (
