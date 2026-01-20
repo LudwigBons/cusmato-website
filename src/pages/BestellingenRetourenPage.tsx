@@ -3,6 +3,10 @@ import { useEffect, useMemo } from "react";
 import Reveal from "../components/Reveal";
 import Section from "../components/Section";
 import FAQAccordion from "../components/FAQAccordion";
+import BottomMobileCTA from "../components/BottomMobileCTA";
+import FinalCTA from "../components/FinalCTA";
+import MobileSubpageHero from "../components/MobileSubpageHero";
+import { subpagesHeroConfig } from "../lib/subpagesHeroConfig";
 
 export default function BestellingenRetourenPage() {
   const shouldReduceMotion = useReducedMotion();
@@ -105,10 +109,35 @@ export default function BestellingenRetourenPage() {
     { type: "Cusmato AI", items: ["Automatisch aangemaakte tickets/updates"] },
   ], []);
 
+  const heroConfig = subpagesHeroConfig["bestellingen-retouren"];
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <main className="pt-20 sm:pt-24 pb-12 sm:pb-16">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          {/* Hero - Exact zoals Prijzen */}
+          <MobileSubpageHero
+            label={heroConfig.label}
+            title={
+              heroConfig.titleMobile ? (
+                <>
+                  <span className="sm:hidden">{heroConfig.titleMobile}</span>
+                  <span className="hidden sm:inline">{heroConfig.title}</span>
+                </>
+              ) : (
+                heroConfig.title
+              )
+            }
+            description={heroConfig.description}
+            imageSrc={heroConfig.imageSrc}
+            imageAlt={heroConfig.imageAlt}
+            primaryCta={heroConfig.primaryCta}
+          />
+        </div>
+      </main>
+      
       {/* Hero with Flow Pipeline */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 bg-gradient-to-b from-blue-50/30 via-white to-white overflow-hidden">
+      <section className="relative pt-0 sm:pt-12 pb-20 lg:pt-16 lg:pb-24 bg-gradient-to-b from-blue-50/30 via-white to-white overflow-hidden">
         {/* Subtle background grid */}
         <div
           className="absolute inset-0 opacity-[0.015]"
@@ -470,38 +499,11 @@ export default function BestellingenRetourenPage() {
         </div>
       </Section>
 
-      {/* Final CTA - Light blue gradient */}
-      <section className="relative py-14 sm:py-20 md:py-24 bg-gradient-to-br from-blue-50 via-blue-50/50 to-white">
-        {/* Subtle pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: "32px 32px",
-          }}
-        />
-
-        <div className="relative z-10 max-w-3xl mx-auto sm:px-6 lg:px-8 text-center">
-          <Reveal delay={0.1}>
-            <h2 className="text-3xl md:text-3xl font-semibold text-slate-900 mb-6 leading-[1.15]">
-              <span className="md:hidden">Klaar om te automatiseren?</span>
-              <span className="hidden md:inline">Klaar om bestellingen en retouren te automatiseren?</span>
-            </h2>
-            <p className="text-base text-slate-600 mb-8 max-w-xl mx-auto">
-              Start met je AI Helpdesk en automatiseer alle order- en retourvragen binnen één workflow.
-            </p>
-            <a
-              href="/probeer-14-dagen-gratis"
-              className="inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold bg-blue-600 text-white shadow-sm hover:bg-blue-700 transition-colors hover:shadow-md"
-            >
-              Probeer 14 dagen gratis
-            </a>
-          </Reveal>
-        </div>
-      </section>
+      {/* Final CTA - Standaard voor alle productpagina's */}
+      <div className="bg-white relative">
+        <FinalCTA />
+        <BottomMobileCTA />
+      </div>
     </div>
   );
 }

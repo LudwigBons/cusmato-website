@@ -27,11 +27,11 @@ function ImageFrame({
   loading = "lazy",
 }: ImageFrameProps) {
   const borderClass = variant === "dark" ? "border-white/10" : "border-blue-200/40";
-  // Mobile: no heavy shadow, just subtle border
+  // Mobile: no heavy shadow, subtle shadow-md on desktop
   const shadowClass =
     variant === "dark"
-      ? "shadow-none md:shadow-[0_30px_90px_rgba(0,0,0,0.35)]"
-      : "shadow-none md:shadow-[0_30px_90px_rgba(0,0,0,0.25)]";
+      ? "shadow-none md:shadow-md"
+      : "shadow-none md:shadow-md";
 
   return (
     <div className={`relative w-full ${className}`}>
@@ -47,11 +47,11 @@ function ImageFrame({
         />
       )}
 
-      {/* Image Frame */}
+      {/* Image Frame - Strict max-width and max-height constraints */}
       <div
-        className={`relative rounded-[28px] lg:rounded-[32px] overflow-hidden ${shadowClass} border ${borderClass} bg-slate-100`}
+        className={`relative rounded-[28px] lg:rounded-[32px] overflow-hidden ${shadowClass} border ${borderClass} bg-slate-100 max-w-[560px] md:max-w-[720px] mx-auto`}
       >
-        <div className={aspectRatioClasses[aspectRatio]}>
+        <div className={`${aspectRatioClasses[aspectRatio]} overflow-hidden max-h-[260px] md:max-h-[360px]`}>
           <img
             src={src}
             alt={alt}

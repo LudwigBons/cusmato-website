@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import Reveal from "../components/Reveal";
 import GlobalCTA from "../components/GlobalCTA";
+import BottomMobileCTA from "../components/BottomMobileCTA";
 import FAQAccordion from "../components/FAQAccordion";
 import { fadeUp, staggerContainer, viewport } from "../lib/motion";
 
@@ -284,12 +285,14 @@ export default function FAQPage() {
                   whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
                   transition={{ duration: 0.15 }}
                 >
-                  <Link
-                    to="/integraties"
+                  <a
+                    href="https://www.cusmato.app/welkom"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 transition-colors"
                   >
-                    Bekijk integraties
-                  </Link>
+                    Start onboarding
+                  </a>
                 </motion.div>
               </div>
             </div>
@@ -359,12 +362,14 @@ export default function FAQPage() {
                   whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
                   transition={{ duration: 0.15 }}
                 >
-                  <Link
-                    to="/integraties"
+                  <a
+                    href="https://www.cusmato.app/welkom"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 transition-colors"
                   >
-                    Bekijk integraties
-                  </Link>
+                    Start onboarding
+                  </a>
                 </motion.div>
               </div>
             </div>
@@ -405,6 +410,7 @@ export default function FAQPage() {
       </main>
 
       <GlobalCTA />
+      <BottomMobileCTA />
     </div>
   );
 }

@@ -483,12 +483,14 @@ export default function PrijzenPage() {
                       Bol.com en Amazon integratie voor €29 per maand
                     </li>
                   </ul>
-                  <Link
-                    to="/integraties"
+                  <a
+                    href="https://www.cusmato.app/welkom"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="block w-full text-center rounded-full px-4 py-2.5 text-sm font-semibold border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 transition-colors"
                   >
-                      Bekijk integraties
-                    </Link>
+                      Start onboarding
+                    </a>
                     </div>
                   </div>
                 </Reveal>

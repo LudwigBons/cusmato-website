@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import { motion, useReducedMotion, useInView } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import Reveal from "../components/Reveal";
-import GlobalCTA from "../components/GlobalCTA";
+import BottomMobileCTA from "../components/BottomMobileCTA";
+import FinalCTA from "../components/FinalCTA";
+import StepsSection from "../components/StepsSection";
+import HelpdeskVisualDemo from "../components/HelpdeskVisualDemo";
 import Section from "../components/Section";
-import SubpageHeroMinimal from "../components/SubpageHeroMinimal";
+import MobileSubpageHero from "../components/MobileSubpageHero";
+import { subpagesHeroConfig } from "../lib/subpagesHeroConfig";
 import { fadeUp, viewport, transition } from "../lib/motion";
 
 export default function AIHelpdeskPage() {
@@ -131,61 +135,73 @@ export default function AIHelpdeskPage() {
         </div>
       )}
       
-      {/* Content */}
-      <div className="relative z-10">
-      {/* 1. Hero Section - Clean Text Only */}
-      <SubpageHeroMinimal
-        eyebrow="AI HELPDESK"
-        title={
-          <>
-            <span className="sm:hidden">AI Helpdesk automatiseren</span>
-            <span className="hidden sm:inline">Automatiseer e-commerce klantenservice met Cusmato AI Helpdesk</span>
-          </>
-        }
-        description="Cusmato begrijpt klantvragen, schrijft antwoorden in jouw tone of voice en handelt tickets automatisch af, met of zonder goedkeuring."
-        primaryCTA={{
-          text: "Probeer 14 dagen gratis",
-          href: "/probeer-14-dagen-gratis",
-        }}
-        secondaryCTA={{
-          text: "Bekijk demo",
-          href: "https://www.cusmato.app/welkom",
-        }}
-      />
+      {/* Main content - Exact zoals Prijzen */}
+      <main className="pt-20 sm:pt-24 pb-12 sm:pb-16 relative z-10">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          {/* Hero Section - Exact zoals Prijzen */}
+          <MobileSubpageHero
+            label={subpagesHeroConfig["ai-helpdesk"].label}
+            title={
+              subpagesHeroConfig["ai-helpdesk"].titleMobile ? (
+                <>
+                  <span className="sm:hidden">{subpagesHeroConfig["ai-helpdesk"].titleMobile}</span>
+                  <span className="hidden sm:inline">{subpagesHeroConfig["ai-helpdesk"].title}</span>
+                </>
+              ) : (
+                subpagesHeroConfig["ai-helpdesk"].title
+              )
+            }
+            description={subpagesHeroConfig["ai-helpdesk"].description}
+            imageSrc={subpagesHeroConfig["ai-helpdesk"].imageSrc}
+            imageAlt={subpagesHeroConfig["ai-helpdesk"].imageAlt}
+            primaryCta={subpagesHeroConfig["ai-helpdesk"].primaryCta}
+            secondaryCta={subpagesHeroConfig["ai-helpdesk"].secondaryCta}
+          />
 
       {/* 2. Donkerblauwe Diepte Sectie */}
-      <Section variant="dark" className="overflow-hidden min-h-[400px] lg:min-h-[600px]">
-        {/* Subtle logo grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.06] overflow-hidden"
+      <div className="px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16 lg:mb-20">
+        <Section 
+          variant="dark" 
+          className="overflow-hidden min-h-[400px] lg:min-h-[600px] relative no-cv"
           style={{
-            backgroundImage: "url('/Cusmato-partners-logos.webp')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
+            borderRadius: "28px",
+            overflow: "hidden",
           }}
-        />
-
-        {/* Subtle moving gradient */}
-        {!shouldReduceMotion && (
-          <motion.div
-            className="absolute inset-0 opacity-20"
+          noPadding={false}
+        >
+          {/* Subtle logo grid pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.06]"
             style={{
-              background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59, 130, 246, 0.3) 0%, transparent 70%)",
-            }}
-            animate={{
-              backgroundPosition: ["0% 0%", "100% 100%"],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear",
+              backgroundImage: "url('/Cusmato-partners-logos.webp')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              borderRadius: "28px",
             }}
           />
-        )}
 
-        <div className="relative z-10 max-w-[1280px] mx-auto sm:px-6 lg:px-8 overflow-x-hidden">
-          <div className="px-3 sm:px-0">
+          {/* Subtle moving gradient */}
+          {!shouldReduceMotion && (
+            <motion.div
+              className="absolute inset-0 opacity-20"
+              style={{
+                background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59, 130, 246, 0.3) 0%, transparent 70%)",
+                borderRadius: "28px",
+              }}
+              animate={{
+                backgroundPosition: ["0% 0%", "100% 100%"],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            />
+          )}
+
+          <div className="relative z-10 max-w-[1280px] mx-auto sm:px-6 lg:px-8">
+            <div className="px-3 sm:px-0">
             <Reveal>
               <div className="text-center mb-12 sm:mb-16 lg:mb-20">
               <h2 className="text-3xl sm:text-[32px] md:text-[36px] lg:text-[40px] xl:text-[44px] font-semibold text-white mb-4 sm:mb-6 leading-[1.15]">
@@ -207,7 +223,7 @@ export default function AIHelpdeskPage() {
               initial="hidden"
               whileInView="visible"
               viewport={viewport}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 overflow-hidden"
             >
               {[
                 { title: "Minder tickets, snellere antwoorden", desc: "24/7 automatische afhandeling" },
@@ -217,16 +233,21 @@ export default function AIHelpdeskPage() {
                 <motion.div
                   key={index}
                   variants={fadeUp}
-                  className="bg-white/10 rounded-xl border border-white/20 p-6 sm:p-8 lg:p-10 text-center"
+                  className="bg-white/10 border border-white/20 p-6 sm:p-8 lg:p-10 text-center overflow-hidden"
+                  style={{
+                    borderRadius: "22px",
+                    backgroundClip: "padding-box",
+                  }}
                 >
                   <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4">{stat.title}</h3>
                   <p className="text-xs sm:text-sm text-slate-300">{stat.desc}</p>
                 </motion.div>
               ))}
             </motion.div>
+            </div>
           </div>
-        </div>
-      </Section>
+        </Section>
+      </div>
 
       {/* 3. Wat automatiseert de AI Helpdesk? */}
       <Section variant="default">
@@ -325,172 +346,44 @@ export default function AIHelpdeskPage() {
         </div>
       </Section>
 
-      {/* 4. Zo werkt het - met code animaties */}
-      <Section variant="soft">
-        <div className="max-w-[1280px] mx-auto sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="text-center mb-20">
-              <h2 className="text-3xl sm:text-[36px] md:text-[40px] lg:text-[44px] font-semibold text-slate-900 mb-4 sm:mb-5 leading-[1.15]">
-                Zo werkt het
-              </h2>
-            </div>
-          </Reveal>
-
-          <div className="space-y-16 sm:space-y-20 md:space-y-24 lg:space-y-32 max-w-6xl mx-auto">
-            {/* Step 1: Koppel inbox */}
-            <Reveal delay={0.1}>
-              <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-14 items-center">
-                <div>
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center text-xl font-bold flex-shrink-0">
-                      1
-                    </div>
-                    <h3 className="text-2xl font-semibold text-slate-900">
-                      Koppel je inbox in minuten
-                    </h3>
-                  </div>
-                  <p className="text-sm sm:text-lg text-slate-600 leading-snug sm:leading-[1.7] mb-5">
-                    Koppel je support inbox zoals Gmail, Outlook, Zendesk of Intercom en Cusmato leest direct je binnenkomende vragen. Geen gedoe met migraties, je kunt vandaag nog live.
-                  </p>
-                  <div className="flex flex-wrap gap-4 text-xs sm:text-sm text-slate-500">
-                    <span className="flex items-center gap-2">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      Snelle setup
-                    </span>
-                    <span className="flex items-center gap-2">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      Context uit orders
-                    </span>
-                  </div>
-                </div>
-                <div className="flex justify-center lg:justify-end">
-                  <div className="w-full max-w-md">
-                    <ConnectionLines />
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Step 2: Tone of voice */}
-            <Reveal delay={0.2}>
-              <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-14 items-center lg:grid-flow-dense">
-                <div className="lg:col-start-2">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center text-xl font-bold flex-shrink-0">
-                      2
-                    </div>
-                    <h3 className="text-2xl font-semibold text-slate-900">
-                      Cusmato leert je tone of voice
-                    </h3>
-                  </div>
-                  <p className="text-lg text-slate-600 leading-[1.7] mb-5">
-                    Cusmato analyseert je bestaande e-mails, templates en FAQ's om jouw schrijfstijl te kopiëren. Zo klinken antwoorden altijd alsof ze door jouw team zijn geschreven.
-                  </p>
-                  <div className="flex flex-wrap gap-4 text-sm text-slate-500">
-                    <span className="flex items-center gap-2">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      Consistent merkgeluid
-                    </span>
-                    <span className="flex items-center gap-2">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      AI-concepten per ticket
-                    </span>
-                  </div>
-                </div>
-                <div className="lg:col-start-1 lg:row-start-1 flex justify-center lg:justify-start">
-                  <div className="w-full max-w-md">
-                    <TypewriterAnimation />
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Step 3: Automatisch of goedkeuring */}
-            <Reveal delay={0.3}>
-              <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-14 items-center">
-                <div>
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center text-xl font-bold flex-shrink-0">
-                      3
-                    </div>
-                    <h3 className="text-2xl font-semibold text-slate-900">
-                      Automatisch of met goedkeuring
-                    </h3>
-                  </div>
-                  <p className="text-lg text-slate-600 leading-[1.7] mb-5">
-                    Kies per type vraag of Cusmato zelfstandig mag antwoorden, of dat je eerst wilt controleren. Je ziet altijd waarom Cusmato iets voorstelt en wat er wordt verstuurd.
-                  </p>
-                  <div className="flex flex-wrap gap-4 text-sm text-slate-500">
-                    <span className="flex items-center gap-2">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      Auto of approval mode
-                    </span>
-                    <span className="flex items-center gap-2">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      Regels per categorie
-                    </span>
-                  </div>
-                </div>
-                <div className="flex justify-center lg:justify-end">
-                  <div className="w-full max-w-md">
-                    <ApprovalToggle />
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Step 4: Slimme workflows */}
-            <Reveal delay={0.4}>
-              <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-14 items-center lg:grid-flow-dense">
-                <div className="lg:col-start-2">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center text-xl font-bold flex-shrink-0">
-                      4
-                    </div>
-                    <h3 className="text-2xl font-semibold text-slate-900">
-                      Slimme workflows & regels
-                    </h3>
-                  </div>
-                  <p className="text-lg text-slate-600 leading-[1.7] mb-5">
-                    Stel regels in voor retouren, bestellingen, facturen en escalaties. Cusmato herkent de context en zet het juiste proces in gang, inclusief labels, routing en opvolging.
-                  </p>
-                  <div className="flex flex-wrap gap-4 text-sm text-slate-500">
-                    <span className="flex items-center gap-2">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      Context-herkenning
-                    </span>
-                    <span className="flex items-center gap-2">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      Automatische routing
-                    </span>
-                  </div>
-                </div>
-                <div className="lg:col-start-1 lg:row-start-1 flex justify-center lg:justify-start">
-                  <div className="w-full max-w-md">
-                    <WorkflowDemo />
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </Section>
+      {/* 4. Zo werkt het - Modern Steps Section */}
+      <StepsSection
+        title="Zo werkt het"
+        steps={[
+          {
+            number: 1,
+            title: "Koppel je inbox in minuten",
+            description:
+              "Koppel je support inbox zoals Gmail, Outlook, Zendesk of Intercom en Cusmato leest direct je binnenkomende vragen. Geen gedoe met migraties, je kunt vandaag nog live.",
+            chips: ["Snelle setup", "Context uit orders"],
+            visual: <HelpdeskVisualDemo variant="default" />,
+          },
+          {
+            number: 2,
+            title: "Cusmato leert je tone of voice",
+            description:
+              "Cusmato analyseert je bestaande e-mails, templates en FAQ's om jouw schrijfstijl te kopiëren. Zo klinken antwoorden altijd alsof ze door jouw team zijn geschreven.",
+            chips: ["Consistent merkgeluid", "AI-concepten per ticket"],
+            visual: <HelpdeskVisualDemo variant="tone-of-voice" />,
+          },
+          {
+            number: 3,
+            title: "Automatisch of met goedkeuring",
+            description:
+              "Kies per type vraag of Cusmato zelfstandig mag antwoorden, of dat je eerst wilt controleren. Je ziet altijd waarom Cusmato iets voorstelt en wat er wordt verstuurd.",
+            chips: ["Auto of approval mode", "Regels per categorie"],
+            visual: <HelpdeskVisualDemo variant="approval" />,
+          },
+          {
+            number: 4,
+            title: "Slimme workflows & regels",
+            description:
+              "Stel regels in voor retouren, bestellingen, facturen en escalaties. Cusmato herkent de context en zet het juiste proces in gang, inclusief labels, routing en opvolging.",
+            chips: ["Context-herkenning", "Automatische routing"],
+            visual: <HelpdeskVisualDemo variant="workflow" />,
+          },
+        ]}
+      />
 
       {/* 5. Tone of Voice / Templates */}
       <Section variant="default">
@@ -699,8 +592,13 @@ export default function AIHelpdeskPage() {
           </div>
         </div>
       </Section>
+        </div>
+      </main>
 
-      <GlobalCTA />
+      {/* Final CTA - Standaard voor alle productpagina's */}
+      <div className="bg-white relative">
+        <FinalCTA />
+        <BottomMobileCTA />
       </div>
     </div>
   );
@@ -756,8 +654,8 @@ function ConnectionLines() {
   ];
 
   return (
-    <div ref={ref} className="relative w-full aspect-square max-w-md mx-auto m-0">
-      <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+    <div ref={ref} className="relative w-full aspect-square max-w-full mx-auto">
+      <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" style={{ maxWidth: '100%', height: 'auto' }}>
         {/* Connection lines */}
         {tools.map((tool, index) => (
           <motion.line

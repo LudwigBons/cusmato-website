@@ -5,6 +5,10 @@ import Reveal from "../components/Reveal";
 import Section from "../components/Section";
 import FAQAccordion from "../components/FAQAccordion";
 import TeamchatConversationDemo from "../components/TeamchatConversationDemo";
+import BottomMobileCTA from "../components/BottomMobileCTA";
+import FinalCTA from "../components/FinalCTA";
+import MobileSubpageHero from "../components/MobileSubpageHero";
+import { subpagesHeroConfig } from "../lib/subpagesHeroConfig";
 
 export default function TeamchatPage() {
   const shouldReduceMotion = useReducedMotion();
@@ -97,88 +101,23 @@ export default function TeamchatPage() {
     },
   ], []);
 
+  const heroConfig = subpagesHeroConfig["teamchat"];
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      {/* Hero Section - Clean Subpage Style */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 bg-gradient-to-b from-slate-50 via-white to-white overflow-hidden">
-        {/* Background layers for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-white pointer-events-none" />
-        
-        {/* Grid layer */}
-        <div
-          className="absolute inset-0 opacity-[0.02] pointer-events-none"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(15, 23, 42, 0.06) 1px, transparent 1px)
-            `,
-            backgroundSize: "32px 32px",
-          }}
-        />
-
-        {/* Subtle noise overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.01] pointer-events-none"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-            backgroundSize: "200px 200px",
-          }}
-        />
-
-        <div className="relative z-10 max-w-4xl mx-auto sm:px-6 lg:px-8">
-          <div className="text-center">
-            {/* Eyebrow */}
-            <Reveal delay={0.05}>
-              <p className="text-[10px] font-semibold text-blue-500 uppercase tracking-[0.15em] mb-6">
-                AI HELPDESK • SAMENWERKING
-              </p>
-            </Reveal>
-
-            {/* H1 */}
-            <Reveal delay={0.1}>
-              <h1 className="text-4xl sm:text-[42px] md:text-[48px] lg:text-[52px] font-semibold text-slate-900 mb-4 sm:mb-6 leading-[1.05] tracking-[-0.01em]">
-                <span className="sm:hidden">Teamchat</span>
-                <span className="hidden sm:inline">Teamchat voor supportteams. Alles rondom het ticket.</span>
-              </h1>
-            </Reveal>
-
-            {/* Description */}
-            <Reveal delay={0.15}>
-              <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-8 sm:mb-10 leading-relaxed max-w-[28rem] sm:max-w-2xl mx-auto">
-                Werk samen in kanalen, tag collega's en leg besluiten vast zonder tickets te verliezen in Slack of WhatsApp.
-              </p>
-            </Reveal>
-
-            {/* CTAs */}
-            <Reveal delay={0.2}>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                <Link
-                  to="/probeer-14-dagen-gratis"
-                  className="inline-flex items-center justify-center rounded-full h-10 sm:h-auto px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold bg-blue-600 text-white shadow-sm hover:bg-blue-700 transition-colors"
-                >
-                  Probeer 14 dagen gratis
-                </Link>
-                <a
-                  href="https://www.cusmato.app/welkom"
-                  className="inline-flex items-center justify-center text-base font-medium text-slate-600 hover:text-slate-900 transition-colors"
-                >
-                  Bekijk demo →
-                </a>
-              </div>
-            </Reveal>
-
-            {/* Scroll Cue */}
-            <Reveal delay={0.25}>
-              <p className="text-sm text-slate-500 flex items-center justify-center gap-2">
-                <span>Scroll om Teamchat in actie te zien</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-              </p>
-            </Reveal>
-          </div>
+      <main className="pt-20 sm:pt-24 pb-12 sm:pb-16">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          {/* Hero - Exact zoals Prijzen */}
+          <MobileSubpageHero
+            label={heroConfig.label}
+            title={heroConfig.title}
+            description={heroConfig.description}
+            imageSrc={heroConfig.imageSrc}
+            imageAlt={heroConfig.imageAlt}
+            primaryCta={heroConfig.primaryCta}
+          />
         </div>
-      </section>
+      </main>
 
       {/* Conversation Demo */}
       <Section variant="soft" className="py-14 md:py-20 cv-auto relative overflow-hidden">
@@ -383,72 +322,11 @@ export default function TeamchatPage() {
         </div>
       </Section>
 
-      {/* Final CTA */}
-      <section className="relative py-14 sm:py-20 md:py-24 bg-gradient-to-br from-blue-50 via-blue-50/50 to-white">
-        {/* Subtle pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.02] pointer-events-none"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: "32px 32px",
-          }}
-        />
-
-        {/* Image Section */}
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-16 sm:mb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div className="text-center sm:text-left">
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
-                Mensen achter Cusmato AI
-              </h3>
-              <p className="text-base sm:text-lg text-slate-600 mb-6 leading-relaxed">
-                Teamchat verbindt je team rondom elk ticket. Werk samen, deel context en los vragen sneller op, allemaal vanuit hetzelfde dashboard.
-              </p>
-            </div>
-            <div>
-              <div className="relative w-full max-w-[520px] mx-auto">
-                <div className="aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200">
-                  <img
-                    src="/People Behind Cusmato AI Dashboard.webp"
-                    alt="People behind Cusmato AI dashboard - Team samenwerking"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative z-10 max-w-3xl mx-auto sm:px-6 lg:px-8 text-center">
-          <Reveal delay={0.1}>
-            <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 mb-6">
-              Klaar om samen te werken rondom tickets?
-            </h2>
-            <p className="text-base text-slate-600 mb-8 max-w-xl mx-auto">
-              Start met Teamchat en werk efficiënt samen zonder extra tools.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link
-                to="/probeer-14-dagen-gratis"
-                className="inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold bg-blue-600 text-white shadow-sm hover:bg-blue-700 transition-colors hover:shadow-md"
-              >
-                Probeer 14 dagen gratis
-              </Link>
-              <a
-                href="https://www.cusmato.app/welkom"
-                className="inline-flex items-center justify-center text-base font-medium text-slate-600 hover:text-slate-900 transition-colors"
-              >
-                Bekijk demo →
-              </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* Final CTA - Standaard voor alle productpagina's */}
+      <div className="bg-white relative">
+        <FinalCTA />
+        <BottomMobileCTA />
+      </div>
     </div>
   );
 }

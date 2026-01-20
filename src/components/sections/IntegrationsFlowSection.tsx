@@ -29,12 +29,14 @@ export default function IntegrationsFlowSection() {
                 </li>
               ))}
             </ul>
-            <Link
-              to="/integraties"
+            <a
+              href="https://www.cusmato.app/welkom"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold border border-slate-300 text-slate-900 bg-white hover:bg-slate-50 transition-colors"
             >
-              Bekijk integraties
-            </Link>
+              Start onboarding
+            </a>
           </div>
 
           {/* Right Column - Image */}

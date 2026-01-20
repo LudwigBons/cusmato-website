@@ -49,6 +49,7 @@ export default function Section({
           className="absolute top-0 left-0 right-0 h-px opacity-30"
           style={{
             background: "linear-gradient(to right, transparent, rgba(15, 23, 42, 0.1), transparent)",
+            borderRadius: style?.borderRadius ? `${style.borderRadius} ${style.borderRadius} 0 0` : undefined,
           }}
         />
       )}

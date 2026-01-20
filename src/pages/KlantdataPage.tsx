@@ -1,9 +1,17 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, Suspense, lazy } from "react";
 import Reveal from "../components/Reveal";
 import Section from "../components/Section";
 import FAQAccordion from "../components/FAQAccordion";
-import GlobalCTA from "../components/GlobalCTA";
+import BottomMobileCTA from "../components/BottomMobileCTA";
+import FinalCTA from "../components/FinalCTA";
+import DarkPageLayout from "../components/layout/DarkPageLayout";
+import DarkSection from "../components/layout/DarkSection";
+import SectionContainer from "../components/layout/SectionContainer";
+import DarkCard from "../components/ui/DarkCard";
+import PremiumImage from "../components/PremiumImage";
+import MobileSubpageHero from "../components/MobileSubpageHero";
+import { subpagesHeroConfig } from "../lib/subpagesHeroConfig";
 
 export default function KlantdataPage() {
   const shouldReduceMotion = useReducedMotion();
@@ -125,10 +133,26 @@ export default function KlantdataPage() {
     "Recente activiteit",
   ], []);
 
+  const heroConfig = subpagesHeroConfig["klantdata"];
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <main className="pt-20 sm:pt-24 pb-12 sm:pb-16">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          {/* Hero - Exact zoals Prijzen */}
+          <MobileSubpageHero
+            label={heroConfig.label}
+            title={heroConfig.title}
+            description={heroConfig.description}
+            imageSrc={heroConfig.imageSrc}
+            imageAlt={heroConfig.imageAlt}
+            primaryCta={heroConfig.primaryCta}
+          />
+        </div>
+      </main>
+      
       {/* Hero with Enhanced Background Depth */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 bg-gradient-to-b from-slate-50 via-white to-white overflow-hidden">
+      <section className="relative pt-0 sm:pt-12 pb-20 lg:pt-16 lg:pb-24 bg-gradient-to-b from-slate-50 via-white to-white overflow-hidden">
         {/* Background layers for depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-white pointer-events-none" />
         
@@ -581,64 +605,12 @@ export default function KlantdataPage() {
         </div>
       </Section>
 
-      {/* Final CTA */}
-      <section className="relative py-14 sm:py-20 md:py-24 bg-gradient-to-br from-blue-50 via-blue-50/50 to-white">
-        {/* Subtle pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: "32px 32px",
-          }}
-        />
-
-        {/* Image Section */}
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-16 sm:mb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div className="text-center sm:text-left">
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
-                Real-time support insights
-              </h3>
-              <p className="text-base sm:text-lg text-slate-600 mb-6 leading-relaxed">
-                Gebruik klantdata om betere en snellere antwoorden te geven. Cusmato haalt automatisch context op uit je systemen voor complete klantinzichten.
-              </p>
-            </div>
-            <div>
-              <div className="relative w-full max-w-[520px] mx-auto">
-                <div className="aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200">
-                  <img
-                    src="/Real-Time Support Insights.webp"
-                    alt="Real-time support insights met klantdata"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative z-10 max-w-3xl mx-auto sm:px-6 lg:px-8 text-center">
-          <Reveal delay={0.1}>
-            <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 mb-6">
-              Klaar om support te versnellen met klantcontext?
-            </h2>
-            <p className="text-base text-slate-600 mb-8 max-w-xl mx-auto">
-              Koppel je klantdata en laat Cusmato automatisch context toevoegen aan elke ticket voor snellere en betere antwoorden.
-            </p>
-            <a
-              href="/probeer-14-dagen-gratis"
-              className="inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold bg-blue-600 text-white shadow-sm hover:bg-blue-700 transition-colors hover:shadow-md"
-            >
-              Probeer 14 dagen gratis
-            </a>
-          </Reveal>
-        </div>
-      </section>
+      
+      {/* Final CTA - Standaard voor alle productpagina's */}
+      <div className="bg-white relative">
+        <FinalCTA />
+        <BottomMobileCTA />
+      </div>
     </div>
   );
 }

@@ -3,6 +3,9 @@ import { useEffect, Suspense, lazy } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Reveal from "../components/Reveal";
 import FinalCTA from "../components/FinalCTA";
+import BottomMobileCTA from "../components/BottomMobileCTA";
+import MobileSubpageHero from "../components/MobileSubpageHero";
+import { subpagesHeroConfig } from "../lib/subpagesHeroConfig";
 
 const PremiumImage = lazy(() => import("../components/PremiumImage"));
 const LogoWallFrame = lazy(() => import("../components/LogoWallFrame"));
@@ -37,59 +40,33 @@ export default function InHouseAIPage() {
     },
   ];
 
+  const heroConfig = subpagesHeroConfig["in-house-ai"];
+
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* Dark background with gradient + glow blobs */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
-      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-blue-500/8 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-blue-400/8 rounded-full blur-[140px] pointer-events-none" />
-      
-      <main className="relative z-10 pt-20 sm:pt-24 pb-12 sm:pb-16">
-        {/* Sectie 1 - Hero (tekst-first met image card rechts) */}
-        <section className="mb-20 sm:mb-28 lg:mb-32">
-          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-8 lg:gap-12 xl:gap-16 items-center">
-              {/* Left: Text Content */}
-              <div className="text-center lg:text-left order-2 lg:order-1">
-                <Reveal>
-                  <h1 className="text-4xl sm:text-[42px] md:text-[48px] lg:text-[52px] font-semibold text-white mb-6 leading-[1.05] tracking-tight">
-                    In-house AI
-                  </h1>
-                  <p className="text-base sm:text-lg lg:text-xl text-slate-300 mb-8 leading-relaxed">
-                    Cusmato draait op eigen AI-logica voor klantenservice: sneller, consistenter en volledig afgestemd op e-commerce workflows.
-                  </p>
-                  <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
-                    <Link
-                      to="/probeer-14-dagen-gratis"
-                      className="inline-flex items-center justify-center w-full max-w-[320px] sm:w-auto h-10 px-6 rounded-full bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors"
-                    >
-                      Probeer 14 dagen gratis
-                    </Link>
-                    <Link
-                      to="/contact"
-                      className="inline-flex items-center justify-center w-full max-w-[320px] sm:w-auto h-10 px-6 rounded-full border border-white/20 text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
-                    >
-                      Neem contact op
-                    </Link>
-                  </div>
-                </Reveal>
-              </div>
-              {/* Right: Premium Image Card */}
-              <div className="order-1 lg:order-2">
-                <Suspense fallback={null}>
-                  <PremiumImage
-                    src="/Focused Support Automation.webp"
-                    alt="Focused support automation met Cusmato in-house AI"
-                    aspectRatio="16/10"
-                    maxWidth="xl"
-                    variant="dark"
-                    showGlow={true}
-                  />
-                </Suspense>
-              </div>
-            </div>
+    <>
+      {/* Hero - Exact zoals Prijzen (buiten dark layout voor image) */}
+      <div className="bg-white">
+        <main className="pt-20 sm:pt-24 pb-12 sm:pb-16">
+          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <MobileSubpageHero
+              label={heroConfig.label}
+              title={heroConfig.title}
+              description={heroConfig.description}
+              imageSrc={heroConfig.imageSrc}
+              imageAlt={heroConfig.imageAlt}
+              primaryCta={heroConfig.primaryCta}
+              secondaryCta={heroConfig.secondaryCta}
+            />
           </div>
-        </section>
+        </main>
+      </div>
+      
+      <div className="min-h-screen relative -mx-5 sm:mx-0">
+        {/* Dark background with gradient + glow blobs - full-bleed on mobile, breaks out of parent padding */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-blue-500/8 rounded-full blur-[140px] pointer-events-none hidden md:block" />
+        <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-blue-400/8 rounded-full blur-[140px] pointer-events-none hidden md:block" />
+        <main className="relative z-10 pt-8 sm:pt-12 pb-12 sm:pb-16 px-5 sm:px-0">
 
         {/* Sectie 2 - "Wat maakt onze AI anders?" (equal height cards) */}
         <section className="mb-20 sm:mb-28 lg:mb-32">
@@ -193,12 +170,12 @@ export default function InHouseAIPage() {
                   ))}
                 </div>
               </div>
-              {/* Right: Image Card */}
+              {/* Right: Image Card - Different image from hero to avoid duplicate */}
               <div className="order-1 lg:order-2">
                 <Suspense fallback={null}>
                   <PremiumImage
-                    src="/Built for Support Teams.webp"
-                    alt="Built for support teams met Cusmato AI"
+                    src="/AI-Driven Support Teams.webp"
+                    alt="AI-driven support teams ontwikkeling met Cusmato"
                     aspectRatio="16/10"
                     maxWidth="lg"
                     variant="dark"
@@ -407,15 +384,17 @@ export default function InHouseAIPage() {
                   />
                 </Suspense>
               </div>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </main>
+      </div>
 
-        {/* Sectie 7 - FinalCTA component (consistent met andere pagina's) */}
-        <div className="bg-white relative">
-          <FinalCTA />
-        </div>
-      </main>
-    </div>
+      {/* Sectie 7 - FinalCTA component (consistent met andere pagina's) - Outside dark layout */}
+      <div className="bg-white relative">
+        <FinalCTA />
+        <BottomMobileCTA />
+      </div>
+    </>
   );
 }

@@ -24,7 +24,7 @@ export default function ConversionSection() {
                 14 dagen gratis proberen
               </motion.a>
               <motion.a
-                href="https://www.cusmato.app/dashboard"
+                href="https://www.cusmato.app/welkom"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
@@ -32,7 +32,7 @@ export default function ConversionSection() {
                 transition={{ duration: 0.15 }}
                 className="inline-flex items-center justify-center rounded-full px-3.5 py-1.5 text-sm font-semibold border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 transition-colors hover:shadow-sm"
               >
-                Bekijk dashboard
+                Start onboarding
               </motion.a>
             </div>
           </div>

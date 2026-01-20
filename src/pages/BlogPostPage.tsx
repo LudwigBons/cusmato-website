@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Reveal from "../components/Reveal";
 import GlobalCTA from "../components/GlobalCTA";
+import BottomMobileCTA from "../components/BottomMobileCTA";
 import TableOfContents from "../components/blog/TableOfContents";
 import BlogCard from "../components/blog/BlogCard";
 import { blogPosts, BlogPost } from "../data/blog";
@@ -138,7 +139,8 @@ export default function BlogPostPage() {
                       if (index === midpoint && contentElements.length > 10) {
                         return (
                           <div key={`midpoint-${index}`}>
-                            <div className="my-12 py-8 px-6 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-xl border border-blue-200">
+                            {/* Hidden on mobile to avoid duplicate with BottomMobileCTA */}
+                            <div className="hidden md:block my-12 py-8 px-6 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-xl border border-blue-200">
                               <h3 className="text-xl font-bold text-slate-900 mb-3">
                                 Klaar om klantantwoorden te automatiseren?
                               </h3>
@@ -184,6 +186,7 @@ export default function BlogPostPage() {
       </main>
 
       <GlobalCTA />
+      <BottomMobileCTA />
     </div>
   );
 }

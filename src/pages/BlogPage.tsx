@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Reveal from "../components/Reveal";
 import GlobalCTA from "../components/GlobalCTA";
+import BottomMobileCTA from "../components/BottomMobileCTA";
 import BlogCard from "../components/blog/BlogCard";
 import { blogPosts } from "../data/blog";
 import { fadeUp, staggerContainer, viewport } from "../lib/motion";
@@ -142,9 +143,9 @@ export default function BlogPage() {
             </div>
           )}
 
-          {/* CTA Banner */}
+          {/* CTA Banner - Hidden on mobile to avoid duplicate with BottomMobileCTA */}
           <Reveal>
-            <div className="mt-16 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-2xl p-8 md:p-12 text-center">
+            <div className="hidden md:block mt-16 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-2xl p-8 md:p-12 text-center">
               <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
                 Klaar om te automatiseren?
               </h2>
@@ -169,12 +170,14 @@ export default function BlogPage() {
                   whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
                   transition={{ duration: 0.15 }}
                 >
-                  <Link
-                    to="/integraties"
+                  <a
+                    href="https://www.cusmato.app/welkom"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 hover:border-slate-400 transition-all duration-150"
                   >
-                    Bekijk integraties
-                  </Link>
+                    Start onboarding
+                  </a>
                 </motion.div>
               </div>
             </div>
@@ -183,6 +186,7 @@ export default function BlogPage() {
       </main>
 
       <GlobalCTA />
+      <BottomMobileCTA />
     </div>
   );
 }

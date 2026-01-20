@@ -5,6 +5,7 @@ import { integrations, categories, Integration, IntegrationCategory } from "../d
 import IntegrationCard from "../components/integrations/IntegrationCard";
 import IntegrationModal from "../components/integrations/IntegrationModal";
 import GlobalCTA from "../components/GlobalCTA";
+import BottomMobileCTA from "../components/BottomMobileCTA";
 import Reveal from "../components/Reveal";
 import SubpageHeroMinimal from "../components/SubpageHeroMinimal";
 import PremiumImage from "../components/PremiumImage";
@@ -332,6 +333,7 @@ export default function IntegrationsPage() {
 
       {/* Global CTA */}
       <GlobalCTA />
+      <BottomMobileCTA />
 
       {/* Modal */}
       <IntegrationModal

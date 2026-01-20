@@ -3,6 +3,10 @@ import { useEffect } from "react";
 import Reveal from "../components/Reveal";
 import Section from "../components/Section";
 import FAQAccordion from "../components/FAQAccordion";
+import BottomMobileCTA from "../components/BottomMobileCTA";
+import FinalCTA from "../components/FinalCTA";
+import MobileSubpageHero from "../components/MobileSubpageHero";
+import { subpagesHeroConfig } from "../lib/subpagesHeroConfig";
 
 export default function AIFacturatiePage() {
   const shouldReduceMotion = useReducedMotion();
@@ -107,102 +111,23 @@ export default function AIFacturatiePage() {
     },
   ];
 
+  const heroConfig = subpagesHeroConfig["ai-facturatie"];
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      {/* Hero with Flow Pipeline */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 bg-gradient-to-b from-blue-50/30 via-white to-white overflow-hidden">
-        {/* Subtle background grid */}
-        <div
-          className="absolute inset-0 opacity-[0.015]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px)
-            `,
-            backgroundSize: "32px 32px",
-          }}
-        />
-
-        <div className="relative z-10 max-w-4xl mx-auto sm:px-6 lg:px-8">
-          <div className="text-center">
-            {/* Eyebrow */}
-            <Reveal delay={0.05}>
-              <p className="text-[10px] font-semibold text-blue-500 uppercase tracking-[0.15em] mb-6">
-                AUTOMATISERING • BINNEN AI HELPDESK
-              </p>
-            </Reveal>
-
-            {/* H1 */}
-            <Reveal delay={0.1}>
-              <h1 className="text-4xl sm:text-[42px] md:text-[48px] lg:text-[52px] font-semibold text-slate-900 mb-4 sm:mb-6 leading-[1.05] tracking-[-0.01em]">
-                <span className="sm:hidden">AI facturatie</span>
-                <span className="hidden sm:inline">AI facturatie, direct vanuit je AI Helpdesk</span>
-              </h1>
-            </Reveal>
-
-            {/* Description */}
-            <Reveal delay={0.15}>
-              <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-8 sm:mb-10 leading-relaxed max-w-[28rem] sm:max-w-2xl mx-auto">
-                Cusmato herkent factuurvragen, zoekt de juiste factuur en gegevens op, maakt een antwoord in jouw tone of voice en voert acties uit zoals versturen, herinneringen sturen of statusinformatie geven. Dit gebeurt automatisch of met goedkeuring.
-              </p>
-            </Reveal>
-
-            {/* CTAs */}
-            <Reveal delay={0.2}>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-                <a
-                  href="/probeer-14-dagen-gratis"
-                  className="inline-flex items-center justify-center rounded-full h-10 sm:h-auto px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold bg-blue-600 text-white shadow-sm hover:bg-blue-700 transition-colors"
-                >
-                  Probeer 14 dagen gratis
-                </a>
-                <a
-                  href="https://www.cusmato.app/welkom"
-                  className="inline-flex items-center justify-center text-base font-medium text-slate-600 hover:text-slate-900 transition-colors"
-                >
-                  Bekijk demo →
-                </a>
-              </div>
-            </Reveal>
-
-            {/* Flow Pipeline */}
-            <Reveal delay={0.25}>
-              <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 max-w-3xl mx-auto">
-                {flowSteps.map((step, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
-                    className="flex items-center gap-4 md:gap-8"
-                  >
-                    <div className="bg-white rounded-xl border border-slate-200/60 shadow-sm px-6 py-4 min-w-[140px] md:min-w-[180px]">
-                      <div className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">
-                        {step.title}
-                      </div>
-                      <div className="text-xs text-slate-600 leading-snug">
-                        {step.description}
-                      </div>
-                    </div>
-                    {index < flowSteps.length - 1 && (
-                      <motion.div
-                        className="hidden md:flex items-center text-slate-300"
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                        transition={{ delay: 0.4 + index * 0.1, duration: 0.4 }}
-                      >
-                        <svg className="w-8 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </motion.div>
-                    )}
-                  </motion.div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
+      <main className="pt-20 sm:pt-24 pb-12 sm:pb-16">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          {/* Hero - Exact zoals Prijzen */}
+          <MobileSubpageHero
+            label={heroConfig.label}
+            title={heroConfig.title}
+            description={heroConfig.description}
+            imageSrc={heroConfig.imageSrc}
+            imageAlt={heroConfig.imageAlt}
+            primaryCta={heroConfig.primaryCta}
+          />
         </div>
-      </section>
+      </main>
 
       {/* Screenshot Showcase - 2-up with dark background */}
       <section className="relative py-14 sm:py-20 md:py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
@@ -431,64 +356,11 @@ export default function AIFacturatiePage() {
         </div>
       </Section>
 
-      {/* Final CTA - Light blue gradient */}
-      <section className="relative py-14 sm:py-20 md:py-24 bg-gradient-to-br from-blue-50 via-blue-50/50 to-white">
-        {/* Subtle pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: "32px 32px",
-          }}
-        />
-
-        {/* Image Section */}
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-16 sm:mb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div className="order-2 lg:order-1 text-center sm:text-left">
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
-                AI-driven support teams
-              </h3>
-              <p className="text-base sm:text-lg text-slate-600 mb-6 leading-relaxed">
-                Cusmato helpt je support team met AI-ondersteuning. Automatiseer factuurvragen en laat je team zich focussen op complexere klantvragen.
-              </p>
-            </div>
-            <div className="order-1 lg:order-last">
-              <div className="relative w-full max-w-[520px] mx-auto">
-                <div className="aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200">
-                  <img
-                    src="/AI-Driven Support Teams.webp"
-                    alt="AI-driven support teams met Cusmato facturatie"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative z-10 max-w-3xl mx-auto sm:px-6 lg:px-8 text-center">
-          <Reveal delay={0.1}>
-            <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 mb-6">
-              Klaar om factuurvragen te automatiseren?
-            </h2>
-            <p className="text-base text-slate-600 mb-8 max-w-xl mx-auto">
-              Start met je AI Helpdesk en automatiseer alle factuur- en betaalvragen binnen één workflow.
-            </p>
-            <a
-              href="/probeer-14-dagen-gratis"
-              className="inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold bg-blue-600 text-white shadow-sm hover:bg-blue-700 transition-colors hover:shadow-md"
-            >
-              Probeer 14 dagen gratis
-            </a>
-          </Reveal>
-        </div>
-      </section>
+      {/* Final CTA - Standaard voor alle productpagina's */}
+      <div className="bg-white relative">
+        <FinalCTA />
+        <BottomMobileCTA />
+      </div>
     </div>
   );
 }

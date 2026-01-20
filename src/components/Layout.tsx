@@ -15,7 +15,7 @@ export default function Layout() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col relative" data-theme={location.pathname.split("/")[1] || "home"}>
+    <div className="min-h-screen flex flex-col relative overflow-x-hidden" data-theme={location.pathname.split("/")[1] || "home"}>
       <BackgroundCanvas variant={getBackgroundVariant()} />
       <Header />
       <main className="flex-grow relative z-0 px-5 sm:px-0">

@@ -37,10 +37,12 @@ export default function ContactPage() {
 
           <div className="text-center">
             <a
-              href="/probeer-14-dagen-gratis"
+              href="https://www.cusmato.app/welkom"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-full border border-slate-300 text-slate-900 bg-white hover:bg-slate-50 transition-colors"
             >
-              Start gratis
+              Start onboarding
             </a>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Reveal from "../components/Reveal";
 import GlobalCTA from "../components/GlobalCTA";
+import BottomMobileCTA from "../components/BottomMobileCTA";
 import CalendlyInlineWidget from "../components/CalendlyInlineWidget";
 
 export default function Probeer14DagenGratisPage() {
@@ -66,6 +67,7 @@ export default function Probeer14DagenGratisPage() {
       </main>
 
       <GlobalCTA />
+      <BottomMobileCTA />
     </div>
   );
 }

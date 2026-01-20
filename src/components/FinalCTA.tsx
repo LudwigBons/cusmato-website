@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function FinalCTA() {
   return (
-    <section className="relative py-12 sm:py-16 lg:py-24 overflow-hidden">
+    <section className="hidden md:block relative py-12 sm:py-16 lg:py-24 overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
         <img
@@ -39,10 +39,10 @@ export default function FinalCTA() {
             Start vandaag met Cusmato AI Helpdesk. Gratis proberen, daarna schaal je op wanneer jij er klaar voor bent.
           </p>
 
-          <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4">
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-3">
             <Link
               to="/probeer-14-dagen-gratis"
-              className="inline-flex items-center justify-center w-full max-w-[320px] sm:w-auto h-10 px-4 rounded-full bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center justify-center w-full max-w-[280px] sm:max-w-none sm:w-auto h-11 py-3 px-6 sm:h-10 sm:py-0 sm:px-4 rounded-full bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors"
             >
               Probeer 14 dagen gratis
             </Link>
@@ -50,9 +50,9 @@ export default function FinalCTA() {
               href="https://www.cusmato.app/welkom"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center w-full max-w-[320px] sm:w-auto h-10 px-4 rounded-full border border-slate-300 bg-white text-slate-900 font-semibold text-sm hover:bg-slate-50 hover:border-slate-400 transition-colors"
+              className="inline-flex items-center justify-center w-full max-w-[240px] sm:max-w-none sm:w-auto h-10 py-2.5 px-5 sm:py-0 sm:px-4 rounded-full border border-slate-300 bg-white text-slate-900 font-semibold text-sm hover:bg-slate-50 hover:border-slate-400 transition-colors"
             >
-              Plan demo
+              Start onboarding
             </a>
           </div>
         </motion.div>

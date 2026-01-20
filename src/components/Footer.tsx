@@ -93,10 +93,11 @@ export default function Footer() {
               controle en schaal zonder extra druk op je team.
             </p>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            {/* Footer CTA's - Subtle on mobile, secondary to page CTAs */}
+            <div className="mt-8 sm:mt-6 flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3">
               <Link
                 to={ROUTES.tryFree}
-                className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition-colors"
+                className="inline-flex items-center justify-center rounded-md border border-slate-300/50 bg-white text-slate-600 px-2.5 py-1.5 text-xs font-medium hover:bg-slate-50 hover:border-slate-300 transition-colors sm:bg-blue-600 sm:text-white sm:border-blue-600 sm:shadow-sm sm:hover:bg-blue-700 sm:rounded-xl sm:px-4 sm:py-2.5 sm:text-sm"
               >
                 Probeer 14 dagen gratis
               </Link>
@@ -105,7 +106,7 @@ export default function Footer() {
                 href={ROUTES.onboarding}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50 transition-colors"
+                className="inline-flex items-center justify-center rounded-md border border-slate-300/50 bg-white text-slate-600 px-2.5 py-1.5 text-xs font-medium hover:bg-slate-50 hover:border-slate-300 transition-colors sm:border-slate-200 sm:shadow-sm sm:rounded-xl sm:px-4 sm:py-2.5 sm:text-sm"
               >
                 Start onboarding →
               </a>

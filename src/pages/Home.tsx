@@ -3,6 +3,7 @@ import { Suspense, lazy } from "react";
 import HeroProductScene from "../components/HeroProductScene";
 import LogoStrip from "../components/LogoStrip";
 import ShowcaseSection from "../components/ShowcaseSection";
+import BottomMobileCTA from "../components/BottomMobileCTA";
 
 // Lazy load below-fold components for faster initial load
 const CapabilitiesGrid = lazy(() => import("../components/CapabilitiesGrid"));
@@ -257,6 +258,9 @@ export default function Home() {
       <Suspense fallback={null}>
         <FinalCTA />
       </Suspense>
+
+      {/* Mobile CTA - Exact same as AI-helpdesk */}
+      <BottomMobileCTA />
     </div>
   );
 }
