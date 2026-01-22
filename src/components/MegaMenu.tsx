@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { NAVIGATION } from "../lib/constants";
 
@@ -30,8 +30,55 @@ export interface MegaMenuConfig {
   };
 }
 
-// Export menu data from constants
+// Export menu data from constants (default Dutch)
 export const megaMenuData: MegaMenuConfig = NAVIGATION.megaMenu;
+
+// Helper to convert route to English version if on English page
+const getEnglishRoute = (route: string, isEnglish: boolean): string => {
+  if (!isEnglish || route.startsWith("http") || route.startsWith("/en")) {
+    return route;
+  }
+  // Convert to /en/ route
+  if (route === "/") {
+    return "/en";
+  }
+  return `/en${route}`;
+};
+
+// Helper to get language-aware menu data with English routes
+export const getMegaMenuData = (): MegaMenuConfig => {
+  if (typeof window !== "undefined") {
+    const isEnglish = window.location.pathname === "/en" || window.location.pathname.startsWith("/en/");
+    const baseConfig = isEnglish ? NAVIGATION.megaMenuEN : NAVIGATION.megaMenu;
+    
+    // If English, convert all hrefs to /en/ routes
+    if (isEnglish) {
+      return {
+        ...baseConfig,
+        featured: baseConfig.featured ? {
+          ...baseConfig.featured,
+          href: getEnglishRoute(baseConfig.featured.href, isEnglish),
+        } : undefined,
+        sections: baseConfig.sections.map(section => ({
+          ...section,
+          items: section.items.map(item => ({
+            ...item,
+            href: getEnglishRoute(item.href, isEnglish),
+          })),
+        })),
+        imageCard: baseConfig.imageCard ? {
+          ...baseConfig.imageCard,
+          ctaHref: baseConfig.imageCard.ctaExternal 
+            ? baseConfig.imageCard.ctaHref 
+            : getEnglishRoute(baseConfig.imageCard.ctaHref, isEnglish),
+        } : undefined,
+      };
+    }
+    
+    return baseConfig;
+  }
+  return NAVIGATION.megaMenu;
+};
 
 interface MegaMenuProps {
   config: MegaMenuConfig;

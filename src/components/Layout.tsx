@@ -8,9 +8,10 @@ export default function Layout() {
   
   // Determine background variant based on route
   const getBackgroundVariant = (): "default" | "hero" | "dark" | "pricing" | "faq" | "integrations" => {
-    if (location.pathname === "/" || location.pathname === "/ai-helpdesk") return "hero";
-    if (location.pathname === "/faq") return "faq";
-    if (location.pathname === "/integraties") return "integrations";
+    if (location.pathname === "/" || location.pathname === "/en" || location.pathname === "/ai-helpdesk" || location.pathname === "/en/ai-helpdesk") return "hero";
+    if (location.pathname === "/faq" || location.pathname === "/en/faq") return "faq";
+    if (location.pathname === "/integraties" || location.pathname === "/en/integrations" || location.pathname === "/en/integraties") return "integrations";
+    if (location.pathname === "/prijzen" || location.pathname === "/en/pricing" || location.pathname === "/en/prijzen") return "pricing";
     return "default";
   };
 

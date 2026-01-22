@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { loadCalendly } from "../lib/calendly";
 
 interface CalendlyInlineWidgetProps {
@@ -12,6 +13,8 @@ export default function CalendlyInlineWidget({
   minWidth = 320,
   height = 700,
 }: CalendlyInlineWidgetProps) {
+  const location = useLocation();
+  const isEnglish = location.pathname === "/en" || location.pathname.startsWith("/en/");
   const containerRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -96,7 +99,7 @@ export default function CalendlyInlineWidget({
         <div className="absolute inset-0 flex items-center justify-center bg-white rounded-lg border border-slate-200 z-10">
           <div className="text-center">
             <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent mb-4"></div>
-            <p className="text-sm text-slate-600">Calendly wordt geladen…</p>
+            <p className="text-sm text-slate-600">{isEnglish ? "Loading Calendly…" : "Calendly wordt geladen…"}</p>
           </div>
         </div>
       )}

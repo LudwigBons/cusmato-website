@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
-import MegaMenu, { megaMenuData } from "./MegaMenu";
+import MegaMenu, { getMegaMenuData } from "./MegaMenu";
 import MobileMegaMenu from "./MobileMegaMenu";
 
 export default function Header() {
@@ -10,6 +10,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   const location = useLocation();
+  const isEnglish = location.pathname === "/en" || location.pathname.startsWith("/en/");
   const megaMenuRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
@@ -145,13 +146,24 @@ export default function Header() {
     };
   }, []);
 
+  // Helper to get English route
+  const getEnglishRoute = (route: string): string => {
+    if (!isEnglish || route.startsWith("http") || route.startsWith("/en")) {
+      return route;
+    }
+    if (route === "/") {
+      return "/en";
+    }
+    return `/en${route}`;
+  };
+
   const navItems = [
-    { name: "Home", path: "/", hasMegaMenu: false },
-    { name: "Cusmato AI", path: "/ai-helpdesk", hasMegaMenu: true },
-    { name: "Integraties", path: "/integraties", hasMegaMenu: false },
-    { name: "Prijzen", path: "/prijzen", hasMegaMenu: false },
-    { name: "FAQ", path: "/faq", hasMegaMenu: false },
-    { name: "Blog", path: "/blog", hasMegaMenu: false },
+    { name: "Home", path: getEnglishRoute("/"), hasMegaMenu: false },
+    { name: "Cusmato AI", path: getEnglishRoute("/ai-helpdesk"), hasMegaMenu: true },
+    { name: isEnglish ? "Integrations" : "Integraties", path: getEnglishRoute("/integraties"), hasMegaMenu: false },
+    { name: isEnglish ? "Pricing" : "Prijzen", path: getEnglishRoute("/prijzen"), hasMegaMenu: false },
+    { name: "FAQ", path: getEnglishRoute("/faq"), hasMegaMenu: false },
+    { name: "Blog", path: getEnglishRoute("/blog"), hasMegaMenu: false },
   ];
 
   const handleLinkClick = () => {
@@ -180,7 +192,7 @@ export default function Header() {
               }}
               whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
             >
-              <Link to="/" className="flex items-center" aria-label="Cusmato">
+              <Link to={getEnglishRoute("/")} className="flex items-center" aria-label="Cusmato">
                 <img 
                   className="w-[34px] h-[34px] object-contain transition-all duration-300"
                   style={{ filter: 'drop-shadow(0 4px 8px rgba(47,102,255,0.2))' }} 
@@ -258,34 +270,20 @@ export default function Header() {
                 {item.hasMegaMenu && (
                   <AnimatePresence>
                     {isMegaMenuOpen && (
-                      <>
-                        {/* Overlay backdrop - dim only, no blur */}
-                        <motion.div
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="fixed inset-0 z-40"
-                          style={{ backgroundColor: "rgba(15, 23, 42, 0.08)" }}
-                          onClick={() => setIsMegaMenuOpen(false)}
-                        />
-                        
-                        {/* Mega Menu - Desktop */}
-                        <motion.div
-                          ref={megaMenuRef}
-                          initial={{ opacity: 0, y: 8 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 8 }}
-                          transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                          className="hidden lg:block fixed top-[72px] left-1/2 -translate-x-1/2 z-50 w-[min(90vw,1200px)] max-w-[1200px]"
-                          onMouseEnter={handleMegaMenuEnter}
-                          onMouseLeave={handleMegaMenuLeave}
-                        >
-                          <div className="bg-white rounded-[24px] border border-slate-200/50 shadow-lg p-6 sm:p-8 lg:p-10 xl:p-12 w-full max-h-[90vh] overflow-y-auto">
-                            <MegaMenu config={megaMenuData} onLinkClick={handleLinkClick} isMobile={false} />
-                          </div>
-                        </motion.div>
-                      </>
+                      <motion.div
+                        ref={megaMenuRef}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                        className="hidden lg:block fixed top-[72px] left-1/2 -translate-x-1/2 z-50 w-[min(90vw,1200px)] max-w-[1200px]"
+                        onMouseEnter={handleMegaMenuEnter}
+                        onMouseLeave={handleMegaMenuLeave}
+                      >
+                        <div className="bg-white rounded-[24px] border border-slate-200/50 shadow-lg p-6 sm:p-8 lg:p-10 xl:p-12 w-full max-h-[90vh] overflow-y-auto">
+                          <MegaMenu config={getMegaMenuData()} onLinkClick={handleLinkClick} isMobile={false} />
+                        </div>
+                      </motion.div>
                     )}
                   </AnimatePresence>
                 )}
@@ -295,7 +293,7 @@ export default function Header() {
 
           {/* Right: CTA Buttons + Mobile Menu Toggle */}
           <div className="flex items-center gap-2 lg:gap-3 ml-auto">
-            {/* Mobile CTA Button - Probeer 14 dagen gratis */}
+            {/* Mobile CTA Button */}
             <motion.div
               whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
               whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
@@ -306,12 +304,46 @@ export default function Header() {
                 to="/probeer-14-dagen-gratis"
                 className="inline-flex items-center justify-center h-8 px-3 text-xs font-semibold bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors whitespace-nowrap"
               >
-                Probeer 14 dagen gratis
+                {isEnglish ? "Try 14 days for free" : "Probeer 14 dagen gratis"}
               </Link>
             </motion.div>
 
             {/* Desktop: Login and CTA buttons - same size, aligned */}
             <div className="hidden lg:flex items-center gap-3">
+              {/* Language Switcher - Desktop */}
+              <motion.div
+                whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
+                whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
+                transition={{ duration: 0.15 }}
+              >
+                <Link
+                  to={isEnglish ? "/" : "/en"}
+                  className="inline-flex items-center justify-center cursor-pointer"
+                  style={{
+                    width: "28px",
+                    height: "28px",
+                    borderRadius: "50%",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+                    padding: "4px",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!shouldReduceMotion) {
+                      e.currentTarget.style.boxShadow = "0 2px 6px rgba(0,0,0,0.1)";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,0.06)";
+                  }}
+                  aria-label={isEnglish ? "Switch to Dutch" : "Switch to English"}
+                >
+                  <img
+                    src={isEnglish ? "/Flag_of_the_Netherlands.svg" : "/1280px-Flag_of_the_United_Kingdom.svg_.webp"}
+                    alt={isEnglish ? "Dutch" : "English"}
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </Link>
+              </motion.div>
+
               <motion.div
                 whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
                 whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
@@ -319,7 +351,7 @@ export default function Header() {
               >
                 <a
                   href="https://www.cusmato.app/auth/login"
-                  className="inline-flex items-center justify-center h-10 px-4 text-sm font-medium rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-colors whitespace-nowrap"
+                  className="inline-flex items-center justify-center h-10 px-4 text-sm font-medium rounded-full border border-slate-200 bg-white text-slate-700 hover:border-slate-300 transition-colors whitespace-nowrap"
                 >
                   Login
                 </a>
@@ -334,7 +366,7 @@ export default function Header() {
                   to="/probeer-14-dagen-gratis"
                   className="inline-flex items-center justify-center h-10 px-4 text-sm font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors whitespace-nowrap"
                 >
-                  Probeer 14 dagen gratis
+                  {isEnglish ? "Try 14 days for free" : "Probeer 14 dagen gratis"}
                 </Link>
               </motion.div>
             </div>
@@ -348,12 +380,34 @@ export default function Header() {
             >
               <a
                 href="https://www.cusmato.app/auth/login"
-                className="inline-flex items-center justify-center rounded-full px-3.5 py-1.5 text-sm font-semibold border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-colors hover:shadow-sm"
+                className="inline-flex items-center justify-center rounded-full px-3.5 py-1.5 text-sm font-semibold border border-slate-200 bg-white text-slate-700 hover:border-slate-300 transition-colors hover:shadow-sm"
               >
                 Login
               </a>
             </motion.div>
             
+            {/* Mobile: Language Switcher */}
+            <div className="lg:hidden mr-2">
+              <Link
+                to={isEnglish ? "/" : "/en"}
+                className="inline-flex items-center justify-center cursor-pointer"
+                style={{
+                  width: "26px",
+                  height: "26px",
+                  borderRadius: "50%",
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+                  padding: "3px",
+                }}
+                aria-label={isEnglish ? "Switch to Dutch" : "Switch to English"}
+              >
+                <img
+                  src={isEnglish ? "/Flag_of_the_Netherlands.svg" : "/1280px-Flag_of_the_United_Kingdom.svg_.webp"}
+                  alt={isEnglish ? "Dutch" : "English"}
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </Link>
+            </div>
+
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -447,8 +501,8 @@ export default function Header() {
                             onClick={() => setIsMobileMenuOpen(false)}
                             className={`block py-3 text-base font-semibold rounded-lg px-3 -mx-3 transition-colors ${
                               isActive
-                                ? "text-slate-900 bg-slate-50"
-                                : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                                ? "text-slate-900"
+                                : "text-slate-600 hover:text-slate-900"
                             }`}
                           >
                             {item.name}
@@ -468,7 +522,7 @@ export default function Header() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="block w-full text-center px-4 py-2.5 text-sm font-semibold bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
                   >
-                    Probeer 14 dagen gratis
+                    {isEnglish ? "Try 14 days for free" : "Probeer 14 dagen gratis"}
                   </Link>
                 </div>
               </motion.div>

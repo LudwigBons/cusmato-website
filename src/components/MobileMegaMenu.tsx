@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useState } from "react";
-import { megaMenuData, MegaMenuItem } from "./MegaMenu";
+import { getMegaMenuData, MegaMenuItem } from "./MegaMenu";
 
 interface AccordionSection {
   title: string;
@@ -11,7 +11,20 @@ interface AccordionSection {
 export default function MobileMegaMenu({ onLinkClick }: { onLinkClick: () => void }) {
   const location = useLocation();
   const shouldReduceMotion = useReducedMotion();
+  const isEnglish = location.pathname === "/en" || location.pathname.startsWith("/en/");
+  const megaMenuData = getMegaMenuData();
   
+  // Helper to get English route
+  const getEnglishRoute = (route: string): string => {
+    if (!isEnglish || route.startsWith("http") || route.startsWith("/en")) {
+      return route;
+    }
+    if (route === "/") {
+      return "/en";
+    }
+    return `/en${route}`;
+  };
+
   // Mobile menu: product-first, conversion-focused
   // Filter out Privacy/Voorwaarden items on mobile
   const accordionSections: AccordionSection[] = [
@@ -22,24 +35,24 @@ export default function MobileMegaMenu({ onLinkClick }: { onLinkClick: () => voi
         ...(megaMenuData.featured ? [megaMenuData.featured] : []),
         // Workflows - #2
         {
-          label: "Workflows & regels",
-          href: "/workflows-regels",
+          label: isEnglish ? "Workflows & rules" : "Workflows & regels",
+          href: getEnglishRoute("/workflows-regels"),
         },
         // Integraties - #3 (from navItems, not in megaMenuData sections)
         {
-          label: "Integraties",
-          href: "/integraties",
+          label: isEnglish ? "Integrations" : "Integraties",
+          href: getEnglishRoute("/integraties"),
         },
         // Knowledgebase - #4
-        ...(megaMenuData.sections[2]?.items.filter((item) => item.href === "/knowledgebase") || []),
+        ...(megaMenuData.sections[2]?.items.filter((item) => item.href === "/knowledgebase" || item.href === "/en/knowledgebase") || []),
         // Klantdata - #5
-        ...(megaMenuData.sections[2]?.items.filter((item) => item.href === "/klantdata") || []),
+        ...(megaMenuData.sections[2]?.items.filter((item) => item.href === "/klantdata" || item.href === "/en/klantdata") || []),
         // Teamchat - #6
-        ...(megaMenuData.sections[2]?.items.filter((item) => item.href === "/teamchat") || []),
+        ...(megaMenuData.sections[2]?.items.filter((item) => item.href === "/teamchat" || item.href === "/en/teamchat") || []),
         // In-house AI - #7 (direct na Teamchat)
         {
           label: "In-house AI",
-          href: "/in-house-ai",
+          href: getEnglishRoute("/in-house-ai"),
         },
       ],
     },

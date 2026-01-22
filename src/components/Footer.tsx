@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ROUTES } from "../lib/constants";
 
 type FooterLink = { label: string; href: string; external?: boolean };
@@ -43,31 +43,45 @@ function Col({ title, links }: { title: string; links: FooterLink[] }) {
 }
 
 export default function Footer() {
+  const location = useLocation();
+  const isEnglish = location.pathname === "/en" || location.pathname.startsWith("/en/");
+
+  // Helper to get English route
+  const getEnglishRoute = (route: string): string => {
+    if (!isEnglish || route.startsWith("http") || route.startsWith("/en")) {
+      return route;
+    }
+    if (route === "/") {
+      return "/en";
+    }
+    return `/en${route}`;
+  };
+
   const productLinks: FooterLink[] = [
-    { label: "AI Helpdesk", href: ROUTES.aiHelpdesk },
-    { label: "Bestellingen & retouren", href: ROUTES.bestellingenRetouren },
-    { label: "AI facturatie", href: ROUTES.aiFacturatie },
-    { label: "Workflows & regels", href: ROUTES.workflowsRegels },
-    { label: "Knowledgebase", href: ROUTES.knowledgebase },
-    { label: "Klantdata", href: ROUTES.klantdata },
-    { label: "Teamchat", href: ROUTES.teamchat },
+    { label: "AI Helpdesk", href: getEnglishRoute(ROUTES.aiHelpdesk) },
+    { label: isEnglish ? "Orders & returns" : "Bestellingen & retouren", href: getEnglishRoute(ROUTES.bestellingenRetouren) },
+    { label: isEnglish ? "AI invoicing" : "AI facturatie", href: getEnglishRoute(ROUTES.aiFacturatie) },
+    { label: isEnglish ? "Workflows & rules" : "Workflows & regels", href: getEnglishRoute(ROUTES.workflowsRegels) },
+    { label: "Knowledgebase", href: getEnglishRoute(ROUTES.knowledgebase) },
+    { label: isEnglish ? "Customer data" : "Klantdata", href: getEnglishRoute(ROUTES.klantdata) },
+    { label: isEnglish ? "Team chat" : "Teamchat", href: getEnglishRoute(ROUTES.teamchat) },
   ];
 
   const resourcesLinks: FooterLink[] = [
-    { label: "Integraties", href: ROUTES.integraties },
-    { label: "FAQ", href: ROUTES.faq },
-    { label: "Blog", href: ROUTES.blog },
+    { label: isEnglish ? "Integrations" : "Integraties", href: getEnglishRoute(ROUTES.integraties) },
+    { label: "FAQ", href: getEnglishRoute(ROUTES.faq) },
+    { label: "Blog", href: getEnglishRoute(ROUTES.blog) },
   ];
 
   const companyLinks: FooterLink[] = [
-    { label: "Probeer 14 dagen gratis", href: ROUTES.tryFree },
-    { label: "Neem contact op", href: ROUTES.contact },
+    { label: isEnglish ? "Try 14 days for free" : "Probeer 14 dagen gratis", href: ROUTES.tryFree }, // Shared page
+    { label: isEnglish ? "Contact us" : "Neem contact op", href: getEnglishRoute(ROUTES.contact) },
     { label: "Start onboarding", href: ROUTES.onboarding, external: true },
   ];
 
   const legalLinks: FooterLink[] = [
-    { label: "Algemene voorwaarden", href: ROUTES.terms },
-    { label: "Security & privacy", href: ROUTES.privacy },
+    { label: isEnglish ? "Terms & conditions" : "Algemene voorwaarden", href: getEnglishRoute(ROUTES.terms) },
+    { label: "Security & privacy", href: getEnglishRoute(ROUTES.privacy) },
   ];
 
   return (
@@ -78,7 +92,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
           {/* Brand/CTA */}
           <div className="lg:col-span-4">
-            <Link to={ROUTES.home} className="inline-flex items-center gap-2.5 mb-4 group">
+            <Link to={getEnglishRoute(ROUTES.home)} className="inline-flex items-center gap-2.5 mb-4 group">
               <img
                 className="w-8 h-8 object-contain transition-all"
                 style={{ filter: 'drop-shadow(0 2px 4px rgba(47,102,255,0.15))' }}
@@ -89,8 +103,10 @@ export default function Footer() {
             </Link>
 
             <p className="mt-4 max-w-sm text-sm leading-6 text-slate-600">
-              AI klantenservice voor e-commerce. Automatiseer tickets, behoud
-              controle en schaal zonder extra druk op je team.
+              {isEnglish 
+                ? "AI customer service for e-commerce. Automate tickets, maintain control and scale without extra pressure on your team."
+                : "AI klantenservice voor e-commerce. Automatiseer tickets, behoud controle en schaal zonder extra druk op je team."
+              }
             </p>
 
             {/* Footer CTA's - Subtle on mobile, secondary to page CTAs */}

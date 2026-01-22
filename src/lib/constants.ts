@@ -63,36 +63,38 @@ export interface MenuSection {
 }
 
 // Helper to create mutable copy
-const createMenuData = () => ({
+const createMenuData = (isEnglish = false) => ({
   featured: {
     label: "AI Helpdesk",
-    description: "Automatische klantenservice voor e-commerce, 24/7",
-    href: ROUTES.aiHelpdesk,
+    description: isEnglish 
+      ? "Automated customer service for e-commerce, 24/7"
+      : "Automatische klantenservice voor e-commerce, 24/7",
+    href: isEnglish ? "/en/ai-helpdesk" : ROUTES.aiHelpdesk,
     featured: true,
   },
   sections: [
     {
-      title: "AUTOMATISERING",
+      title: isEnglish ? "AUTOMATION" : "AUTOMATISERING",
       items: [
         {
-          label: "Bestellingen & retouren",
+          label: isEnglish ? "Orders & returns" : "Bestellingen & retouren",
           href: ROUTES.bestellingenRetouren,
         },
         {
-          label: "AI facturatie",
+          label: isEnglish ? "AI invoicing" : "AI facturatie",
           href: ROUTES.aiFacturatie,
         },
         {
-          label: "Workflows & regels",
+          label: isEnglish ? "Workflows & rules" : "Workflows & regels",
           href: ROUTES.workflowsRegels,
         },
       ],
     },
     {
-      title: "VERANTWOORDING",
+      title: isEnglish ? "ACCOUNTABILITY" : "VERANTWOORDING",
       items: [
         {
-          label: "Algemene voorwaarden",
+          label: isEnglish ? "Terms & conditions" : "Algemene voorwaarden",
           href: ROUTES.terms,
         },
         {
@@ -102,18 +104,18 @@ const createMenuData = () => ({
       ],
     },
     {
-      title: "SELF-SERVICE & KENNIS",
+      title: isEnglish ? "SELF-SERVICE & KNOWLEDGE" : "SELF-SERVICE & KENNIS",
       items: [
         {
           label: "Knowledgebase",
           href: ROUTES.knowledgebase,
         },
         {
-          label: "Klantdata",
+          label: isEnglish ? "Customer data" : "Klantdata",
           href: ROUTES.klantdata,
         },
         {
-          label: "Teamchat",
+          label: isEnglish ? "Team chat" : "Teamchat",
           href: ROUTES.teamchat,
         },
         {
@@ -126,9 +128,11 @@ const createMenuData = () => ({
       title: "RESOURCES",
       items: [
         {
-          label: "Prijzen",
+          label: isEnglish ? "Pricing" : "Prijzen",
           href: ROUTES.prijzen,
-          description: "Bekijk onze modulaire prijzen en bundels",
+          description: isEnglish 
+            ? "View our modular pricing and bundles"
+            : "Bekijk onze modulaire prijzen en bundels",
         },
       ],
     },
@@ -137,7 +141,9 @@ const createMenuData = () => ({
     image: "/Onboard Cusmato AI.png",
     imageAlt: "Cusmato AI Onboarding",
     title: "Onboard Cusmato AI",
-    description: "Onboard Cusmato in 5 minuten en start direct met automatiseren. Koppel je tools, configureer je AI Helpdesk en laat Cusmato klantvragen zelfstandig afhandelen.",
+    description: isEnglish
+      ? "Onboard Cusmato in 5 minutes and start automating right away. Connect your tools, configure your AI Helpdesk and let Cusmato handle customer inquiries independently."
+      : "Onboard Cusmato in 5 minuten en start direct met automatiseren. Koppel je tools, configureer je AI Helpdesk en laat Cusmato klantvragen zelfstandig afhandelen.",
     ctaText: "Start onboarding →",
     ctaHref: ROUTES.onboarding,
     ctaExternal: true,
@@ -146,4 +152,5 @@ const createMenuData = () => ({
 
 export const NAVIGATION = {
   megaMenu: createMenuData(),
+  megaMenuEN: createMenuData(true),
 };

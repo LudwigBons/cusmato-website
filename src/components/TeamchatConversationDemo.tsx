@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useReducedMotion, useInView } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 interface Message {
   id: string;
@@ -14,6 +15,8 @@ interface Message {
 
 export default function TeamchatConversationDemo() {
   const shouldReduceMotion = useReducedMotion();
+  const location = useLocation();
+  const isEnglish = location.pathname === "/en" || location.pathname.startsWith("/en/");
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
   const [visibleMessages, setVisibleMessages] = useState<string[]>([]);
@@ -21,7 +24,72 @@ export default function TeamchatConversationDemo() {
   const [typingSender, setTypingSender] = useState<string | null>(null);
   const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
 
-  const messages: Message[] = [
+  const messages: Message[] = isEnglish ? [
+    {
+      id: "1",
+      sender: "Sarah",
+      senderInitial: "S",
+      senderColor: "bg-blue-600",
+      text: "Good morning! I just checked the latest customer questions. Most questions are about shipping status.",
+      timestamp: "08:45",
+      type: "normal",
+    },
+    {
+      id: "2",
+      sender: "You",
+      senderInitial: "Y",
+      senderColor: "bg-slate-600",
+      text: "@Milan can you check the tracking for ticket #1234? Customer is asking where the package is.",
+      timestamp: "08:46",
+      type: "mention",
+      mentionTarget: "Milan",
+    },
+    {
+      id: "3",
+      sender: "Milan",
+      senderInitial: "M",
+      senderColor: "bg-green-600",
+      text: "Yes, checking it now.",
+      timestamp: "08:47",
+      type: "normal",
+    },
+    {
+      id: "4",
+      sender: "AI",
+      senderInitial: "AI",
+      senderColor: "bg-purple-600",
+      text: "Cusmato AI suggests: send update to customer",
+      timestamp: "Now",
+      type: "ai-suggestion",
+    },
+    {
+      id: "5",
+      sender: "Milan",
+      senderInitial: "M",
+      senderColor: "bg-green-600",
+      text: "Package is on the way, will be delivered tomorrow. Track & trace: 3SDK123456789",
+      timestamp: "08:48",
+      type: "normal",
+    },
+    {
+      id: "6",
+      sender: "You",
+      senderInitial: "Y",
+      senderColor: "bg-slate-600",
+      text: "Action: status → Shipped ✅",
+      timestamp: "08:49",
+      type: "action",
+    },
+    {
+      id: "7",
+      sender: "Sarah",
+      senderInitial: "S",
+      senderColor: "bg-blue-600",
+      text: "Perfect! I'll send the update to the customer.",
+      timestamp: "2 min ago",
+      type: "normal",
+    },
+  ] : [
     {
       id: "1",
       sender: "Sarah",
@@ -136,7 +204,7 @@ export default function TeamchatConversationDemo() {
 
   const getMessageComponent = (message: Message) => {
     const isVisible = visibleMessages.includes(message.id);
-    const isOwnMessage = message.sender === "Jij";
+    const isOwnMessage = message.sender === "You" || message.sender === "Jij";
 
     if (!isVisible && !shouldReduceMotion) return null;
 
@@ -215,9 +283,9 @@ export default function TeamchatConversationDemo() {
               <p className="text-xs text-slate-500">4 members</p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2">
             <div className="flex -space-x-2">
-              {["S", "M", "J", "A"].map((initial, idx) => (
+              {(isEnglish ? ["S", "M", "Y", "A"] : ["S", "M", "J", "A"]).map((initial, idx) => (
                 <div
                   key={idx}
                   className="w-6 h-6 rounded-full bg-blue-100 border-2 border-white text-blue-600 text-xs font-semibold flex items-center justify-center"
@@ -297,7 +365,7 @@ export default function TeamchatConversationDemo() {
                 <div className="flex-1 relative">
                   <input
                     type="text"
-                    placeholder="Typ een bericht..."
+                    placeholder={isEnglish ? "Type a message..." : "Typ een bericht..."}
                     className="w-full px-4 py-2.5 rounded-full border border-slate-200 bg-white text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     disabled
                   />
@@ -305,7 +373,7 @@ export default function TeamchatConversationDemo() {
                 <button
                   className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-colors disabled:opacity-50"
                   disabled
-                  aria-label="Verstuur bericht"
+                  aria-label={isEnglish ? "Send message" : "Verstuur bericht"}
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

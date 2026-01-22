@@ -1,5 +1,6 @@
 import { memo, useState, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 interface StepVisual {
   type: "connection" | "profile" | "ticket";
@@ -24,6 +25,8 @@ interface WorkflowStepsProps {
 
 function WorkflowSteps({ steps, title = "Zo werkt de koppeling", subtitle }: WorkflowStepsProps) {
   const shouldReduceMotion = useReducedMotion();
+  const location = useLocation();
+  const isEnglish = location.pathname === "/en" || location.pathname.startsWith("/en/");
   const [activeStep, setActiveStep] = useState(0);
   const currentStep = steps[activeStep];
 
@@ -153,7 +156,7 @@ function WorkflowSteps({ steps, title = "Zo werkt de koppeling", subtitle }: Wor
 
                     {/* Mini Visual */}
                     <div className="mt-8 pt-8 border-t border-slate-200">
-                      <MiniVisual visual={currentStep.visual} />
+                      <MiniVisual visual={currentStep.visual} isEnglish={isEnglish} />
                     </div>
                   </div>
                 </motion.div>
@@ -268,7 +271,7 @@ function WorkflowSteps({ steps, title = "Zo werkt de koppeling", subtitle }: Wor
                   ))}
                 </div>
                 <div className="mt-6 pt-6 border-t border-slate-200">
-                  <MiniVisual visual={currentStep.visual} />
+                  <MiniVisual visual={currentStep.visual} isEnglish={isEnglish} />
                 </div>
               </div>
             </motion.div>
@@ -307,7 +310,7 @@ function WorkflowSteps({ steps, title = "Zo werkt de koppeling", subtitle }: Wor
 }
 
 // Mini Visual Component for step preview
-function MiniVisual({ visual }: { visual: StepVisual }) {
+function MiniVisual({ visual, isEnglish = false }: { visual: StepVisual; isEnglish?: boolean }) {
   const shouldReduceMotion = useReducedMotion();
 
   if (visual.type === "connection") {
@@ -394,7 +397,7 @@ function MiniVisual({ visual }: { visual: StepVisual }) {
       <div className="relative">
         <div className="bg-slate-50 border-2 border-slate-200 rounded-lg p-4 min-h-[140px]">
           <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
-            Klantprofiel
+            {isEnglish ? "Customer profile" : "Klantprofiel"}
           </div>
           <div className="space-y-2">
             <div className="h-2 bg-slate-200 rounded-full w-3/4" />
@@ -411,7 +414,7 @@ function MiniVisual({ visual }: { visual: StepVisual }) {
       <div className="relative">
         <div className="bg-slate-50 border-2 border-slate-200 rounded-lg p-4 min-h-[140px]">
           <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
-            Nieuw Ticket
+            {isEnglish ? "New Ticket" : "Nieuw Ticket"}
           </div>
           <div className="space-y-2">
             <div className="h-3 bg-blue-100 rounded w-full" />
