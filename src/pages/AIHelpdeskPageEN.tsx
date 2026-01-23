@@ -154,7 +154,10 @@ export default function AIHelpdeskPageEN() {
             description={subpagesHeroConfigEN["ai-helpdesk"].description}
             imageSrc={subpagesHeroConfigEN["ai-helpdesk"].imageSrc}
             imageAlt={subpagesHeroConfigEN["ai-helpdesk"].imageAlt}
-            primaryCta={subpagesHeroConfigEN["ai-helpdesk"].primaryCta}
+            primaryCta={subpagesHeroConfigEN["ai-helpdesk"].primaryCta ? {
+              ...subpagesHeroConfigEN["ai-helpdesk"].primaryCta,
+              href: "/en/try-14-days-for-free"
+            } : undefined}
             secondaryCta={subpagesHeroConfigEN["ai-helpdesk"].secondaryCta}
           />
 

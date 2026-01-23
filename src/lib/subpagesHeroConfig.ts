@@ -26,7 +26,7 @@ const toEnglishUrl = (path: string): string => {
     case ROUTES.faq: return "/en/faq";
     case ROUTES.blog: return "/en/blog";
     case ROUTES.tryFree: return "/en/try-14-days-for-free";
-    case ROUTES.contact: return "/en/contact";
+    case ROUTES.contact: return "/en/try-14-days-for-free";
     case ROUTES.terms: return "/en/terms-conditions";
     case ROUTES.privacy: return "/en/security-privacy";
     default: return `/en${path}`; // Fallback for other paths
@@ -84,7 +84,7 @@ export const subpagesHeroConfig: Record<string, SubpageHeroConfig> = {
     },
     secondaryCta: {
       label: "Bekijk voorbeeld workflow",
-      href: "/contact",
+      href: "/probeer-14-dagen-gratis",
     },
     dark: false, // Hero is buiten dark layout
   },
@@ -159,7 +159,7 @@ export const subpagesHeroConfig: Record<string, SubpageHeroConfig> = {
     },
     secondaryCta: {
       label: "Neem contact op",
-      href: "/contact",
+      href: "/probeer-14-dagen-gratis",
     },
   },
 };
@@ -275,7 +275,7 @@ export const subpagesHeroConfigEN: Record<string, SubpageHeroConfig> = {
     },
     secondaryCta: {
       label: "Contact us",
-      href: toEnglishUrl(ROUTES.contact),
+      href: "/en/try-14-days-for-free",
     },
   },
 };

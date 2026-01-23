@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState, Suspense, lazy } from "react";
 import Reveal from "../components/Reveal";
+import FinalCTA from "../components/FinalCTA";
+import BottomMobileCTA from "../components/BottomMobileCTA";
 
 const PremiumImage = lazy(() => import("../components/PremiumImage"));
 
@@ -534,11 +536,11 @@ export default function PrijzenPage() {
                   </li>
                 </ul>
                 <Link
-                  to="/contact"
+                  to="/probeer-14-dagen-gratis"
                   className="block w-full text-center rounded-full px-4 py-2.5 text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors"
                 >
-                    Neem contact op
-                  </Link>
+                  Probeer 14 dagen gratis
+                </Link>
                 </div>
               </div>
             </Reveal>
@@ -578,6 +580,10 @@ export default function PrijzenPage() {
           </section>
         </div>
       </main>
+
+      {/* Standard CTA */}
+      <FinalCTA />
+      <BottomMobileCTA />
     </div>
   );
 }

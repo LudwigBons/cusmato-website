@@ -224,15 +224,18 @@ export default function IntegrationsPage() {
               <p className="text-xs text-slate-500 mb-6">
                 Neem contact op en we helpen je met de integratie die je nodig hebt.
               </p>
-              <motion.a
-                href="mailto:support@cusmato.app?subject=Integratie aanvraag"
+              <motion.div
                 whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
                 whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
                 transition={{ duration: 0.15 }}
-                className="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 transition-colors"
               >
-                Integratie aanvragen
-              </motion.a>
+                <Link
+                  to="/probeer-14-dagen-gratis"
+                  className="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 transition-colors"
+                >
+                  Integratie aanvragen
+                </Link>
+              </motion.div>
             </div>
           </Reveal>
 

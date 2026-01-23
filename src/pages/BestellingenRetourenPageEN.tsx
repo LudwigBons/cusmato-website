@@ -131,7 +131,10 @@ export default function BestellingenRetourenPageEN() {
             description={heroConfig.description}
             imageSrc={heroConfig.imageSrc}
             imageAlt={heroConfig.imageAlt}
-            primaryCta={heroConfig.primaryCta}
+            primaryCta={heroConfig.primaryCta ? {
+              ...heroConfig.primaryCta,
+              href: "/en/try-14-days-for-free"
+            } : undefined}
           />
         </div>
       </main>
@@ -181,7 +184,7 @@ export default function BestellingenRetourenPageEN() {
             <Reveal delay={0.2}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
                 <a
-                  href="/probeer-14-dagen-gratis"
+                  href="/en/try-14-days-for-free"
                   className="inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold bg-blue-600 text-white shadow-sm hover:bg-blue-700 transition-colors"
                 >
                   Try 14 days for free

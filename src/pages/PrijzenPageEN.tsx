@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useState, Suspense, lazy } from "react";
 import Reveal from "../components/Reveal";
 import { ROUTES } from "../lib/constants";
+import FinalCTAEN from "../components/FinalCTAEN";
+import BottomMobileCTAEN from "../components/BottomMobileCTAEN";
 
 // Helper function to convert Dutch routes to English routes
 const toEnglishUrl = (path: string): string => {
@@ -10,7 +12,7 @@ const toEnglishUrl = (path: string): string => {
   }
   switch (path) {
     case ROUTES.tryFree: return "/en/try-14-days-for-free";
-    case ROUTES.contact: return "/en/contact";
+    case ROUTES.contact: return "/en/try-14-days-for-free";
     default: return `/en${path}`;
   }
 };
@@ -547,11 +549,11 @@ export default function PrijzenPageEN() {
                   </li>
                 </ul>
                 <Link
-                  to={toEnglishUrl(ROUTES.contact)}
+                  to="/en/try-14-days-for-free"
                   className="block w-full text-center rounded-full px-4 py-2.5 text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors"
                 >
-                    Contact us
-                  </Link>
+                  Try 14 days for free
+                </Link>
                 </div>
               </div>
             </Reveal>
@@ -591,6 +593,10 @@ export default function PrijzenPageEN() {
           </section>
         </div>
       </main>
+
+      {/* Standard CTA */}
+      <FinalCTAEN />
+      <BottomMobileCTAEN />
     </div>
   );
 }

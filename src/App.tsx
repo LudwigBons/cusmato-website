@@ -17,6 +17,7 @@ const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
 const Probeer14DagenGratisPage = lazy(() => import("./pages/Probeer14DagenGratisPage"));
 const Try14DaysForFreePage = lazy(() => import("./pages/Try14DaysForFreePage"));
 const SecurityPrivacyPage = lazy(() => import("./pages/SecurityPrivacyPage"));
+const SecurityPrivacyPageEN = lazy(() => import("./pages/SecurityPrivacyPageEN"));
 const AIHelpdeskPage = lazy(() => import("./pages/AIHelpdeskPage"));
 const AIHelpdeskPageEN = lazy(() => import("./pages/AIHelpdeskPageEN"));
 const BestellingenRetourenPage = lazy(() => import("./pages/BestellingenRetourenPage"));
@@ -32,9 +33,9 @@ const KlantdataPageEN = lazy(() => import("./pages/KlantdataPageEN"));
 const TeamchatPage = lazy(() => import("./pages/TeamchatPage"));
 const TeamchatPageEN = lazy(() => import("./pages/TeamchatPageEN"));
 const AlgemeneVoorwaardenPage = lazy(() => import("./pages/AlgemeneVoorwaardenPage"));
+const AlgemeneVoorwaardenPageEN = lazy(() => import("./pages/AlgemeneVoorwaardenPageEN"));
 const PrijzenPage = lazy(() => import("./pages/PrijzenPage"));
 const PrijzenPageEN = lazy(() => import("./pages/PrijzenPageEN"));
-const ContactPage = lazy(() => import("./pages/ContactPage"));
 const InHouseAIPage = lazy(() => import("./pages/InHouseAIPage"));
 const InHouseAIPageEN = lazy(() => import("./pages/InHouseAIPageEN"));
 
@@ -287,10 +288,26 @@ export default function App() {
             } 
           />
           <Route 
+            path="en/security-privacy" 
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <SecurityPrivacyPageEN />
+              </Suspense>
+            } 
+          />
+          <Route 
             path="algemene-voorwaarden" 
             element={
               <Suspense fallback={<PageLoader />}>
                 <AlgemeneVoorwaardenPage />
+              </Suspense>
+            } 
+          />
+          <Route 
+            path="en/algemene-voorwaarden" 
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <AlgemeneVoorwaardenPageEN />
               </Suspense>
             } 
           />
@@ -315,14 +332,6 @@ export default function App() {
             element={
               <Suspense fallback={<PageLoader />}>
                 <PrijzenPageEN />
-              </Suspense>
-            } 
-          />
-          <Route 
-            path="contact" 
-            element={
-              <Suspense fallback={<PageLoader />}>
-                <ContactPage />
               </Suspense>
             } 
           />

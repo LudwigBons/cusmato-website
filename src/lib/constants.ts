@@ -41,7 +41,7 @@ export const CTAS = {
   },
   requestDemo: {
     text: "Vraag demo",
-    href: ROUTES.contact,
+    href: ROUTES.tryFree,
   },
   viewIntegrations: {
     text: "Bekijk Integraties →",

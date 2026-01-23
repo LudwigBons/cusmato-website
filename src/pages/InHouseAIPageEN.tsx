@@ -29,7 +29,7 @@ const toEnglishUrl = (path: string): string => {
     case ROUTES.faq: return "/en/faq";
     case ROUTES.blog: return "/en/blog";
     case ROUTES.tryFree: return "/en/try-14-days-for-free";
-    case ROUTES.contact: return "/en/contact";
+    case ROUTES.contact: return "/en/try-14-days-for-free";
     case ROUTES.terms: return "/en/terms-conditions";
     case ROUTES.privacy: return "/en/security-privacy";
     default: return `/en${path}`; // Fallback for other paths
@@ -83,8 +83,14 @@ export default function InHouseAIPageEN() {
               description={heroConfig.description}
               imageSrc={heroConfig.imageSrc}
               imageAlt={heroConfig.imageAlt}
-              primaryCta={heroConfig.primaryCta}
-              secondaryCta={heroConfig.secondaryCta}
+              primaryCta={heroConfig.primaryCta ? {
+                ...heroConfig.primaryCta,
+                href: "/en/try-14-days-for-free"
+              } : undefined}
+              secondaryCta={heroConfig.secondaryCta ? {
+                ...heroConfig.secondaryCta,
+                href: "/en/try-14-days-for-free"
+              } : undefined}
             />
           </div>
         </main>

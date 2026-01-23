@@ -2,8 +2,8 @@ import { useState, useMemo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Reveal from "../components/Reveal";
-import GlobalCTA from "../components/GlobalCTA";
-import BottomMobileCTA from "../components/BottomMobileCTA";
+import FinalCTAEN from "../components/FinalCTAEN";
+import BottomMobileCTAEN from "../components/BottomMobileCTAEN";
 import BlogCardEN from "../components/blog/BlogCardEN";
 import { blogPostsEN } from "../data/blogEN";
 import { fadeUp, staggerContainer, viewport } from "../lib/motion";
@@ -156,50 +156,11 @@ export default function BlogPageEN() {
             </div>
           )}
 
-          {/* CTA Banner - Hidden on mobile to avoid duplicate with BottomMobileCTA */}
-          <Reveal>
-            <div className="hidden md:block mt-16 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-2xl p-8 md:p-12 text-center">
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-                Ready to automate?
-              </h2>
-              <p className="text-base text-slate-600 mb-6 max-w-2xl mx-auto">
-                Try Cusmato free for 14 days and discover how to automate customer responses.
-              </p>
-              <div className="flex flex-wrap gap-3 justify-center">
-                <motion.div
-                  whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
-                  whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
-                  transition={{ duration: 0.15 }}
-                >
-                  <Link
-                    to={toEnglishUrl(ROUTES.tryFree)}
-                    className="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold bg-blue-600 text-white shadow-sm hover:bg-blue-700 hover:shadow-md transition-all duration-150"
-                  >
-                    Try 14 days for free
-                  </Link>
-                </motion.div>
-                <motion.div
-                  whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
-                  whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
-                  transition={{ duration: 0.15 }}
-                >
-                  <a
-                    href="https://www.cusmato.app/welkom"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 hover:border-slate-400 transition-all duration-150"
-                  >
-                    Start onboarding
-                  </a>
-                </motion.div>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </main>
 
-      <GlobalCTA />
-      <BottomMobileCTA />
+      <FinalCTAEN />
+      <BottomMobileCTAEN />
     </div>
   );
 }

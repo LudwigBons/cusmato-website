@@ -301,7 +301,7 @@ export default function Header() {
               className="lg:hidden"
             >
               <Link
-                to="/probeer-14-dagen-gratis"
+                to={isEnglish ? "/en/try-14-days-for-free" : "/probeer-14-dagen-gratis"}
                 className="inline-flex items-center justify-center h-8 px-3 text-xs font-semibold bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors whitespace-nowrap"
               >
                 {isEnglish ? "Try 14 days for free" : "Probeer 14 dagen gratis"}
@@ -363,7 +363,7 @@ export default function Header() {
                 transition={{ duration: 0.15 }}
               >
                 <Link
-                  to="/probeer-14-dagen-gratis"
+                  to={isEnglish ? "/en/try-14-days-for-free" : "/probeer-14-dagen-gratis"}
                   className="inline-flex items-center justify-center h-10 px-4 text-sm font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors whitespace-nowrap"
                 >
                   {isEnglish ? "Try 14 days for free" : "Probeer 14 dagen gratis"}
@@ -518,7 +518,7 @@ export default function Header() {
                 {/* CTA Button - Sticky bottom (only primary) */}
                 <div className="sticky bottom-0 bg-white border-t border-slate-200 px-5 py-4 flex-shrink-0">
                   <Link
-                    to="/probeer-14-dagen-gratis"
+                    to={isEnglish ? "/en/try-14-days-for-free" : "/probeer-14-dagen-gratis"}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="block w-full text-center px-4 py-2.5 text-sm font-semibold bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
                   >

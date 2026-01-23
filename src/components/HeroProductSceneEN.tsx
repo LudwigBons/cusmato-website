@@ -47,7 +47,7 @@ export default function HeroProductSceneEN() {
 
             {/* CTAs */}
             <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start w-full sm:w-auto">
-              <Button to={CTAS.tryFree.href} variant="primary" size="md">
+              <Button to="/en/try-14-days-for-free" variant="primary" size="md">
                 Try 14 days for free
               </Button>
               <Button href={CTAS.startOnboarding.href} variant="secondary" size="md" external>

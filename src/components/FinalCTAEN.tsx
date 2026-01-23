@@ -33,15 +33,15 @@ export default function FinalCTAEN() {
           className="text-center"
         >
           <h2 className="text-3xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold text-slate-900 mb-4 sm:mb-6 leading-[1.05] tracking-tight">
-            Ready to automate your support?
+            Ready to automate your customer support?
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-slate-600 mb-8 sm:mb-12 max-w-[28rem] sm:max-w-2xl mx-auto leading-relaxed">
-            Start today with Cusmato AI Helpdesk. Try free, then scale up when you're ready.
+            Schedule a demo and try Cusmato free for 14 days.
           </p>
 
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-3">
             <Link
-              to="/probeer-14-dagen-gratis"
+              to="/en/try-14-days-for-free"
               className="inline-flex items-center justify-center w-full max-w-[280px] sm:max-w-none sm:w-auto h-11 py-3 px-6 sm:h-10 sm:py-0 sm:px-4 rounded-full bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors"
             >
               Try 14 days for free

@@ -2,8 +2,8 @@ import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import Reveal from "../components/Reveal";
-import GlobalCTA from "../components/GlobalCTA";
-import BottomMobileCTA from "../components/BottomMobileCTA";
+import FinalCTAEN from "../components/FinalCTAEN";
+import BottomMobileCTAEN from "../components/BottomMobileCTAEN";
 import FAQAccordion from "../components/FAQAccordion";
 import { fadeUp, staggerContainer, viewport } from "../lib/motion";
 import { ROUTES } from "../lib/constants";
@@ -15,7 +15,7 @@ const toEnglishUrl = (path: string): string => {
   }
   switch (path) {
     case ROUTES.tryFree: return "/en/try-14-days-for-free";
-    case ROUTES.contact: return "/en/contact";
+    case ROUTES.contact: return "/en/try-14-days-for-free";
     default: return `/en${path}`;
   }
 };
@@ -347,46 +347,6 @@ export default function FAQPageEN() {
             <FAQAccordion items={filteredFAQs} searchQuery={searchQuery} />
           </Reveal>
 
-          {/* Not Found Card */}
-          <Reveal>
-            <div className="mt-16 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl border border-blue-200 p-8 md:p-12 text-center">
-              <h2 className="text-3xl md:text-3xl font-bold text-slate-900 mb-3 leading-[1.15]">
-                <span className="md:hidden">Still have questions?</span>
-                <span className="hidden md:inline">Still haven't found what you're looking for?</span>
-              </h2>
-              <p className="text-base text-slate-600 mb-6 max-w-[28rem] sm:max-w-xl mx-auto leading-relaxed">
-                Contact us during a free introduction call and we'll answer all your questions personally.
-              </p>
-              <div className="flex flex-wrap gap-3 justify-center">
-                <motion.div
-                  whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
-                  whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
-                  transition={{ duration: 0.15 }}
-                >
-                  <Link
-                    to={toEnglishUrl(ROUTES.tryFree)}
-                    className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold bg-blue-600 text-white shadow-sm hover:bg-blue-700 transition-colors hover:shadow-md"
-                  >
-                    Schedule free call
-                  </Link>
-                </motion.div>
-                <motion.div
-                  whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
-                  whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
-                  transition={{ duration: 0.15 }}
-                >
-                  <a
-                    href="https://www.cusmato.app/welkom"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 transition-colors"
-                  >
-                    Start onboarding
-                  </a>
-                </motion.div>
-              </div>
-            </div>
-          </Reveal>
 
           {/* Trust Row */}
           <Reveal>
@@ -422,8 +382,8 @@ export default function FAQPageEN() {
         </div>
       </main>
 
-      <GlobalCTA />
-      <BottomMobileCTA />
+      <FinalCTAEN />
+      <BottomMobileCTAEN />
     </div>
   );
 }

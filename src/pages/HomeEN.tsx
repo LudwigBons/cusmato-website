@@ -44,7 +44,7 @@ export default function HomeEN() {
             </p>
             <div className="flex flex-col items-center gap-3 sm:items-start sm:flex-row">
               <Link
-                to="/ai-helpdesk"
+                to="/en/ai-helpdesk"
                 className="inline-flex items-center justify-center w-full max-w-[320px] sm:w-auto h-10 px-4 rounded-full bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors"
               >
                 View AI Helpdesk →
@@ -103,7 +103,7 @@ export default function HomeEN() {
                 </p>
                 <div className="flex flex-col items-center gap-3 sm:items-start sm:flex-row">
                   <Link
-                    to="/workflows-regels"
+                    to="/en/workflows-regels"
                     className="inline-flex items-center justify-center w-full max-w-[320px] sm:w-auto h-10 px-4 rounded-full bg-blue-600 text-white font-semibold text-sm hover:bg-blue-500 transition-colors"
                   >
                     View Workflows →
@@ -149,7 +149,7 @@ export default function HomeEN() {
             </ul>
             <div className="flex flex-col items-center gap-3 sm:items-start sm:flex-row mt-8 sm:mt-0">
               <Link
-                to="/integraties"
+                to="/en/integrations"
                 className="inline-flex items-center justify-center w-full max-w-[320px] sm:w-auto h-10 px-4 rounded-full bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors"
               >
                 View Integrations →

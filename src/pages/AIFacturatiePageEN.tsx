@@ -124,7 +124,10 @@ export default function AIFacturatiePageEN() {
             description={heroConfig.description}
             imageSrc={heroConfig.imageSrc}
             imageAlt={heroConfig.imageAlt}
-            primaryCta={heroConfig.primaryCta}
+            primaryCta={heroConfig.primaryCta ? {
+              ...heroConfig.primaryCta,
+              href: "/en/try-14-days-for-free"
+            } : undefined}
           />
         </div>
       </main>

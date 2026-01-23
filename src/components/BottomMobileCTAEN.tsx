@@ -33,10 +33,10 @@ export default function BottomMobileCTAEN() {
         <Reveal>
           <div className="text-center">
             <h2 className="text-3xl font-semibold text-slate-900 mb-4 leading-[1.05] tracking-[-0.01em]">
-              Ready to automate customer responses?
+              Ready to automate your customer support?
             </h2>
             <p className="text-base text-slate-500 mb-8 leading-relaxed max-w-[28rem] mx-auto">
-              Schedule an introduction & try 14 days for free
+              Schedule a demo and try Cusmato free for 14 days.
             </p>
 
             <div className="flex flex-col items-center gap-4">
@@ -46,7 +46,7 @@ export default function BottomMobileCTAEN() {
                 transition={{ duration: 0.15 }}
               >
                 <Link
-                  to="/probeer-14-dagen-gratis"
+                  to="/en/try-14-days-for-free"
                   className="inline-flex items-center justify-center w-full max-w-[280px] h-11 py-3 px-6 rounded-full bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors"
                 >
                   Try 14 days for free

@@ -221,7 +221,7 @@ export default function PricingPage() {
                       
                       {/* CTA */}
                       <a
-                        href="/contact"
+                        href="/probeer-14-dagen-gratis"
                         className="block w-full text-center h-10 sm:h-auto px-4 sm:px-5 py-2 sm:py-2.5 text-sm font-semibold rounded-full border border-slate-300 text-slate-900 bg-white hover:bg-slate-50 transition-colors"
                       >
                         Bekijk alle bundels
@@ -334,7 +334,7 @@ export default function PricingPage() {
                     ))}
                   </ul>
                   <Link
-                    to="/contact"
+                    to="/probeer-14-dagen-gratis"
                     className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
                   >
                     Neem contact op
